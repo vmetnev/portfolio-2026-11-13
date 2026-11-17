@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>European economic environment: evidence report</title>
+  <style>
+:root {
+  --background: oklch(0.993 0.006 82);
+  --foreground: oklch(0.31 0.018 50);
+  --card: oklch(0.999 0.003 90);
+  --card-foreground: oklch(0.31 0.018 50);
+  --primary: oklch(0.40 0.055 250);
+  --primary-foreground: oklch(0.99 0.004 90);
+  --secondary: oklch(0.974 0.01 82);
+  --secondary-foreground: oklch(0.36 0.02 50);
+  --muted: oklch(0.974 0.01 82);
+  --muted-foreground: oklch(0.51 0.015 55);
+  --metadata: oklch(0.64 0.012 60);
+  --accent: oklch(0.969 0.014 78);
+  --accent-foreground: oklch(0.34 0.025 50);
+  --destructive: oklch(0.55 0.14 25);
+  --positive: oklch(0.48 0.09 155);
+  --border: oklch(0.915 0.012 78);
+  --sidebar: oklch(0.987 0.008 82);
+  --sidebar-foreground: oklch(0.31 0.018 50);
+  --sidebar-primary: oklch(0.40 0.055 250);
+  --sidebar-primary-foreground: oklch(0.99 0.004 90);
+  --radius: 0.5rem;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { font-family: var(--font-sans); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.375;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--primary); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.prose a {
+  overflow-wrap: anywhere;
+  text-decoration-color: color-mix(in oklch, var(--primary) 40%, transparent);
+}
+.prose a:hover { text-decoration-color: var(--primary); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 3rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--sidebar);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--sidebar-foreground);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background: var(--sidebar-primary);
+  color: var(--sidebar-primary-foreground);
+}
+.mark svg { width: 0.875rem; height: 0.875rem; }
+.site-nav {
+  display: flex;
+  min-width: 0;
+  gap: 0.25rem;
+  overflow-x: auto;
+}
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  height: 3rem;
+  padding: 0 0.75rem;
+  border-bottom: 2px solid transparent;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-nav a:hover { color: var(--foreground); }
+.site-nav a.active {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  font-weight: 500;
+}
+main {
+  width: min(72rem, 100%);
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.page-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--metadata);
+  font-size: 0.75rem;
+}
+h1 {
+  margin: 0.375rem 0 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+h3 { margin: 0; font-size: 0.875rem; font-weight: 500; line-height: 1.35; }
+.section { display: flex; flex-direction: column; gap: 0.75rem; }
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.lede, .note {
+  max-width: 56rem;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+.note { color: var(--muted-foreground); }
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: 0 0 0 1px var(--border);
+  font-size: 0.875rem;
+}
+.muted-card { background: var(--muted); }
+.prose p { margin: 0; }
+.prose p + p { margin-top: 0.75rem; }
+.tag { color: var(--primary); font-weight: 500; }
+.part-gap { display: block; height: 1.25rem; }
+.force h3 { margin-bottom: 1rem; }
+.theme-list { margin: 0.35rem 0 0.85rem; padding-left: 1.15rem; }
+.theme-list li + li { margin-top: 0.35rem; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.stat {
+  padding: 0.75rem 0.875rem;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+.stat-value {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.stat-label {
+  margin: 0.25rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+}
+.stat-note {
+  margin: -0.25rem 0 0;
+  color: var(--metadata);
+  font-size: 0.75rem;
+}
+.stack { display: flex; flex-direction: column; gap: 0.75rem; }
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.force, .risk {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.force-index, .rank, .risk-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background: color-mix(in oklch, var(--primary) 10%, transparent);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.risk-index {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+.theme-head, .holding-head, .holding-title, .rejected-head, .turn-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.turn-head { align-items: center; justify-content: space-between; }
+.theme-main, .holding-main { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+.theme-main h3, .holding-title h3, .turn-head h3 { font-size: 1rem; }
+.holding-title { justify-content: space-between; }
+.holding-figures {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+.figure { font-size: 1rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.figure-label { margin-right: 0.45rem; color: var(--metadata); font-size: 0.75rem; }
+.badges, .queries { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  width: fit-content;
+  padding: 0 0.5rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius) * 2.6);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+.badge-positive, .badge-executive {
+  background: color-mix(in oklch, var(--primary) 12%, transparent);
+  color: var(--primary);
+}
+.badge-positive { background: color-mix(in oklch, var(--positive) 12%, transparent); color: var(--positive); }
+.badge-destructive {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+.badge-secondary, .badge-operator { background: var(--secondary); color: var(--secondary-foreground); }
+.badge-outline, .badge-analyst {
+  border-color: var(--border);
+  background: var(--card);
+  color: var(--foreground);
+}
+.badge-ghost {
+  background: transparent;
+  color: var(--metadata);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 400;
+  text-transform: none;
+}
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--border);
+}
+.field { display: flex; flex-direction: column; gap: 0.375rem; }
+.kicker {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+ul { margin: 0; padding-left: 1.1rem; }
+li + li { margin-top: 0.25rem; }
+.theme-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.query {
+  overflow-wrap: anywhere;
+  display: inline-flex;
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+.alloc-list { display: flex; flex-direction: column; gap: 0.8rem; }
+.alloc-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+}
+.alloc-top span:last-child {
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+.track {
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--muted);
+  overflow: hidden;
+}
+.fill { height: 100%; border-radius: inherit; background: var(--primary); }
+.table-card {
+  overflow-x: auto;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+th {
+  height: 2rem;
+  padding: 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: left;
+}
+td { padding: 0.45rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.ticker {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--card);
+  color: var(--foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+a.ticker:hover { background: var(--muted); }
+.scenarios, .grid-2 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: start;
+}
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.scenario-bull h3 { color: var(--positive); }
+.scenario-bear h3 { color: var(--destructive); }
+.count {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.5rem;
+  border-radius: calc(var(--radius) * 2.6);
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.view-tabs {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.35rem;
+  padding: 0.4rem 0;
+}
+.view-tab {
+  appearance: none;
+  border: 0;
+  height: 100%;
+  border-radius: 0.35rem;
+  background: color-mix(in oklch, var(--primary) 30%, white);
+  color: var(--primary);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+.view-tab:hover { background: color-mix(in oklch, var(--primary) 42%, white); }
+.view-tab.active, .view-tab.active:hover { background: var(--primary); color: white; }
+main[hidden], nav[hidden] { display: none !important; }
+@media (max-width: 960px) {
+  .stats, .scenarios, .fields, .split { grid-template-columns: 1fr 1fr; }
+  .scenarios { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .stats, .fields, .split, .grid-2 { grid-template-columns: 1fr; }
+  .site-header { gap: 0.75rem; }
+  .holding-title { flex-direction: column; }
+}
+
+.site-header { height: auto; min-height: 3rem; align-items: flex-start; flex-wrap: wrap; }
+.brand { height: 3rem; }
+.site-nav { flex: 1; overflow-x: auto; overflow-y: hidden; }
+.site-nav a { flex: 0 0 auto; }
+.site-nav a[aria-current="page"] {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  font-weight: 500;
+}
+.section { scroll-margin-top: 5rem; }
+main { padding-bottom: 45vh; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5v4"></path>
+          <rect x="7" y="9" width="4" height="6" rx="1"></rect>
+          <path d="M9 15v4"></path>
+          <path d="M15 3v2"></path>
+          <rect x="13" y="5" width="4" height="10" rx="1"></rect>
+          <path d="M15 15v6"></path>
+        </svg>
+      </span>
+      Europe Macro
+    </a>
+    <nav class="site-nav" aria-label="Reports"><a href="index.html">Portfolio</a><a href="US_MACRO_PROMPT_2026-11-13-19-53-21.html">US Macro</a><a href="US_POLITICS_PROMPT_2026-11-13-20-37-03.html">US Politics</a><a href="EUROPE_MACRO_PROMPT_2026-11-13-20-04-20.html" aria-current="page">Europe Macro</a><a href="FINANCIAL_CONDITIONS_PROMPT_2026-11-13-20-17-02.html">Financial Conditions</a><a href="EXTERNAL_DRIVERS_PROMPT_2026-11-13-20-31-36.html">External drivers</a><a href="INDUSTRY_CYCLES_PROMPT_2026-11-13-20-27-14.html">Industry Cycles</a><a href="EQUITY_MARKETS_PROMPT_2026-11-13-20-19-28.html">Equity market</a><a href="EARNINGS_PROMPT_2026-11-13-20-22-48.html">Earnings</a></nav>
+  </header>
+  <main id="top">
+    <div>
+      <p class="page-kicker"><span>Information cutoff: 13 November 2026 | Outlook horizon: to 13 November 2027</span><span>EUROPE_MACRO_PROMPT_2026-11-13-20-04-20.json</span></p>
+      <h1>European economic environment: evidence report</h1>
+    </div>
+    
+    <section class="section" id="introduction"><p class="section-label">Introduction</p><article class="card prose"><p><strong>Information cutoff: 13 November 2026 | Outlook horizon: to 13 November 2027</strong></p></article><article class="card prose"><p><strong>Classification:</strong> <strong>Reported</strong> = published data or policy decisions; <strong>Forecast</strong> = an institution’s projection; <strong>Interpretation</strong> = analytical inference. Annual forecasts for 2027 are not equivalent to forecasts for the exact rolling 12-month horizon.</p></article></section><section class="section" id="executive-findings"><p class="section-label">1. Executive findings</p><article class="card"><ul><li><strong>The euro area is expanding, but the recovery is uneven and losing sequential momentum.</strong> Third-quarter growth slowed from the second quarter; Spain substantially outperformed Germany, while Italy stagnated and France contracted. Aggregate European growth therefore provides a poor guide to individual companies’ domestic revenue prospects. (<a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-13112026-ap">ec.europa.eu</a>)</li><li><strong>Renewed inflation is predominantly an energy shock—not yet a generalized wage-price acceleration.</strong> October headline inflation reached 4.0%, against 2.5% excluding energy, food, alcohol and tobacco. Nevertheless, higher energy costs threaten household purchasing power and corporate margins, while limiting monetary-policy relief. (<a href="https://ec.europa.eu/eurostat/en/web/products-euro-indicators/w/2-04112026-ap">ec.europa.eu</a>)</li><li><strong>The investment outlook is divided:</strong> defense, infrastructure and digital investment offer support, but tighter credit and weaker loan demand constrain private capital expenditure. Germany’s fiscal support contrasts with assumed French consolidation and the approaching withdrawal of Next Generation EU support, particularly relevant to Italy. (<a href="https://www.ecb.europa.eu/press/projections/html/ecb.projections202609_ecbstaff~8e340fc69d.ga.html">ecb.europa.eu</a>)</li><li><strong>The US has stronger demand momentum and a gas-cost advantage.</strong> European exporters can benefit from US demand, but European production locations remain exposed to an unfavorable energy-cost differential. The UK is a separate case: stronger recent growth, but higher policy rates and a worsening official inflation forecast. (<a href="https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">bea.gov</a>)</li></ul></article></section><section class="section" id="dated-observations-and-source-references"><p class="section-label">2. Dated observations and source references</p><article class="card prose"><h3>A. Growth and differences across economies</h3><p><strong>1. Euro-area growth and employment — Reported, flash estimates.</strong> <strong>Published:</strong> 13 November 2026. <strong>Observation:</strong> Q3 2026; seasonally adjusted.</p></article><div class="table-card"><table><thead><tr><th>Economy</th><th class="num">GDP, quarter-on-quarter</th><th class="num">GDP, year-on-year</th><th>Investor relevance — interpretation</th></tr></thead><tbody><tr><td>Euro area</td><td class="num"><strong>+0.4%</strong></td><td class="num"><strong>+1.3%</strong></td><td>Expansion, but insufficient evidence of a broad demand boom</td></tr><tr><td>Germany</td><td class="num">+0.2%</td><td class="num">+1.2%</td><td>Improving annual comparison masks slowing quarterly growth</td></tr><tr><td>France</td><td class="num">−0.1%</td><td class="num">−0.1%</td><td>Weak domestic backdrop for sales volumes and operating leverage</td></tr><tr><td>Italy</td><td class="num">0.0%</td><td class="num">+0.8%</td><td>Stagnation increases dependence on sector-specific demand</td></tr><tr><td>Spain</td><td class="num">+0.6%</td><td class="num">+2.7%</td><td>Stronger aggregate revenue environment than other large members</td></tr><tr><td>Czechia, outside the euro area</td><td class="num">+0.5%</td><td class="num">+1.6%</td><td>Further evidence that European economies are not moving uniformly</td></tr></tbody></table></div><article class="card prose"><p>Euro-area employment was unchanged quarter-on-quarter and increased 0.4% year-on-year. Growth slowed from <strong>0.6% in Q2</strong>, while employment growth slowed from 0.1%. These are preliminary estimates, not final national accounts. (<a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-13112026-ap">ec.europa.eu</a>)</p></article><article class="card prose"><p><strong>Source URL:</strong> <a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-13112026-ap">https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-13112026-ap</a></p></article><article class="card prose"><h3>B. Manufacturing, services and business investment</h3><p><strong>2. Manufacturing remains weaker than services — Reported.</strong> <strong>Published:</strong> 15 October and 9 November 2026, respectively. <strong>Observation:</strong> August 2026.</p></article><article class="card prose"><p>Euro-area industrial production fell <strong>0.5% month-on-month</strong>. Services production rose <strong>0.3% month-on-month and 2.2% year-on-year</strong>. Within services, information and communication output increased 5.9% annually, whereas accommodation and food services declined 0.1%. <strong>Transmission:</strong> a general “services resilience” thesis should not be extended automatically to hospitality, nor industrial weakness to digital services. (<a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/4-15102026-ap?etrans=el&amp;utm_source=openai">ec.europa.eu</a>)</p></article><article class="card prose"><p><strong>Source URLs:</strong></p></article><article class="card"><ul><li><a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/4-15102026-ap">https://ec.europa.eu/eurostat/web/products-euro-indicators/w/4-15102026-ap</a></li><li><a href="https://ec.europa.eu/eurostat/en/web/products-euro-indicators/w/4-09112026-ap">https://ec.europa.eu/eurostat/en/web/products-euro-indicators/w/4-09112026-ap</a></li></ul></article><article class="card prose"><p><strong>3. Credit conditions are becoming less supportive of capital expenditure — Reported survey.</strong> <strong>Published:</strong> 27 October 2026. <strong>Observation:</strong> Q3 2026; survey conducted 21 September–6 October.</p></article><article class="card prose"><p>A net <strong>9% of banks tightened corporate credit standards</strong>, versus 7% in Q2. Corporate loan demand recorded a net decline of <strong>6%</strong>, following a 3% increase. Banks in France and Germany tightened standards; Italy eased and Spain was unchanged. <strong>Transmission:</strong> financing-sensitive investment and working capital face headwinds, but the intensity differs by country. Survey balances measure banks’ responses, not percentage changes in lending volumes. (<a href="https://www.ecb.europa.eu/stats/ecb_surveys/bank_lending_survey/pdf/ecb.blssurvey2026q3~c6a731e213.en.pdf?utm_source=openai">ecb.europa.eu</a>)</p></article><article class="card prose"><p><strong>Source URL:</strong> <a href="https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr261027~506ef03145.pt.html">https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr261027~506ef03145.pt.html</a></p></article><article class="card prose"><p><strong>4. Private-investment expectations have weakened — Forecast, business-association evidence.</strong> <strong>Published:</strong> 12 November 2026. <strong>Forecast period:</strong> calendar 2026.</p></article><article class="card prose"><p>BusinessEurope reduced its euro-area investment-growth forecast to <strong>1.7%, from 2.4% in spring</strong>, citing energy uncertainty and tightening financing conditions. This is the association’s forecast—not an official national-accounts observation or market consensus. <strong>Transmission:</strong> positive investment growth remains plausible, but the downward revision weakens the case for a broad capital-goods earnings acceleration. (<a href="https://www.businesseurope.eu/publications/businesseurope-economic-outlook-autumn-2026-short-term-resilience-masks-inflationary-and-fiscal-risks/?utm_source=openai">businesseurope.eu</a>)</p></article><article class="card prose"><p><strong>Source URL:</strong> <a href="https://www.businesseurope.eu/publications/businesseurope-economic-outlook-autumn-2026-short-term-resilience-masks-inflationary-and-fiscal-risks/">https://www.businesseurope.eu/publications/businesseurope-economic-outlook-autumn-2026-short-term-resilience-masks-inflationary-and-fiscal-risks/</a></p></article><article class="card prose"><h3>C. Consumers, employment and wages</h3><p><strong>5. Consumer goods demand is fragile — Reported, first estimates.</strong> <strong>Published:</strong> 6 November 2026. <strong>Observation:</strong> September 2026.</p></article><article class="card prose"><p>Euro-area retail volumes fell <strong>0.7% month-on-month</strong>, following a revised 0.4% rise in August, and were only 0.4% higher annually. Non-food volumes fell 1.2% monthly. Germany’s retail volumes declined 2.4% annually; Spain’s declined 1.5%, despite its stronger GDP growth. <strong>Transmission:</strong> nominal sales growth may conceal weak volumes, increasing promotional pressure and limiting fixed-cost absorption. Retail data do not cover all household services spending. (<a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/4-06112026-ap">ec.europa.eu</a>)</p></article><article class="card prose"><p><strong>Source URL:</strong> <a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/4-06112026-ap">https://ec.europa.eu/eurostat/web/products-euro-indicators/w/4-06112026-ap</a></p></article><article class="card prose"><p><strong>6. Labor-market support is weakening, not collapsing — Reported.</strong> <strong>Published:</strong> 30 October 2026. <strong>Observation:</strong> September 2026.</p></article><article class="card prose"><p>Euro-area unemployment was <strong>6.5%</strong>, unchanged from revised August data but above 6.3% a year earlier. The number unemployed increased by 122,000 monthly. <strong>Transmission:</strong> slowing job creation and rising unemployment reduce the scope for consumption to overcome the energy-related real-income squeeze; they may also moderate recruitment costs. (<a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/3-30102026-bp?utm_source=openai">ec.europa.eu</a>)</p></article><article class="card prose"><p><strong>Source URL:</strong> <a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/3-30102026-bp">https://ec.europa.eu/eurostat/web/products-euro-indicators/w/3-30102026-bp</a></p></article><article class="card prose"><p><strong>7. Wage pressure has moderated — Reported and forward-looking indicator.</strong> <strong>Published:</strong> 29 October 2026. <strong>Observations:</strong> compensation in Q2 2026; wage tracker through Q3 2027.</p></article><article class="card prose"><p>The ECB reported compensation-per-employee growth of <strong>3.3% in Q2</strong>, down from 3.6% in Q1; improving productivity contained unit-labor-cost growth. Its wage tracker indicated negotiated-pay growth averaging <strong>2.6% over the first three quarters of 2027</strong>. <strong>Transmission:</strong> moderating labor costs can protect margins, but subdued pay growth alongside elevated energy inflation constrains household purchasing power. The tracker is not a guarantee of realized economy-wide wages. (<a href="https://www.ecb.europa.eu/press/press_conference/monetary-policy-statement/2026/html/ecb.is261029~5c5ffe99e5.en.html">ecb.europa.eu</a>)</p></article><article class="card prose"><p><strong>Source URL:</strong> <a href="https://www.ecb.europa.eu/press/press_conference/monetary-policy-statement/2026/html/ecb.is261029~5c5ffe99e5.en.html">https://www.ecb.europa.eu/press/press_conference/monetary-policy-statement/2026/html/ecb.is261029~5c5ffe99e5.en.html</a></p></article><article class="card prose"><h3>D. Inflation and ECB policy</h3><p><strong>8. Headline inflation has accelerated much more than underlying inflation — Reported, flash estimate.</strong> <strong>Published:</strong> 4 November 2026. <strong>Observation:</strong> October 2026.</p></article><div class="table-card"><table><thead><tr><th>Euro-area inflation measure</th><th class="num">October annual rate</th><th class="num">September</th></tr></thead><tbody><tr><td>Headline HICP</td><td class="num"><strong>4.0%</strong></td><td class="num">3.8%</td></tr><tr><td>Excluding energy, food, alcohol and tobacco</td><td class="num"><strong>2.5%</strong></td><td class="num">2.5%</td></tr><tr><td>Energy</td><td class="num"><strong>20.8%</strong></td><td class="num">18.9%</td></tr><tr><td>Services</td><td class="num"><strong>3.3%</strong></td><td class="num">3.2%</td></tr></tbody></table></div><article class="card prose"><p><strong>Transmission:</strong> the immediate problem is higher energy expenditure and production costs. Stable core inflation contradicts an interpretation of uniformly accelerating prices, although services inflation remains above 2%. (<a href="https://ec.europa.eu/eurostat/en/web/products-euro-indicators/w/2-04112026-ap">ec.europa.eu</a>)</p></article><article class="card prose"><p><strong>Source URL:</strong> <a href="https://ec.europa.eu/eurostat/en/web/products-euro-indicators/w/2-04112026-ap">https://ec.europa.eu/eurostat/en/web/products-euro-indicators/w/2-04112026-ap</a></p></article><article class="card prose"><p><strong>9. The ECB is not offering a predetermined easing path — Reported policy and official guidance.</strong> <strong>Published/decision:</strong> 29 October 2026. <strong>Policy observation:</strong> applicable at the cutoff.</p></article><article class="card prose"><p>The ECB held its deposit rate at <strong>2.50%</strong>, following September’s 25-basis-point increase. APP and PEPP holdings continue to decline without reinvestment. Guidance remains data-dependent and meeting-by-meeting, with no committed rate path. <strong>Transmission:</strong> investors should not assume that weak growth automatically produces cheaper financing; persistent energy inflation can keep borrowing costs and valuation discount rates elevated. (<a href="https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html">ecb.europa.eu</a>)</p></article><article class="card prose"><p><strong>Source URLs:</strong></p></article><article class="card"><ul><li><a href="https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html">https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html</a></li><li><a href="https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260910~314e508016.en.html">https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260910~314e508016.en.html</a></li></ul></article><article class="card prose"><p><strong>10. Official recovery forecasts are conditional on energy normalization — Forecast.</strong> <strong>Published:</strong> 10 September 2026. <strong>Forecast periods:</strong> 2026–2028; technical assumptions cut off 19 August.</p></article><article class="card prose"><p>The ECB projected <strong>1.4% GDP growth in 2027</strong>, headline inflation of <strong>2.5%</strong>, and inflation excluding energy and food of <strong>2.6%</strong>. However, its 29 October statement said energy prices had subsequently exceeded the September baseline. <strong>Relevance:</strong> the September forecast is an official reference case, not an updated assessment incorporating all information available on 13 November. (<a href="https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260910~314e508016.en.html">ecb.europa.eu</a>)</p></article><article class="card prose"><p><strong>Source URL:</strong> <a href="https://www.ecb.europa.eu/press/projections/html/ecb.projections202609_ecbstaff~8e340fc69d.ga.html">https://www.ecb.europa.eu/press/projections/html/ecb.projections202609_ecbstaff~8e340fc69d.ga.html</a></p></article><article class="card prose"><h3>E. Fiscal support, infrastructure and defense</h3><p><strong>11. Fiscal support is geographically and temporally uneven — Official assessment and forecasts.</strong></p></article><article class="card"><ul><li><strong>Germany:</strong> published <strong>8 October 2026</strong>, covering 2026–2028. The government identified exports and state defense/infrastructure investment as growth drivers, but forecast growth of only <strong>1.1% in 2027</strong>, versus 1.3% in 2026. This supports public-order demand without establishing a self-sustaining private-investment boom. (<a href="https://www.bundesregierung.de/breg-en/news/autumn-forecast-2026-federal-government-2456430">bundesregierung.de</a>)</li><li><strong>Euro-area composition:</strong> the ECB’s <strong>10 September 2026</strong> forecast expects AI, defense and infrastructure spending to support investment, while NGEU expiry slows public-investment growth in 2027–2028. Its forecast also assumes further French budget savings and reduced NGEU support in Italy. These are forecast assumptions, not proof that every proposed fiscal measure will be enacted or executed. (<a href="https://www.ecb.europa.eu/press/projections/html/ecb.projections202609_ecbstaff~8e340fc69d.ga.html">ecb.europa.eu</a>)</li><li><strong>Ukraine-related expenditure:</strong> at its <strong>15–16 October 2026</strong> meeting, the European Council welcomed ongoing disbursements under the <strong>€90 billion support loan for 2026–2027</strong>. This establishes financing activity, but the full amount should not be treated as incremental orders or revenues for European defense manufacturers. (<a href="https://www.consilium.europa.eu/en/meetings/european-council/2026/10/15-16/?utm_source=openai">consilium.europa.eu</a>)</li></ul></article><article class="card prose"><p><strong>Source URLs:</strong></p></article><article class="card"><ul><li><a href="https://www.bundesregierung.de/breg-en/news/autumn-forecast-2026-federal-government-2456430">https://www.bundesregierung.de/breg-en/news/autumn-forecast-2026-federal-government-2456430</a></li><li><a href="https://www.consilium.europa.eu/en/meetings/european-council/2026/10/15-16/">https://www.consilium.europa.eu/en/meetings/european-council/2026/10/15-16/</a></li></ul></article><article class="card prose"><h3>F. Energy costs and international competitiveness</h3><p><strong>12. Winter gas security remains a material downside risk — Reported conditions and conditional scenarios.</strong> <strong>Published:</strong> 3 November 2026. <strong>Observations:</strong> principally Q1–Q3 2026 and end-October storage; outlook winter 2026–2027.</p></article><article class="card prose"><p>The IEA identified disrupted LNG flows through the Strait of Hormuz and unusually weak European storage buffers. End-October storage fill was <strong>62% in Germany and 66% in the Netherlands</strong>, leaving northwestern Europe particularly exposed. Its benchmark comparison also shows US Henry Hub gas substantially cheaper than European TTF. <strong>Transmission:</strong> European energy-intensive production faces cost and working-capital disadvantages; winter weather and supply restoration could materially change outcomes. Benchmark gas prices are not equivalent to companies’ hedged, delivered energy costs. (<a href="https://www.iea.org/reports/global-gas-security-review-2026?utm_source=openai">iea.org</a>)</p></article><article class="card prose"><p><strong>Source URL:</strong> <a href="https://www.iea.org/files/42bb838f-d20d-4815-8554-32146033967d/GlobalGasSecurityReview2026.pdf">https://www.iea.org/files/42bb838f-d20d-4815-8554-32146033967d/GlobalGasSecurityReview2026.pdf</a></p></article><article class="card prose"><h3>G. UK and US comparisons</h3><p><strong>13. UK growth is stronger, but the policy/inflation mix is less favorable — Reported and forecast.</strong></p></article><article class="card"><ul><li><strong>ONS publication:</strong> 12 November 2026. <strong>Observation:</strong> Q3 2026. GDP increased <strong>0.7% quarter-on-quarter</strong>, following 0.5%, principally reflecting household consumption and gross fixed capital formation. (<a href="https://www.ons.gov.uk/economy/grossdomesticproductgdp/bulletins/gdpfirstquarterlyestimateuk/julytoseptember2026">ons.gov.uk</a>)</li><li><strong>BoE publication:</strong> 5 November 2026. <strong>Decision:</strong> meeting ending 4 November. The Bank raised Bank Rate to <strong>4.0%</strong>, with eight members supporting 25 basis points and one preferring 50. September CPI inflation was 3.5%; the Bank forecast approximately <strong>5% by mid-2027</strong>, while noting limited evidence so far of energy spillovers into other prices and wages. <strong>Transmission:</strong> stronger demand supports revenues, but higher financing and energy costs threaten subsequent household spending and margins. (<a href="https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/november-2026">bankofengland.co.uk</a>)</li></ul></article><article class="card prose"><p><strong>Source URLs:</strong></p></article><article class="card"><ul><li><a href="https://www.ons.gov.uk/economy/grossdomesticproductgdp/bulletins/gdpfirstquarterlyestimateuk/julytoseptember2026">https://www.ons.gov.uk/economy/grossdomesticproductgdp/bulletins/gdpfirstquarterlyestimateuk/julytoseptember2026</a></li><li><a href="https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/november-2026">https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/november-2026</a></li></ul></article><article class="card prose"><p><strong>14. US demand momentum exceeds the euro area’s — Reported.</strong> <strong>Published:</strong> 29 October 2026. <strong>Observation:</strong> Q3 2026, advance estimate.</p></article><article class="card prose"><p>US GDP grew <strong>0.8% quarter-on-quarter</strong>, or <strong>3.4% annualized</strong>, supported by investment, consumption and government spending. The comparable euro-area quarterly rate was 0.4%—not 0.4% versus 3.4%. The Fed’s <strong>28 October</strong> decision maintained its target range at <strong>3.75%–4.00%</strong>, above the ECB deposit rate; nominal rates alone do not establish relative policy restrictiveness. <strong>Transmission:</strong> US-facing European businesses have a stronger external-demand backdrop than many purely domestic businesses, but financing and production-location differences remain material. (<a href="https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">bea.gov</a>)</p></article><article class="card prose"><p><strong>Source URLs:</strong></p></article><article class="card"><ul><li><a href="https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026</a></li><li><a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm">https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm</a></li></ul></article></section><section class="section" id="changes-in-direction-or-momentum"><p class="section-label">3. Changes in direction or momentum</p><article class="card"><ul><li><strong>Activity:</strong> euro-area growth slowed in Q3, while Germany decelerated, France contracted and Italy stalled. Spain remained stronger; UK growth accelerated. This is divergence, not synchronized European contraction. (<a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-13112026-ap">ec.europa.eu</a>)</li><li><strong>Households:</strong> retail volumes weakened and employment stopped growing quarterly; unemployment was above its year-earlier rate. The income foundation for consumption is becoming less supportive. (<a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/4-06112026-ap">ec.europa.eu</a>)</li><li><strong>Prices and policy:</strong> headline inflation accelerated while core inflation remained stable. The relevant policy question has shifted toward the persistence and pass-through of the energy shock—not simply the timing of rate cuts. (<a href="https://ec.europa.eu/eurostat/en/web/products-euro-indicators/w/2-04112026-ap">ec.europa.eu</a>)</li><li><strong>Investment:</strong> credit tightening and reduced investment forecasts contrast with targeted public and digital spending support. (<a href="https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr261027~506ef03145.pt.html">ecb.europa.eu</a>)</li></ul></article></section><section class="section" id="implications-for-businesses-and-equity-markets-over-the-next-12-months"><p class="section-label">4. Implications for businesses and equity markets over the next 12 months</p><article class="card prose"><p><strong>Analytical interpretations, not earnings forecasts:</strong></p></article><div class="table-card"><table><thead><tr><th>Exposure</th><th>Principal transmission</th><th>Critical uncertainty</th></tr></thead><tbody><tr><td>Domestic consumer businesses</td><td>Energy bills absorb disposable income; weak volumes pressure promotions and operating leverage</td><td>Employment resilience and energy-price normalization</td></tr><tr><td>Manufacturers and exporters</td><td>Stronger US demand helps orders, but European energy costs constrain margins and production competitiveness</td><td>Customer geography, hedging, currency and pricing power</td></tr><tr><td>Capital goods and construction</td><td>Infrastructure/defense orders support selected demand; tighter credit restrains private projects</td><td>Procurement execution and the 2027 funding transition</td></tr><tr><td>Labor-intensive services</td><td>Moderating wage costs support margins, but weaker real household income can constrain revenues</td><td>Whether wage moderation persists without a sharper demand slowdown</td></tr><tr><td>Banks and leveraged businesses</td><td>Higher rates can support some interest income, but funding costs, credit quality and debt-service burdens offset that benefit</td><td>Refinancing schedules and borrower deterioration</td></tr></tbody></table></div><article class="card prose"><p>These channels follow from the reported demand, wage, credit and energy evidence; they do not establish uniform sector outcomes. (<a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/4-06112026-ap">ec.europa.eu</a>)</p></article><article class="card prose"><p><strong>Valuations:</strong> a durable earnings recovery would require better private-demand evidence or successful public-spending execution. Conversely, persistent energy inflation can simultaneously weaken earnings and constrain monetary easing—a less favorable combination than a conventional demand-led slowdown. (<a href="https://www.ecb.europa.eu/press/projections/html/ecb.projections202609_ecbstaff~8e340fc69d.ga.html">ecb.europa.eu</a>)</p></article></section><section class="section" id="contradictory-evidence"><p class="section-label">5. Contradictory evidence</p><article class="card"><ul><li><strong>Weak industry data do not prove an imminent recession.</strong> The ECB’s November bulletin reported October manufacturing and services PMI readings above 50, although both had weakened relative to Q3. These private surveys, reproduced by the ECB, conflict with a uniformly contractionary interpretation of the hard data. (<a href="https://www.ecb.europa.eu/press/economic-bulletin/html/eb202607.en.html?utm_source=openai">ecb.europa.eu</a>)</li><li><strong>Strong national GDP does not guarantee strong consumer-facing earnings:</strong> Spain combined relatively rapid GDP growth with falling annual retail volumes. (<a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-13112026-ap">ec.europa.eu</a>)</li><li><strong>High headline inflation does not yet establish a wage-price spiral:</strong> euro-area core inflation was stable and wage growth moderated; the BoE likewise reported limited second-round evidence. (<a href="https://ec.europa.eu/eurostat/en/web/products-euro-indicators/w/2-04112026-ap">ec.europa.eu</a>)</li><li><strong>Fiscal support is not equivalent to immediate domestic earnings:</strong> timing, import content and expiring EU funding can dilute or offset announced spending. (<a href="https://www.ecb.europa.eu/press/projections/html/ecb.projections202609_ecbstaff~8e340fc69d.ga.html">ecb.europa.eu</a>)</li></ul></article><article class="card prose"><p><strong>Additional source URL:</strong> <a href="https://www.ecb.europa.eu/press/economic-bulletin/html/eb202607.en.html">https://www.ecb.europa.eu/press/economic-bulletin/html/eb202607.en.html</a> <strong>Published:</strong> 12 November 2026. <strong>Relevant observations:</strong> Q3 and October 2026.</p></article></section><section class="section" id="missing-data-and-verification-limitations"><p class="section-label">6. Missing data and verification limitations</p><article class="card"><ul><li>Q3 GDP/employment and October inflation remain preliminary. Detailed Q3 expenditure contributions were not established here; aggregate growth cannot safely be attributed entirely to consumption or investment. (<a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-13112026-ap">ec.europa.eu</a>)</li><li>August industrial data are lagged observations, not November conditions. Eurostat’s next industrial-production release was scheduled for <strong>16 November 2026</strong>, after the cutoff. (<a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/4-15102026-ap?etrans=el&amp;utm_source=openai">ec.europa.eu</a>)</li><li>A complete, independently verified comparison of enacted <strong>2027 national budgets</strong>, actual infrastructure/defense disbursements, UK underlying inflation/pay, current tariff treatment and exchange-rate effects was not obtained. These are evidence gaps, not findings that the effects are absent.</li><li>Company-level energy hedges, procurement exposure, geographic sales and refinancing schedules were not collected; consequently, no numerical earnings effects or valuation targets are inferred.</li><li>All cited substantive evidence is primary institutional evidence, except BusinessEurope’s explicitly identified association forecast and the private PMI surveys reproduced by the ECB.</li></ul></article></section>
+  </main>
+  <script>
+    const links = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+    const sections = links.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      links.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === "#" + visible.target.id));
+    }, { rootMargin: "-20% 0px -60% 0px", threshold: [0.1, 0.4] });
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>

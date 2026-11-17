@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Evidence report: US political developments and equity-market transmission</title>
+  <style>
+:root {
+  --background: oklch(0.993 0.006 82);
+  --foreground: oklch(0.31 0.018 50);
+  --card: oklch(0.999 0.003 90);
+  --card-foreground: oklch(0.31 0.018 50);
+  --primary: oklch(0.40 0.055 250);
+  --primary-foreground: oklch(0.99 0.004 90);
+  --secondary: oklch(0.974 0.01 82);
+  --secondary-foreground: oklch(0.36 0.02 50);
+  --muted: oklch(0.974 0.01 82);
+  --muted-foreground: oklch(0.51 0.015 55);
+  --metadata: oklch(0.64 0.012 60);
+  --accent: oklch(0.969 0.014 78);
+  --accent-foreground: oklch(0.34 0.025 50);
+  --destructive: oklch(0.55 0.14 25);
+  --positive: oklch(0.48 0.09 155);
+  --border: oklch(0.915 0.012 78);
+  --sidebar: oklch(0.987 0.008 82);
+  --sidebar-foreground: oklch(0.31 0.018 50);
+  --sidebar-primary: oklch(0.40 0.055 250);
+  --sidebar-primary-foreground: oklch(0.99 0.004 90);
+  --radius: 0.5rem;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { font-family: var(--font-sans); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.375;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--primary); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.prose a {
+  overflow-wrap: anywhere;
+  text-decoration-color: color-mix(in oklch, var(--primary) 40%, transparent);
+}
+.prose a:hover { text-decoration-color: var(--primary); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 3rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--sidebar);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--sidebar-foreground);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background: var(--sidebar-primary);
+  color: var(--sidebar-primary-foreground);
+}
+.mark svg { width: 0.875rem; height: 0.875rem; }
+.site-nav {
+  display: flex;
+  min-width: 0;
+  gap: 0.25rem;
+  overflow-x: auto;
+}
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  height: 3rem;
+  padding: 0 0.75rem;
+  border-bottom: 2px solid transparent;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-nav a:hover { color: var(--foreground); }
+.site-nav a.active {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  font-weight: 500;
+}
+main {
+  width: min(72rem, 100%);
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.page-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--metadata);
+  font-size: 0.75rem;
+}
+h1 {
+  margin: 0.375rem 0 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+h3 { margin: 0; font-size: 0.875rem; font-weight: 500; line-height: 1.35; }
+.section { display: flex; flex-direction: column; gap: 0.75rem; }
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.lede, .note {
+  max-width: 56rem;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+.note { color: var(--muted-foreground); }
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: 0 0 0 1px var(--border);
+  font-size: 0.875rem;
+}
+.muted-card { background: var(--muted); }
+.prose p { margin: 0; }
+.prose p + p { margin-top: 0.75rem; }
+.tag { color: var(--primary); font-weight: 500; }
+.part-gap { display: block; height: 1.25rem; }
+.force h3 { margin-bottom: 1rem; }
+.theme-list { margin: 0.35rem 0 0.85rem; padding-left: 1.15rem; }
+.theme-list li + li { margin-top: 0.35rem; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.stat {
+  padding: 0.75rem 0.875rem;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+.stat-value {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.stat-label {
+  margin: 0.25rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+}
+.stat-note {
+  margin: -0.25rem 0 0;
+  color: var(--metadata);
+  font-size: 0.75rem;
+}
+.stack { display: flex; flex-direction: column; gap: 0.75rem; }
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.force, .risk {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.force-index, .rank, .risk-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background: color-mix(in oklch, var(--primary) 10%, transparent);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.risk-index {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+.theme-head, .holding-head, .holding-title, .rejected-head, .turn-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.turn-head { align-items: center; justify-content: space-between; }
+.theme-main, .holding-main { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+.theme-main h3, .holding-title h3, .turn-head h3 { font-size: 1rem; }
+.holding-title { justify-content: space-between; }
+.holding-figures {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+.figure { font-size: 1rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.figure-label { margin-right: 0.45rem; color: var(--metadata); font-size: 0.75rem; }
+.badges, .queries { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  width: fit-content;
+  padding: 0 0.5rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius) * 2.6);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+.badge-positive, .badge-executive {
+  background: color-mix(in oklch, var(--primary) 12%, transparent);
+  color: var(--primary);
+}
+.badge-positive { background: color-mix(in oklch, var(--positive) 12%, transparent); color: var(--positive); }
+.badge-destructive {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+.badge-secondary, .badge-operator { background: var(--secondary); color: var(--secondary-foreground); }
+.badge-outline, .badge-analyst {
+  border-color: var(--border);
+  background: var(--card);
+  color: var(--foreground);
+}
+.badge-ghost {
+  background: transparent;
+  color: var(--metadata);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 400;
+  text-transform: none;
+}
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--border);
+}
+.field { display: flex; flex-direction: column; gap: 0.375rem; }
+.kicker {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+ul { margin: 0; padding-left: 1.1rem; }
+li + li { margin-top: 0.25rem; }
+.theme-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.query {
+  overflow-wrap: anywhere;
+  display: inline-flex;
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+.alloc-list { display: flex; flex-direction: column; gap: 0.8rem; }
+.alloc-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+}
+.alloc-top span:last-child {
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+.track {
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--muted);
+  overflow: hidden;
+}
+.fill { height: 100%; border-radius: inherit; background: var(--primary); }
+.table-card {
+  overflow-x: auto;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+th {
+  height: 2rem;
+  padding: 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: left;
+}
+td { padding: 0.45rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.ticker {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--card);
+  color: var(--foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+a.ticker:hover { background: var(--muted); }
+.scenarios, .grid-2 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: start;
+}
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.scenario-bull h3 { color: var(--positive); }
+.scenario-bear h3 { color: var(--destructive); }
+.count {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.5rem;
+  border-radius: calc(var(--radius) * 2.6);
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.view-tabs {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.35rem;
+  padding: 0.4rem 0;
+}
+.view-tab {
+  appearance: none;
+  border: 0;
+  height: 100%;
+  border-radius: 0.35rem;
+  background: color-mix(in oklch, var(--primary) 30%, white);
+  color: var(--primary);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+.view-tab:hover { background: color-mix(in oklch, var(--primary) 42%, white); }
+.view-tab.active, .view-tab.active:hover { background: var(--primary); color: white; }
+main[hidden], nav[hidden] { display: none !important; }
+@media (max-width: 960px) {
+  .stats, .scenarios, .fields, .split { grid-template-columns: 1fr 1fr; }
+  .scenarios { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .stats, .fields, .split, .grid-2 { grid-template-columns: 1fr; }
+  .site-header { gap: 0.75rem; }
+  .holding-title { flex-direction: column; }
+}
+
+.site-header { height: auto; min-height: 3rem; align-items: flex-start; flex-wrap: wrap; }
+.brand { height: 3rem; }
+.site-nav { flex: 1; overflow-x: auto; overflow-y: hidden; }
+.site-nav a { flex: 0 0 auto; }
+.site-nav a[aria-current="page"] {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  font-weight: 500;
+}
+.section { scroll-margin-top: 5rem; }
+main { padding-bottom: 45vh; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5v4"></path>
+          <rect x="7" y="9" width="4" height="6" rx="1"></rect>
+          <path d="M9 15v4"></path>
+          <path d="M15 3v2"></path>
+          <rect x="13" y="5" width="4" height="10" rx="1"></rect>
+          <path d="M15 15v6"></path>
+        </svg>
+      </span>
+      US Politics
+    </a>
+    <nav class="site-nav" aria-label="Reports"><a href="index.html">Portfolio</a><a href="US_MACRO_PROMPT_2026-11-13-19-53-21.html">US Macro</a><a href="US_POLITICS_PROMPT_2026-11-13-20-37-03.html" aria-current="page">US Politics</a><a href="EUROPE_MACRO_PROMPT_2026-11-13-20-04-20.html">Europe Macro</a><a href="FINANCIAL_CONDITIONS_PROMPT_2026-11-13-20-17-02.html">Financial Conditions</a><a href="EXTERNAL_DRIVERS_PROMPT_2026-11-13-20-31-36.html">External drivers</a><a href="INDUSTRY_CYCLES_PROMPT_2026-11-13-20-27-14.html">Industry Cycles</a><a href="EQUITY_MARKETS_PROMPT_2026-11-13-20-19-28.html">Equity market</a><a href="EARNINGS_PROMPT_2026-11-13-20-22-48.html">Earnings</a></nav>
+  </header>
+  <main id="top">
+    <div>
+      <p class="page-kicker"><span>Information cutoff: November 13, 2026 Investment horizon: November 14, 2026–November 13, 2027</span><span>US_POLITICS_PROMPT_2026-11-13-20-37-03.json</span></p>
+      <h1>Evidence report: US political developments and equity-market transmission</h1>
+    </div>
+    
+    <section class="section" id="introduction"><p class="section-label">Introduction</p><article class="card prose"><p><strong>Information cutoff:</strong> November 13, 2026 <strong>Investment horizon:</strong> November 14, 2026–November 13, 2027</p></article><article class="card prose"><p><strong>Classification:</strong> <strong>Fact</strong> = reported result, enacted measure or official action; <strong>Proposal</strong> = not enacted or not yet operative; <strong>Interpretation</strong> = analytical transmission, not a forecast of market performance. Election race calls are distinguished below from official certification. Publication dates are recorded as <strong>null</strong> where not established.</p></article></section><section class="section" id="executive-findings"><p class="section-label">1. Executive findings</p><article class="card"><ol><li><strong>The midterms point to divided federal government beginning in January 2027—not an immediate change of administration.</strong> AP has called Democratic control of both congressional chambers, while Donald Trump remains president. Final congressional margins and state certifications remain incomplete in the evidence reviewed. The investment consequence is greater legislative bargaining and oversight, rather than automatic reversal of existing taxes, tariffs or regulations. (<a href="https://apnews.com/article/f126e12e05b579a327b98481c0ae2226?utm_source=openai">apnews.com</a>)</li></ol></article><article class="card"><ol><li><strong>The most immediate fiscal catalyst is December 11, 2026, before the new Congress takes office.</strong> Enacted temporary funding expires that day. Defense increases, nondefense allocations and any additional reconciliation legislation must be distinguished from already appropriated funding. (<a href="https://www.govinfo.gov/content/pkg/PLAW-119publ103/pdf/PLAW-119publ103.pdf">govinfo.gov</a>)</li></ol></article><article class="card"><ol><li><strong>Trade-policy risk persists despite the Supreme Court’s rejection of IEEPA tariffs.</strong> The administration subsequently implemented replacement Section 301 duties. European exporters therefore face a changed legal framework, not a general return to pre-2025 trading conditions. (<a href="https://www.supremecourt.gov/opinions/25pdf/24-1287_4gcj.pdf?ceid=%7B%7BContactsEmailID%7D%7D&amp;emci=d63d9bc9-bc11-f111-a69a-000d3a57593f&amp;emdi=ea000000-0000-0000-0000-000000000001&amp;utm_source=openai">supremecourt.gov</a>)</li></ol></article><article class="card"><ol><li><strong>Data-center policy has become a material project-execution risk across party lines.</strong> Texas imposed an approval pause pending audits; New York established a one-year hyperscale moratorium; Pennsylvania removed AI data centers from expedited permitting. These are distinct measures with different scopes—not evidence of a nationwide construction ban. (<a href="https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits?utm_source=openai">gov.texas.gov</a>)</li></ol></article><article class="card"><ol><li><strong>Implementation remains sector-specific.</strong> Bank stress-capital changes, Medicare reimbursement rules and power-plant deregulation have identifiable effective dates. Conversely, a large defense request, additional semiconductor export restrictions and campaign promises to restrict data centers are not equivalent to implemented policy. (<a href="https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260930a.htm?utm_source=openai">federalreserve.gov</a>)</li></ol></article></section><section class="section" id="dated-observations-and-source-references"><p class="section-label">2. Dated observations and source references</p><h3>A. Elections and balance of power</h3><div class="table-card"><table><thead><tr><th>Development and status</th><th>Evidence, dates and investor relevance</th></tr></thead><tbody><tr><td><strong>Presidency: unchanged by the 2026 midterms — Fact</strong></td><td>Trump remains the Republican president; the November 3, 2026 election concerned congressional and state offices, not the presidency. <strong>Interpretation:</strong> executive agencies remain under the administration, while an opposition Congress can constrain legislation, appropriations and appointments. Neither a tariff rollback nor a regulatory reversal follows automatically from the election. <strong>Publication:</strong> November 3, 2026; <strong>observation:</strong> 2026 election. (<a href="https://apnews.com/article/f126e12e05b579a327b98481c0ae2226?utm_source=openai">apnews.com</a>)</td></tr><tr><td><strong>Congress: Democratic control called, final margins unsettled — Reported calls, not nationwide certification</strong></td><td>AP reports Democratic control of both chambers. Its November 13 coverage quotes Chuck Schumer describing “55 seats and counting”; that is a leader’s statement, not an independently verified certified Senate tally. Ballotpedia’s November 12 House snapshot recorded <strong>254 Democratic, 165 Republican and 16 uncalled seats</strong>. <strong>Interpretation:</strong> a substantial House majority would improve agenda control, but does not eliminate presidential vetoes, Senate procedural constraints or internal disagreements. <strong>Publications:</strong> November 12–13, 2026; <strong>observation:</strong> November 3 election and subsequent counting. (<a href="https://apnews.com/article/3ed27e89abf3b0489d463fd30dacf37d?utm_source=openai">apnews.com</a>)</td></tr><tr><td><strong>Late calls and unresolved counting — Mixed status</strong></td><td>AP called Mississippi’s Senate race for Scott Colom on November 11 and Maine’s 2nd House district for Paul LePage on November 12. Alaska’s Senate race was still unresolved in AP’s <strong>November 10</strong> report; that report identified November 18 for possible ranked-choice tabulation and November 25 as the certification target. <strong>Do not treat that older Alaska status as a verified November 13 update.</strong> A possible or requested recount is not an ordered recount; no comprehensive official recount inventory was verified. (<a href="https://apnews.com/article/7f098b8834f598c923ba73572ea2223f?utm_source=openai">apnews.com</a>)</td></tr><tr><td><strong>Economically important state results — Reported calls</strong></td><td>AP called California for <strong>Xavier Becerra</strong>, maintaining Democratic gubernatorial control; reported reelection of <strong>Kathy Hochul in New York</strong> and <strong>Josh Shapiro in Pennsylvania</strong>; and reported <strong>Keisha Lance Bottoms’s Georgia gubernatorial victory</strong> and a Democratic flip of Georgia’s House. These outcomes do not, by themselves, establish a unified state-government majority in every state. <strong>Interpretation:</strong> California remains a potential federal-policy counterweight; continuity in New York and Pennsylvania matters for existing data-center restrictions, while Georgia’s transition creates permitting, utility and incentive-policy uncertainty. <strong>Publications:</strong> November 3 and 9, 2026; <strong>observation:</strong> November 3 election. (<a href="https://apnews.com/article/aae9829ede7e3f0c5e4512d5732d4df3?utm_source=openai">apnews.com</a>)</td></tr><tr><td><strong>Virginia and Kansas — Different policy stages</strong></td><td>Abigail Spanberger’s Virginia victory was reported following the <strong>November 4, 2025</strong> election. AP called Kansas’s 2026 gubernatorial race for <strong>Cindy Holscher on November 12, 2026</strong>. Holscher campaigned on a data-center moratorium: <strong>the election increases its political likelihood but does not enact it</strong>. Virginia’s utility decisions discussed below likewise must not be attributed solely to its change of governor. (<a href="https://apnews.com/article/01f9854a94fdab6e5719096664ee9be1?utm_source=openai">apnews.com</a>)</td></tr></tbody></table></div><article class="card prose"><p><strong>Election source URLs</strong></p></article><article class="card"><ul><li>Presidency and national/state results: <a href="https://apnews.com/article/f126e12e05b579a327b98481c0ae2226">https://apnews.com/article/f126e12e05b579a327b98481c0ae2226</a></li><li>November 13 congressional update: <a href="https://apnews.com/article/3ed27e89abf3b0489d463fd30dacf37d">https://apnews.com/article/3ed27e89abf3b0489d463fd30dacf37d</a></li><li>Congressional seat tracker: <a href="https://ballotpedia.org/Election_results,_2026:_U.S._Congress">https://ballotpedia.org/Election_results,_2026:_U.S._Congress</a></li><li>Mississippi call: <a href="https://apnews.com/article/7f098b8834f598c923ba73572ea2223f">https://apnews.com/article/7f098b8834f598c923ba73572ea2223f</a></li><li>Maine call: <a href="https://apnews.com/article/9782852d56374ba9baf09da25faa48cb">https://apnews.com/article/9782852d56374ba9baf09da25faa48cb</a></li><li>Unresolved-race report: <a href="https://apnews.com/article/90ce111a971a0f70ba938d27fe69f65d">https://apnews.com/article/90ce111a971a0f70ba938d27fe69f65d</a></li><li>California: <a href="https://apnews.com/article/aae9829ede7e3f0c5e4512d5732d4df3">https://apnews.com/article/aae9829ede7e3f0c5e4512d5732d4df3</a></li><li>Georgia: <a href="https://apnews.com/article/f89c3edc570adfb6b547b23629437803">https://apnews.com/article/f89c3edc570adfb6b547b23629437803</a></li><li>Virginia: <a href="https://apnews.com/article/01f9854a94fdab6e5719096664ee9be1">https://apnews.com/article/01f9854a94fdab6e5719096664ee9be1</a></li><li>Kansas: <a href="https://apnews.com/article/c9bb46dfd593fa7182a6bc93722ce552">https://apnews.com/article/c9bb46dfd593fa7182a6bc93722ce552</a></li></ul></article><article class="card prose"><p><strong>Upcoming elections:</strong> Sourced reporting identifies Mississippi’s gubernatorial and legislative elections in <strong>November 2027</strong>, near the end of the investment horizon. They could test whether the new Senate coalition translates into state policy change. A complete official 2027 state/special-election calendar was not verified; no unsupported assumption about an imminent change in federal control is incorporated. (<a href="https://www.axios.com/2026/11/12/scott-colom-mississippi-senate-black-representation?utm_source=openai">axios.com</a>) URL: <a href="https://www.axios.com/2026/11/12/scott-colom-mississippi-senate-black-representation">https://www.axios.com/2026/11/12/scott-colom-mississippi-senate-black-representation</a></p></article><article class="card prose"><h3>1. Budget authority and borrowing</h3><p><strong>Fact:</strong> Public Law 119-103, enacted <strong>September 2, 2026</strong>, provides temporary FY2027 appropriations through <strong>December 11, 2026</strong>. Absent replacement legislation, the funding gap begins December 12. The outgoing Congress therefore retains a consequential funding decision before the January transition. (<a href="https://www.govinfo.gov/content/pkg/PLAW-119publ103/pdf/PLAW-119publ103.pdf">govinfo.gov</a>)</p></article><article class="card prose"><p><strong>Interpretation:</strong> Another continuing resolution would limit visibility for contractors and infrastructure suppliers; a shutdown could delay awards, permits and payments without necessarily cancelling underlying programs. A negotiated full-year package is the principal alternative. Monitor enacted appropriations and agency allotments—not negotiating announcements.</p></article><article class="card prose"><p><strong>Reported fiscal observation:</strong> CBO’s <strong>November 9, 2026</strong> report put the deficit for the fiscal year ended <strong>September 30, 2026</strong> at <strong>$2.0 trillion</strong>, up <strong>$217 billion, or 12%</strong>, year over year and $140 billion above its February baseline estimate. This is a completed fiscal-year observation, not November’s borrowing run rate. (<a href="https://www.cbo.gov/publication/61986?utm_source=openai">cbo.gov</a>)</p></article><article class="card prose"><p><strong>Transmission:</strong> financing requirements can affect discount rates and borrowing costs for leveraged businesses and long-duration equities. The direction of Treasury yields also depends on growth, inflation and monetary policy; the deficit alone does not establish causality.</p></article><article class="card prose"><p>URLs:</p></article><article class="card"><ul><li><a href="https://www.govinfo.gov/content/pkg/PLAW-119publ103/pdf/PLAW-119publ103.pdf">https://www.govinfo.gov/content/pkg/PLAW-119publ103/pdf/PLAW-119publ103.pdf</a></li><li><a href="https://www.cbo.gov/publication/61986">https://www.cbo.gov/publication/61986</a></li></ul></article><article class="card prose"><h3>2. Corporate taxation: existing investment deductions remain relevant</h3><p><strong>Fact:</strong> IRS guidance issued <strong>January 14, 2026</strong> implements the 2025 law’s permanent <strong>100% additional first-year depreciation</strong> for eligible property acquired after <strong>January 19, 2025</strong>. IRS guidance also confirms that, for tax years beginning after December 31, 2024, depreciation, amortization and depletion are added back when calculating adjusted taxable income for the business-interest limitation. These are enacted-law implementation measures, not new post-midterm promises. (<a href="https://content.govdelivery.com/accounts/USIRS/bulletins/4045aa2?utm_source=openai">content.govdelivery.com</a>)</p></article><article class="card prose"><p><strong>Interpretation:</strong> eligible capital-intensive businesses can receive earlier cash-tax deductions; the interest provision can improve deductibility for some borrowers. European companies may benefit through qualifying US operations. Benefits depend on taxable income, property eligibility and state conformity; they do not necessarily increase accounting earnings dollar-for-dollar. <strong>No new post-election corporate-rate change was established in this review.</strong></p></article><article class="card prose"><p><strong>Publication:</strong> January 14, 2026 for depreciation guidance; interest-page publication date <strong>null</strong>. <strong>Monitoring:</strong> final regulations, eligibility interpretations and state decoupling.</p></article><article class="card prose"><p>URLs:</p></article><article class="card"><ul><li><a href="https://content.govdelivery.com/accounts/USIRS/bulletins/4045aa2">https://content.govdelivery.com/accounts/USIRS/bulletins/4045aa2</a></li><li><a href="https://www.irs.gov/newsroom/questions-and-answers-about-the-limitation-on-the-deduction-for-business-interest-expense">https://www.irs.gov/newsroom/questions-and-answers-about-the-limitation-on-the-deduction-for-business-interest-expense</a></li></ul></article><article class="card prose"><h3>3. Tariffs: legal defeat followed by replacement measures</h3><p><strong>Court ruling:</strong> On <strong>February 20, 2026</strong>, the Supreme Court held that IEEPA did not authorize the challenged presidential tariffs. (<a href="https://www.supremecourt.gov/opinions/25pdf/24-1287_4gcj.pdf?ceid=%7B%7BContactsEmailID%7D%7D&amp;emci=d63d9bc9-bc11-f111-a69a-000d3a57593f&amp;emdi=ea000000-0000-0000-0000-000000000001&amp;utm_source=openai">supremecourt.gov</a>)</p></article><article class="card prose"><p><strong>Implemented replacement:</strong> USTR announced Section 301 duties on <strong>July 23</strong>, effective <strong>July 24, 2026</strong>, of <strong>10% or 12.5%</strong>, subject to product exemptions and country-specific treatment. For specified EU and other partner products, the applicable calculation is net of the most-favored-nation rate; these percentages should not simply be added to every product’s existing duty. (<a href="https://www.ustr.gov/about/policy-offices/press-office/press-releases/2026/july/ustr-takes-action-forced-labor-section-301-investigations?utm_source=openai">ustr.gov</a>)</p></article><article class="card prose"><p><strong>Interpretation:</strong> import-dependent US retailers and manufacturers face landed-cost pressure; European exporters face pricing, volume and localization decisions. Protected US production can gain relative competitiveness, but imported inputs can offset that advantage. Monitor customs instructions, product classifications, exemptions and litigation. <strong>The alternative outcome is selective relief—not necessarily wholesale tariff removal.</strong></p></article><article class="card prose"><p>URLs:</p></article><article class="card"><ul><li><a href="https://www.supremecourt.gov/opinions/25pdf/24-1287_4gcj.pdf">https://www.supremecourt.gov/opinions/25pdf/24-1287_4gcj.pdf</a></li><li><a href="https://www.ustr.gov/about/policy-offices/press-office/press-releases/2026/july/ustr-takes-action-forced-labor-section-301-investigations">https://www.ustr.gov/about/policy-offices/press-office/press-releases/2026/july/ustr-takes-action-forced-labor-section-301-investigations</a></li><li><a href="https://www.govinfo.gov/content/pkg/FR-2026-07-28/pdf/2026-15181.pdf">https://www.govinfo.gov/content/pkg/FR-2026-07-28/pdf/2026-15181.pdf</a></li></ul></article><article class="card prose"><h3>4. Sanctions and semiconductor export controls</h3><p><strong>Official action:</strong> An October executive order implements the Lindsey O. Graham Sanctioning Russia and Iran Act and directs monitoring of purchases of Russian crude oil and natural gas, with recommendations for further action. <strong>Publication:</strong> October 21, 2026 in the Federal Register; <strong>observation:</strong> October implementation order. The order is not proof that every contemplated restriction has already been imposed or enforced. (<a href="https://www.whitehouse.gov/presidential-actions/2026/10/implementing-the-lindsey-o-graham-sanctioning-russia-and-iran-act-of-2026/?utm_source=openai">whitehouse.gov</a>)</p></article><article class="card prose"><p><strong>Interpretation:</strong> energy producers, refiners, shipping companies and European energy-intensive manufacturers face changes in sourcing, compliance costs and commodity-price risk. Exact general licenses, waivers and enforcement decisions are essential before estimating affected volumes.</p></article><article class="card prose"><p><strong>Export controls:</strong> BIS formally revised China semiconductor licensing policy on <strong>January 13, 2026</strong>. AP reported on <strong>November 13</strong> that Treasury was frustrated with Commerce’s delay in implementing additional restrictions involving Nvidia chips and Megaspeed. <strong>Reported pressure for restrictions is not an implemented prohibition.</strong> Tighter rules would reduce addressable revenue for affected suppliers and could redirect equipment and computing demand elsewhere. (<a href="https://media.bis.gov/sites/default/files/documents/DoC%20Revises%20License%20Review%20Policy%20for%20Semiconductors%20Exports.pdf?utm_source=openai">media.bis.gov</a>)</p></article><article class="card prose"><p>URLs:</p></article><article class="card"><ul><li><a href="https://www.whitehouse.gov/presidential-actions/2026/10/implementing-the-lindsey-o-graham-sanctioning-russia-and-iran-act-of-2026/">https://www.whitehouse.gov/presidential-actions/2026/10/implementing-the-lindsey-o-graham-sanctioning-russia-and-iran-act-of-2026/</a></li><li><a href="https://www.govinfo.gov/content/pkg/FR-2026-10-21/pdf/2026-21599.pdf">https://www.govinfo.gov/content/pkg/FR-2026-10-21/pdf/2026-21599.pdf</a></li><li><a href="https://media.bis.gov/sites/default/files/documents/DoC%20Revises%20License%20Review%20Policy%20for%20Semiconductors%20Exports.pdf">https://media.bis.gov/sites/default/files/documents/DoC%20Revises%20License%20Review%20Policy%20for%20Semiconductors%20Exports.pdf</a></li><li><a href="https://apnews.com/article/17582a5098a5fb4c8fe866a084a6e52b">https://apnews.com/article/17582a5098a5fb4c8fe866a084a6e52b</a></li></ul></article><article class="card prose"><h3>5. Immigration: announced charges and operative requirements diverge</h3><p><strong>Official measure versus litigation:</strong> A proclamation published <strong>September 23, 2026</strong> continues a $100,000 payment requirement for specified overseas H-1B cases. However, a specialist law-firm update dated <strong>November 11, 2026</strong> reports that the supplemental payment is blocked and not being collected. The latter is <strong>secondary legal reporting</strong>; the USCIS page could not be fetched. (<a href="https://www.govinfo.gov/content/pkg/FR-2026-09-23/pdf/2026-19554.pdf?utm_source=openai">govinfo.gov</a>)</p></article><article class="card prose"><p><strong>Interpretation:</strong> employers should not model the announced charge as a universally operative hiring cost. Reinstatement could increase recruitment costs or encourage offshore staffing; continued injunctions would limit that direct burden. Broader labor-supply effects remain unquantified here. Monitor operative court orders, USCIS instructions and separately proposed fee rules.</p></article><article class="card prose"><p>URLs:</p></article><article class="card"><ul><li><a href="https://www.govinfo.gov/content/pkg/FR-2026-09-23/pdf/2026-19554.pdf">https://www.govinfo.gov/content/pkg/FR-2026-09-23/pdf/2026-19554.pdf</a></li><li><a href="https://blasingamelaw.com/the-100000-h-1b-fee-is-blocked-not-gone-three-appeals-a-103265-proposal-and-fy2028-planning-for-employers/">https://blasingamelaw.com/the-100000-h-1b-fee-is-blocked-not-gone-three-appeals-a-103265-proposal-and-fy2028-planning-for-employers/</a></li></ul></article><article class="card prose"><h3>6. Energy and electricity infrastructure</h3><p><strong>Final rule:</strong> EPA’s rule published <strong>September 17, 2026</strong> repeals most provisions of the 2024 fossil-fuel power-plant greenhouse-gas standards, effective <strong>November 16, 2026</strong>—after the cutoff. Separately, EPA held October hearings on a broader proposed rescission of power-plant greenhouse-gas findings. The final repeal and broader proposal are different regulatory stages. (<a href="https://www.govinfo.gov/content/pkg/FR-2026-09-17/pdf/2026-19071.pdf?utm_source=openai">govinfo.gov</a>)</p></article><article class="card prose"><p><strong>Interpretation:</strong> the final rollback can reduce prospective compliance expenditure for affected generators and support continued fossil generation. It may disadvantage competing clean generation at the margin, but cannot remove turbine, transmission, fuel-supply or state-permitting constraints. Court challenges and stays require monitoring.</p></article><article class="card prose"><p><strong>Proposal:</strong> AP reported a Senate advance of energy-permitting legislation on <strong>November 9, 2026</strong>. That procedural advance is not enactment. Successful legislation could accelerate generation and transmission investment; failure leaves project-level bottlenecks intact. (<a href="https://apnews.com/article/c6290598e26a7b01622e5c4eec571516?utm_source=openai">apnews.com</a>)</p></article><article class="card prose"><p>URLs:</p></article><article class="card"><ul><li><a href="https://www.govinfo.gov/content/pkg/FR-2026-09-17/pdf/2026-19071.pdf">https://www.govinfo.gov/content/pkg/FR-2026-09-17/pdf/2026-19071.pdf</a></li><li><a href="https://www.epa.gov/stationary-sources-air-pollution/greenhouse-gas-standards-and-guidelines-fossil-fuel-fired-power">https://www.epa.gov/stationary-sources-air-pollution/greenhouse-gas-standards-and-guidelines-fossil-fuel-fired-power</a></li><li><a href="https://apnews.com/article/c6290598e26a7b01622e5c4eec571516">https://apnews.com/article/c6290598e26a7b01622e5c4eec571516</a></li></ul></article><article class="card prose"><h3>7. AI regulation and competition policy</h3><p><strong>Executive action:</strong> Executive Order 14365, published <strong>December 16, 2025</strong>, directs review and potential challenges to state AI laws and consideration of conditions on certain federal grants. This is an executive framework—not legislation automatically invalidating state laws or local zoning. (<a href="https://www.whitehouse.gov/wp-content/uploads/2025/12/eo-14365.pdf?utm_source=openai">whitehouse.gov</a>)</p></article><article class="card prose"><p><strong>Court-related implementation:</strong> DOJ’s <strong>September 16, 2026</strong> release describes Google ad-technology remedies including interoperability, data sharing, anti-discrimination provisions and restrictions on self-preferencing. <strong>Interpretation:</strong> compliance expenditure and altered auction economics can pressure incumbent margins while helping competing intermediaries and publishers. Election outcomes do not themselves settle existing litigation or remedies. Appeal/stay status was not independently verified. (<a href="https://www.justice.gov/index.php/opa/pr/department-justice-again-wins-substantial-relief-against-google?utm_source=openai">justice.gov</a>)</p></article><article class="card prose"><p>URLs:</p></article><article class="card"><ul><li><a href="https://www.whitehouse.gov/wp-content/uploads/2025/12/eo-14365.pdf">https://www.whitehouse.gov/wp-content/uploads/2025/12/eo-14365.pdf</a></li><li><a href="https://www.justice.gov/index.php/opa/pr/department-justice-again-wins-substantial-relief-against-google">https://www.justice.gov/index.php/opa/pr/department-justice-again-wins-substantial-relief-against-google</a></li></ul></article><article class="card prose"><h3>8. Healthcare reimbursement and drug pricing</h3><p><strong>Final rules:</strong> CMS’s CY2027 physician-payment rule was published <strong>November 9, 2026</strong>, with changes effective on or after <strong>January 1, 2027</strong>. CMS also finalized outpatient changes addressing 340B drug payments. These directly affect provider reimbursement and service-location economics; company effects depend on payer mix, procedure mix and acquisition costs. Unverified percentage changes are deliberately omitted. (<a href="https://www.govinfo.gov/content/pkg/FR-2026-11-09/html/2026-22743.htm?utm_source=openai">govinfo.gov</a>)</p></article><article class="card prose"><p><strong>Timing distinction:</strong> the November drug-negotiation rule establishes policies beginning with <strong>2029</strong> effective prices. It should not be mistaken for the source of all 2027 drug-price changes; earlier negotiation rounds operate on separate schedules. <strong>Interpretation:</strong> US and European manufacturers with selected products face product-specific revenue exposure, while provider and patient savings need not translate proportionately into insurer margins. (<a href="https://www.cms.gov/newsroom/press-releases/cms-final-rule-strengthens-supports-lasting-drug-savings?utm_source=openai">cms.gov</a>)</p></article><article class="card prose"><p><strong>Publications:</strong> November 9 for the Federal Register rules; exact CMS release dates <strong>null</strong>. <strong>Monitoring:</strong> January implementation, legislative payment overrides and selected-drug effective prices.</p></article><article class="card prose"><p>URLs:</p></article><article class="card"><ul><li><a href="https://www.govinfo.gov/content/pkg/FR-2026-11-09/html/2026-22743.htm">https://www.govinfo.gov/content/pkg/FR-2026-11-09/html/2026-22743.htm</a></li><li><a href="https://www.cms.gov/newsroom/press-releases/medicare-outpatient-final-rule-expands-surgical-options-lowers-out-pocket-costs-340b-drugs">https://www.cms.gov/newsroom/press-releases/medicare-outpatient-final-rule-expands-surgical-options-lowers-out-pocket-costs-340b-drugs</a></li><li><a href="https://www.govinfo.gov/content/pkg/FR-2026-11-09/pdf/2026-22792.pdf">https://www.govinfo.gov/content/pkg/FR-2026-11-09/pdf/2026-22792.pdf</a></li></ul></article><article class="card prose"><h3>9. Defense procurement, industrial support and infrastructure</h3><p><strong>Budget request—not appropriation:</strong> the FY2027 departmental defense request totals <strong>$1.450 trillion</strong>, comprising approximately <strong>$1.1 trillion discretionary</strong> and <strong>$350 billion requested mandatory funding</strong>. The official acquisition document does not establish enactment of those amounts. CBO separately documents allocation of funding already supplied by the 2025 reconciliation law. (<a href="https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2027/FY2027_Weapons.pdf?utm_source=openai">comptroller.war.gov</a>)</p></article><article class="card prose"><p><strong>Interpretation:</strong> US and European defense suppliers should distinguish funded orders from proposed procurement. Continuing resolutions, program allocations and contract awards determine revenue conversion; a proposed top-line increase is not backlog.</p></article><article class="card prose"><p><strong>Semiconductors:</strong> GAO found <strong>49 funded projects as of July 15, 2026</strong>; separately, <strong>$13.1 billion of $31.2 billion</strong> in direct awards had been disbursed <strong>as of April 2026</strong>. NIST’s September 16 release listing describes an amendment reallocating <strong>$955 million</strong> of GlobalFoundries support toward photonics, silicon-germanium and advanced packaging. Awards, disbursements and operating capacity are different milestones. (<a href="https://www.gao.gov/products/gao-26-109121?utm_source=openai">gao.gov</a>)</p></article><article class="card prose"><p><strong>Transmission:</strong> US construction and equipment demand, including European semiconductor-equipment exposure, depends on project milestones and award terms. Infrastructure obligations and project-level disbursements were not comprehensively verified.</p></article><article class="card prose"><p><strong>Publications:</strong> defense document date <strong>null</strong>; GAO date <strong>null</strong>; NIST item September 16, 2026.</p></article><article class="card prose"><p>URLs:</p></article><article class="card"><ul><li><a href="https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2027/FY2027_Weapons.pdf">https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2027/FY2027_Weapons.pdf</a></li><li><a href="https://www.cbo.gov/publication/62396">https://www.cbo.gov/publication/62396</a></li><li><a href="https://www.gao.gov/products/gao-26-109121">https://www.gao.gov/products/gao-26-109121</a></li><li><a href="https://www.nist.gov/chips/chips-news-releases">https://www.nist.gov/chips/chips-news-releases</a></li></ul></article><article class="card prose"><h3>10. Financial regulation</h3><p><strong>Final versus proposed:</strong> On <strong>September 30, 2026</strong>, the Federal Reserve finalized stress-test transparency and stress-capital-buffer changes. The capital-buffer rule, published October 2, becomes effective <strong>December 1, 2026</strong> and averages stress-capital declines from two tests. The announcement separately discusses proposed fee-income modeling changes; those are not all finalized measures. (<a href="https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260930a.htm?utm_source=openai">federalreserve.gov</a>)</p></article><article class="card prose"><p><strong>Interpretation:</strong> reduced capital volatility can improve distribution and lending visibility for affected banks, including US intermediate holding companies of European groups. It does <strong>not</strong> establish a uniform reduction in every bank’s capital requirement. Monitor firm-level requirements and subsequent rulemaking.</p></article><article class="card prose"><p>URL: <a href="https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260930a.htm">https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260930a.htm</a></p></article><h3>C. State and local project-execution developments</h3><div class="table-card"><table><thead><tr><th>Jurisdiction</th><th>Dated measure, transmission and next catalyst</th></tr></thead><tbody><tr><td><strong>Texas</strong></td><td><strong>September 21, 2026 directive:</strong> Governor Abbott ordered TCEQ to halt data-center permits pending ERCOT audits and directed that regulatory approvals not advance without required information. TCEQ subsequently acknowledged shutting its automated filing system for staff review. This is evidence of an approval pause, not a verified shutdown of operating facilities. <strong>Transmission:</strong> delayed energization and construction defer developer revenue and electrical/cooling-equipment deliveries, including European suppliers. A Fort Worth report identifies <strong>December 10, 2026</strong> for the audit/community-impact report. Exemptions and project-level compliance remain uncertain. <strong>Publication:</strong> September 21; TCEQ page date null; Fort Worth report November 10. (<a href="https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits?utm_source=openai">gov.texas.gov</a>)</td></tr><tr><td><strong>New York</strong></td><td><strong>July 14, 2026 executive order:</strong> one-year moratorium on new hyperscale data centers. The governor also proposed pursuing repeal of data-center sales-tax exemptions—<strong>a separate legislative intention, not established enactment</strong>. <strong>Transmission:</strong> affected projects face deferral and potentially higher future costs; alternative locations may gain demand. Monitor the framework preceding the <strong>July 2027</strong> anniversary and enacted tax legislation. The data-center measure must not be assumed to prohibit semiconductor fabrication plants. (<a href="https://www.governor.ny.gov/news/first-statewide-moratorium-new-hyperscale-data-centers-launched-governor-kathy-hochul?utm_source=openai">governor.ny.gov</a>)</td></tr><tr><td><strong>Pennsylvania</strong></td><td><strong>August 18, 2026 executive order:</strong> GRID requirements enter environmental-permit review; AI data centers are removed from the PA Permit Fast Track Program. This changes an existing acceleration mechanism, rather than establishing a blanket statewide ban. <strong>Transmission:</strong> longer diligence and higher developer obligations can delay projects but potentially improve execution certainty for compliant sites. Monitor DEP permit conditions and local approvals. (<a href="https://www.pa.gov/governor/newsroom/2026-press-releases/governor-shapiro-signs-executive-order-on-data-center-developmen?utm_source=openai">pa.gov</a>)</td></tr><tr><td><strong>Virginia</strong></td><td>SCC’s <strong>February 2026</strong> explanation of its earlier Dominion order describes a separate <strong>GS-5 large-load class</strong>; the order covers customers demanding at least <strong>25 MW</strong>. <strong>Transmission:</strong> separate cost recovery can protect other ratepayers and utility recoverability while increasing large-load customers’ commitments. Utilities do not receive unrestricted earnings upside: the SCC also rejected requested base-rate increases. This is an existing regulatory framework, not a new election-triggered policy. <strong>Publication:</strong> exact dates null; <strong>observation:</strong> 2025 order explained February 2026. (<a href="https://www.scc.virginia.gov/media/sccvirginiagov-home/about-the-scc/fact-sheets/scc-data-center-initiatives-02-2026.pdf?utm_source=openai">scc.virginia.gov</a>)</td></tr><tr><td><strong>Ohio</strong></td><td>PUCO’s <strong>August 5, 2026</strong> order added protection against data centers’ effects on other customers’ energy costs. AEP Ohio’s implemented tariff requires long commitments and minimum billing; its second 2026 study tranche began <strong>October 1</strong>. <strong>Transmission:</strong> speculative requests face higher financial hurdles; contracted utility revenue becomes more credible, but queue demand should not be treated as energized load. Monitor signed agreements, regional-grid review and actual service dates. <strong>Publication:</strong> August 5; utility webpage date null. (<a href="https://puco.ohio.gov/news/process-protects-aep-customers-from-potential-data-center-costs?utm_source=openai">puco.ohio.gov</a>)</td></tr></tbody></table></div><article class="card prose"><p><strong>State source URLs</strong></p></article><article class="card"><ul><li>Texas directive: <a href="https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits">https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits</a></li><li>Texas implementation: <a href="https://www.tceq.texas.gov/agency/steers-down">https://www.tceq.texas.gov/agency/steers-down</a></li><li>Audit catalyst: <a href="https://www.fortworthtexas.gov/files/assets/public/v/1/city-manager/documents/data-centers/11-10-2026-data-center-infrastructure-commission-final-report.pdf">https://www.fortworthtexas.gov/files/assets/public/v/1/city-manager/documents/data-centers/11-10-2026-data-center-infrastructure-commission-final-report.pdf</a></li><li>New York: <a href="https://www.governor.ny.gov/news/first-statewide-moratorium-new-hyperscale-data-centers-launched-governor-kathy-hochul">https://www.governor.ny.gov/news/first-statewide-moratorium-new-hyperscale-data-centers-launched-governor-kathy-hochul</a></li><li>Pennsylvania: <a href="https://www.pa.gov/governor/newsroom/2026-press-releases/governor-shapiro-signs-executive-order-on-data-center-developmen">https://www.pa.gov/governor/newsroom/2026-press-releases/governor-shapiro-signs-executive-order-on-data-center-developmen</a></li><li>Virginia: <a href="https://www.scc.virginia.gov/media/sccvirginiagov-home/about-the-scc/fact-sheets/scc-data-center-initiatives-02-2026.pdf">https://www.scc.virginia.gov/media/sccvirginiagov-home/about-the-scc/fact-sheets/scc-data-center-initiatives-02-2026.pdf</a></li><li>Ohio regulator: <a href="https://puco.ohio.gov/news/process-protects-aep-customers-from-potential-data-center-costs">https://puco.ohio.gov/news/process-protects-aep-customers-from-potential-data-center-costs</a></li><li>Ohio utility: <a href="https://www.aepohio.com/company/about/rates/data-center-tariff/">https://www.aepohio.com/company/about/rates/data-center-tariff/</a></li></ul></article></section><section class="section" id="changes-in-direction-or-momentum"><p class="section-label">3. Changes in direction or momentum</p><article class="card"><ul><li><strong>Federal legislation: unified-party capacity is giving way to negotiation.</strong> The election changes the likely legislative environment from January; existing statutes and delegated executive powers continue unless lawfully changed. The December funding decision remains with the outgoing Congress. (<a href="https://apnews.com/article/f126e12e05b579a327b98481c0ae2226?utm_source=openai">apnews.com</a>)</li><li><strong>Trade: authority has changed more clearly than protectionism has disappeared.</strong> The February IEEPA ruling was followed by July Section 301 implementation. (<a href="https://www.supremecourt.gov/opinions/25pdf/24-1287_4gcj.pdf?ceid=%7B%7BContactsEmailID%7D%7D&amp;emci=d63d9bc9-bc11-f111-a69a-000d3a57593f&amp;emdi=ea000000-0000-0000-0000-000000000001&amp;utm_source=openai">supremecourt.gov</a>)</li><li><strong>Data centers: policy is moving from headline investment attraction toward cost allocation, verification and local acceptance.</strong> Pennsylvania’s removal of fast-track treatment and Texas’s audit pause are observable changes; neither establishes the ultimate number of cancelled projects. (<a href="https://www.pa.gov/governor/newsroom/2026-press-releases/governor-shapiro-signs-executive-order-on-data-center-developmen?utm_source=openai">pa.gov</a>)</li><li><strong>Financial and environmental regulation: implementation continues through the transition.</strong> December bank-capital changes and November power-plant rules have already been finalized, although litigation and later rulemaking can alter outcomes. (<a href="https://www.govinfo.gov/content/pkg/FR-2026-10-02/html/2026-20246.htm?utm_source=openai">govinfo.gov</a>)</li></ul></article></section><section class="section" id="implications-for-businesses-and-equity-markets"><p class="section-label">4. Implications for businesses and equity markets</p><article class="card prose"><p><strong>Analytical synthesis—not security selection:</strong></p></article><div class="table-card"><table><thead><tr><th>Business exposure</th><th>Principal transmission over the next 12 months</th></tr></thead><tbody><tr><td><strong>US importers / European exporters</strong></td><td>Tariff classification, exemptions and pricing power determine cost absorption versus lost volume; US localization can reduce some trade exposure.</td></tr><tr><td><strong>Data-center developers and suppliers</strong></td><td>Permits, power contracts and energization—not announced project value—govern revenue timing and returns on committed capital.</td></tr><tr><td><strong>Utilities and generators</strong></td><td>Large-load contracts can improve cost recovery, but regulators can restrict rate increases and reject speculative demand assumptions.</td></tr><tr><td><strong>Healthcare providers / pharmaceutical manufacturers</strong></td><td>Implemented reimbursement schedules and product-specific negotiated prices matter more than broad party labels.</td></tr><tr><td><strong>Defense and semiconductor supply chains</strong></td><td>Appropriated funds, milestone payments and signed contracts are stronger revenue evidence than budget requests or conditional awards.</td></tr><tr><td><strong>Banks and leveraged businesses</strong></td><td>Capital-rule implementation, cash-tax deductions and government borrowing affect distributable capital, financing costs and valuation assumptions.</td></tr></tbody></table></div><article class="card prose"><p>These mechanisms derive from the specific measures above; <strong>no observed equity-market reaction is attributed causally to the election in this report</strong>. (<a href="https://www.govinfo.gov/content/pkg/FR-2026-07-28/pdf/2026-15181.pdf?utm_source=openai">govinfo.gov</a>)</p></article></section><section class="section" id="contradictory-evidence-and-alternative-outcomes"><p class="section-label">5. Contradictory evidence and alternative outcomes</p><article class="card"><ul><li><strong>“Opposition victory means immediate policy reversal” is unsupported.</strong> Existing tax deductions, executive trade authorities and finalized rules remain separate legal instruments; congressional control primarily changes bargaining and oversight. (<a href="https://www.irs.gov/irb/2026-06_IRB?utm_source=openai">irs.gov</a>)</li><li><strong>“One party is uniformly pro- or anti-data-center” is contradicted by implemented actions.</strong> Republican-led Texas and Democratic-led New York and Pennsylvania all imposed material constraints, with different scopes. (<a href="https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits?utm_source=openai">gov.texas.gov</a>)</li><li><strong>“Restrictions imply an investment collapse” is not established.</strong> Semiconductor awards and disbursements continue, while energy-permitting legislation advanced. Projects may be delayed, redesigned or relocated rather than cancelled. (<a href="https://www.gao.gov/products/gao-26-109121?utm_source=openai">gao.gov</a>)</li><li><strong>“Deregulation uniformly raises earnings” is too strong.</strong> Bank-buffer smoothing is not necessarily a lower requirement for every firm; generator relief does not eliminate grid bottlenecks; utility large-load protections coexist with rejected rate increases. (<a href="https://www.govinfo.gov/content/pkg/FR-2026-10-02/html/2026-20246.htm?utm_source=openai">govinfo.gov</a>)</li></ul></article></section><section class="section" id="missing-data-and-verification-limitations"><p class="section-label">6. Missing data and verification limitations</p><article class="card"><ol><li><strong>Election certification:</strong> no complete, auditable official November 13 national tally or recount list was obtained. California’s official results endpoint returned only an embedded frame. News calls and tracker totals are consequently labeled as such.</li></ol></article><article class="card prose"><p>Official endpoint: <a href="https://electionresults.sos.ca.gov/returns/governor">https://electionresults.sos.ca.gov/returns/governor</a></p></article><article class="card"><ol><li><strong>Election coverage gaps:</strong> New Jersey’s 2025 results, several material 2026 gubernatorial/legislative outcomes and a comprehensive 2027 election calendar were not independently verified. Absence from this report is <strong>unavailable evidence, not evidence of no political change</strong>.</li></ol></article><article class="card"><ol><li><strong>Legal status:</strong> USCIS access failed; the November H-1B collection status relies on identified specialist secondary reporting. Complete appellate/stay checks were not obtained for environmental, AI and antitrust measures.</li></ol></article><article class="card"><ol><li><strong>Fiscal and sector gaps:</strong> October 2026 official monthly borrowing figures, comprehensive Medicaid/ACA implementation changes, project-level infrastructure disbursements, and current sanctions licenses were not sufficiently verified. No financial estimates are supplied for those gaps.</li></ol></article><article class="card"><ol><li><strong>Project economics:</strong> permitting restrictions do not establish cancellation rates, lost supplier revenue or permanent demand destruction. Those require project-level permits, power agreements, financing commitments and company disclosures.</li></ol></article></section>
+  </main>
+  <script>
+    const links = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+    const sections = links.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      links.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === "#" + visible.target.id));
+    }, { rootMargin: "-20% 0px -60% 0px", threshold: [0.1, 0.4] });
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>

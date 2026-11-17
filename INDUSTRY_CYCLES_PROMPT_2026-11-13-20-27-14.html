@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Industry evidence report</title>
+  <style>
+:root {
+  --background: oklch(0.993 0.006 82);
+  --foreground: oklch(0.31 0.018 50);
+  --card: oklch(0.999 0.003 90);
+  --card-foreground: oklch(0.31 0.018 50);
+  --primary: oklch(0.40 0.055 250);
+  --primary-foreground: oklch(0.99 0.004 90);
+  --secondary: oklch(0.974 0.01 82);
+  --secondary-foreground: oklch(0.36 0.02 50);
+  --muted: oklch(0.974 0.01 82);
+  --muted-foreground: oklch(0.51 0.015 55);
+  --metadata: oklch(0.64 0.012 60);
+  --accent: oklch(0.969 0.014 78);
+  --accent-foreground: oklch(0.34 0.025 50);
+  --destructive: oklch(0.55 0.14 25);
+  --positive: oklch(0.48 0.09 155);
+  --border: oklch(0.915 0.012 78);
+  --sidebar: oklch(0.987 0.008 82);
+  --sidebar-foreground: oklch(0.31 0.018 50);
+  --sidebar-primary: oklch(0.40 0.055 250);
+  --sidebar-primary-foreground: oklch(0.99 0.004 90);
+  --radius: 0.5rem;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { font-family: var(--font-sans); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.375;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--primary); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.prose a {
+  overflow-wrap: anywhere;
+  text-decoration-color: color-mix(in oklch, var(--primary) 40%, transparent);
+}
+.prose a:hover { text-decoration-color: var(--primary); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 3rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--sidebar);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--sidebar-foreground);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background: var(--sidebar-primary);
+  color: var(--sidebar-primary-foreground);
+}
+.mark svg { width: 0.875rem; height: 0.875rem; }
+.site-nav {
+  display: flex;
+  min-width: 0;
+  gap: 0.25rem;
+  overflow-x: auto;
+}
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  height: 3rem;
+  padding: 0 0.75rem;
+  border-bottom: 2px solid transparent;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-nav a:hover { color: var(--foreground); }
+.site-nav a.active {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  font-weight: 500;
+}
+main {
+  width: min(72rem, 100%);
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.page-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--metadata);
+  font-size: 0.75rem;
+}
+h1 {
+  margin: 0.375rem 0 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+h3 { margin: 0; font-size: 0.875rem; font-weight: 500; line-height: 1.35; }
+.section { display: flex; flex-direction: column; gap: 0.75rem; }
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.lede, .note {
+  max-width: 56rem;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+.note { color: var(--muted-foreground); }
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: 0 0 0 1px var(--border);
+  font-size: 0.875rem;
+}
+.muted-card { background: var(--muted); }
+.prose p { margin: 0; }
+.prose p + p { margin-top: 0.75rem; }
+.tag { color: var(--primary); font-weight: 500; }
+.part-gap { display: block; height: 1.25rem; }
+.force h3 { margin-bottom: 1rem; }
+.theme-list { margin: 0.35rem 0 0.85rem; padding-left: 1.15rem; }
+.theme-list li + li { margin-top: 0.35rem; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.stat {
+  padding: 0.75rem 0.875rem;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+.stat-value {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.stat-label {
+  margin: 0.25rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+}
+.stat-note {
+  margin: -0.25rem 0 0;
+  color: var(--metadata);
+  font-size: 0.75rem;
+}
+.stack { display: flex; flex-direction: column; gap: 0.75rem; }
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.force, .risk {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.force-index, .rank, .risk-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background: color-mix(in oklch, var(--primary) 10%, transparent);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.risk-index {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+.theme-head, .holding-head, .holding-title, .rejected-head, .turn-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.turn-head { align-items: center; justify-content: space-between; }
+.theme-main, .holding-main { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+.theme-main h3, .holding-title h3, .turn-head h3 { font-size: 1rem; }
+.holding-title { justify-content: space-between; }
+.holding-figures {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+.figure { font-size: 1rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.figure-label { margin-right: 0.45rem; color: var(--metadata); font-size: 0.75rem; }
+.badges, .queries { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  width: fit-content;
+  padding: 0 0.5rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius) * 2.6);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+.badge-positive, .badge-executive {
+  background: color-mix(in oklch, var(--primary) 12%, transparent);
+  color: var(--primary);
+}
+.badge-positive { background: color-mix(in oklch, var(--positive) 12%, transparent); color: var(--positive); }
+.badge-destructive {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+.badge-secondary, .badge-operator { background: var(--secondary); color: var(--secondary-foreground); }
+.badge-outline, .badge-analyst {
+  border-color: var(--border);
+  background: var(--card);
+  color: var(--foreground);
+}
+.badge-ghost {
+  background: transparent;
+  color: var(--metadata);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 400;
+  text-transform: none;
+}
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--border);
+}
+.field { display: flex; flex-direction: column; gap: 0.375rem; }
+.kicker {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+ul { margin: 0; padding-left: 1.1rem; }
+li + li { margin-top: 0.25rem; }
+.theme-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.query {
+  overflow-wrap: anywhere;
+  display: inline-flex;
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+.alloc-list { display: flex; flex-direction: column; gap: 0.8rem; }
+.alloc-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+}
+.alloc-top span:last-child {
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+.track {
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--muted);
+  overflow: hidden;
+}
+.fill { height: 100%; border-radius: inherit; background: var(--primary); }
+.table-card {
+  overflow-x: auto;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+th {
+  height: 2rem;
+  padding: 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: left;
+}
+td { padding: 0.45rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.ticker {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--card);
+  color: var(--foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+a.ticker:hover { background: var(--muted); }
+.scenarios, .grid-2 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: start;
+}
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.scenario-bull h3 { color: var(--positive); }
+.scenario-bear h3 { color: var(--destructive); }
+.count {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.5rem;
+  border-radius: calc(var(--radius) * 2.6);
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.view-tabs {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.35rem;
+  padding: 0.4rem 0;
+}
+.view-tab {
+  appearance: none;
+  border: 0;
+  height: 100%;
+  border-radius: 0.35rem;
+  background: color-mix(in oklch, var(--primary) 30%, white);
+  color: var(--primary);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+.view-tab:hover { background: color-mix(in oklch, var(--primary) 42%, white); }
+.view-tab.active, .view-tab.active:hover { background: var(--primary); color: white; }
+main[hidden], nav[hidden] { display: none !important; }
+@media (max-width: 960px) {
+  .stats, .scenarios, .fields, .split { grid-template-columns: 1fr 1fr; }
+  .scenarios { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .stats, .fields, .split, .grid-2 { grid-template-columns: 1fr; }
+  .site-header { gap: 0.75rem; }
+  .holding-title { flex-direction: column; }
+}
+
+.site-header { height: auto; min-height: 3rem; align-items: flex-start; flex-wrap: wrap; }
+.brand { height: 3rem; }
+.site-nav { flex: 1; overflow-x: auto; overflow-y: hidden; }
+.site-nav a { flex: 0 0 auto; }
+.site-nav a[aria-current="page"] {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  font-weight: 500;
+}
+.section { scroll-margin-top: 5rem; }
+main { padding-bottom: 45vh; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5v4"></path>
+          <rect x="7" y="9" width="4" height="6" rx="1"></rect>
+          <path d="M9 15v4"></path>
+          <path d="M15 3v2"></path>
+          <rect x="13" y="5" width="4" height="10" rx="1"></rect>
+          <path d="M15 15v6"></path>
+        </svg>
+      </span>
+      Industry Cycles
+    </a>
+    <nav class="site-nav" aria-label="Reports"><a href="index.html">Portfolio</a><a href="US_MACRO_PROMPT_2026-11-13-19-53-21.html">US Macro</a><a href="US_POLITICS_PROMPT_2026-11-13-20-37-03.html">US Politics</a><a href="EUROPE_MACRO_PROMPT_2026-11-13-20-04-20.html">Europe Macro</a><a href="FINANCIAL_CONDITIONS_PROMPT_2026-11-13-20-17-02.html">Financial Conditions</a><a href="EXTERNAL_DRIVERS_PROMPT_2026-11-13-20-31-36.html">External drivers</a><a href="INDUSTRY_CYCLES_PROMPT_2026-11-13-20-27-14.html" aria-current="page">Industry Cycles</a><a href="EQUITY_MARKETS_PROMPT_2026-11-13-20-19-28.html">Equity market</a><a href="EARNINGS_PROMPT_2026-11-13-20-22-48.html">Earnings</a></nav>
+  </header>
+  <main id="top">
+    <div>
+      <p class="page-kicker"><span>Information cutoff: November 13, 2026 Assessment horizon: through November 13, 2027</span><span>INDUSTRY_CYCLES_PROMPT_2026-11-13-20-27-14.json</span></p>
+      <h1>Industry evidence report</h1>
+    </div>
+    
+    <section class="section" id="introduction"><p class="section-label">Introduction</p><article class="card prose"><p><strong>Information cutoff: November 13, 2026</strong> <strong>Assessment horizon: through November 13, 2027</strong></p></article><article class="card prose"><p><strong>Labels:</strong> <strong>Fact</strong> = reported observation; <strong>Forecast</strong> = management or agency projection; <strong>Interpretation</strong> = analytical assessment. Company examples identify business exposures, not investment recommendations. Publication dates are shown as <strong>null</strong> where the retrieved evidence did not establish an exact date.</p></article></section><section class="section" id="executive-findings"><p class="section-label">1. Executive findings</p><article class="card"><ul><li><strong>AI infrastructure remains the strongest observable capital-spending development.</strong> Cloud revenue growth supports the spending—not just announcements—but capital intensity is already weakening cash conversion. Infrastructure suppliers and infrastructure buyers therefore have materially different earnings exposures. (<a href="https://www.aboutamazon.com/news/company-news/amazon-earnings-q3-2026-report?trk=organization_guest_main-feed-card-text&amp;utm_source=openai">aboutamazon.com</a>)</li><li><strong>Power distribution, cooling and generation have substantial order support.</strong> Eaton and Vertiv reported data-center-related order growth exceeding 100% on their respective measures; GE Vernova’s contracted/reserved gas capacity increased further. These indicators support delivery visibility, but are not interchangeable with immediately recognizable revenue. (<a href="https://www.eaton.com/content/dam/eaton/company/investor-relations/quarterly-earnings/filings/2026/q3/q3-2026-analyst-presentation.pdf?utm_source=openai">eaton.com</a>)</li><li><strong>The investment cycle is concentrated rather than economy-wide.</strong> US data-center construction increased sharply while aggregate construction contracted; European retail volumes and corporate loan demand weakened. Broad industrial or consumer recovery should not be inferred from AI-related strength. (<a href="https://www.census.gov/construction/c30/pdf/priv.pdf?utm_source=openai">census.gov</a>)</li><li><strong>Defense and aerospace demand is well supported, but execution and cash conversion remain decisive.</strong> Orders and backlogs are growing; customer advances, delivery concentration and production costs complicate the translation into sustainable free cash flow. (<a href="https://www.baesystems.com/en-us/article/market-update-nov-2026?utm_source=openai">baesystems.com</a>)</li><li><strong>Healthcare and banking show repricing rather than uniform volume-led growth.</strong> Managed-care underwriting improved in the observed company evidence, while European lending conditions deteriorated. Neither development establishes an industry-wide earnings trajectory. (<a href="https://www.sec.gov/Archives/edgar/data/731766/000073176626000255/earningsrelease3q26unh.htm?utm_source=openai">sec.gov</a>)</li></ul></article></section><section class="section" id="dated-observations-business-exposures-and-transmission"><p class="section-label">2. Dated observations, business exposures and transmission</p><article class="card prose"><h3>A. AI/cloud: accelerating monetization, but increasingly expensive capacity</h3><p><strong>What changed</strong></p></article><article class="card"><ul><li><strong>Fact:</strong> AWS revenue grew <strong>39.3% year over year in Q3 2026</strong>, its fastest growth in nearly five years.</li><li><strong>Forecast:</strong> Amazon maintained approximately <strong>$220 billion of 2026 cash capital expenditure</strong>.</li><li><strong>Fact:</strong> Alphabet reported <strong>$42.3 billion of quarterly operating cash flow</strong>, but <strong>negative $9.1 billion free cash flow</strong>. Management attributed the latter principally to capital expenditure, with additional effects from TPU inventory accumulation and an EC fine payment. (<a href="https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Third-Quarter-Results/default.aspx">ir.aboutamazon.com</a>)</li></ul></article><article class="card prose"><p><strong>Interpretation — structural adoption, cyclical investment intensity:</strong> Accelerating cloud consumption supports servers, accelerators, networking, optical connectivity, construction and electrical equipment revenues. For cloud operators, additional capacity can unlock revenue, but spending precedes utilization and increases depreciation, financing requirements and cash-flow sensitivity.</p></article><article class="card prose"><p><strong>Constraints/reversal evidence:</strong> Monitor capacity entering service versus actual consumption, utilization, cash expenditure and depreciation. Alphabet explicitly said some contractual commitments contain pricing and volume flexibility: maximum commitments should not be treated as certain future expenditure. (<a href="https://abc.xyz/investor/events/event-details/2026/2026-Q3-Earnings-Call-2026-Ujou16CTw9/default.aspx">abc.xyz</a>)</p></article><article class="card prose"><p><strong>Source records</strong></p></article><article class="card"><ul><li>Published <strong>2026-10-29</strong>; observation <strong>Q3 2026</strong>; forecast <strong>calendar 2026</strong>: <a href="https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Third-Quarter-Results/default.aspx">Amazon results</a>, <a href="https://www.aboutamazon.com/news/company-news/amazon-earnings-q3-2026-report?trk=organization_guest_main-feed-card-text">official expenditure statement</a>.</li><li>Published <strong>null</strong>; observation <strong>Q3 2026</strong>: <a href="https://abc.xyz/investor/events/event-details/2026/2026-Q3-Earnings-Call-2026-Ujou16CTw9/default.aspx">Alphabet earnings call</a>.</li></ul></article><article class="card prose"><h3>B. Semiconductors: leading-edge expansion is visible; a universal chip shortage is not established</h3><p><strong>What changed</strong></p></article><article class="card"><ul><li><strong>Fact:</strong> TSMC’s Q3 wafer revenue mix included <strong>8% from 2nm and 33% from 3nm</strong>, demonstrating commercialization of newer processes.</li><li><strong>Forecast:</strong> TSMC expects <strong>N2-family annual capacity to more than double in 2027</strong>.</li><li><strong>Fact/forecast:</strong> ASML reported <strong>€11.7 billion Q3 sales</strong> and guided to <strong>€44–45 billion full-year sales</strong>. Micron’s fiscal-Q1 2027 guidance included an approximately <strong>85.95% GAAP gross margin</strong>—a forecast of exceptionally strong economics, not an observed industry inventory measure. (<a href="https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/526b65af7305df2dde6b9ece6812b1fdf1e49f9b/3Q26%20EarningsRelease.pdf?utm_source=openai">investor.tsmc.com</a>)</li></ul></article><article class="card prose"><p><strong>Interpretation — structural compute demand plus a cyclical capacity/pricing cycle:</strong> Advanced-process equipment, process-control, materials and high-performance memory exposures benefit from capacity expansion and technology transitions. Suppliers can gain from richer mix and utilization; equipment and fab owners must fund capacity before its full revenue contribution.</p></article><article class="card prose"><p><strong>Constraints/reversal evidence:</strong> Added 2027 capacity is also a potential normalization mechanism. These disclosures do <strong>not</strong> establish tight supply across automotive, industrial, analog or mature-node products. Comparable inventory days, utilization and packaging-capacity data were not verified.</p></article><article class="card prose"><p><strong>Source records</strong></p></article><article class="card"><ul><li>Published <strong>2026-10-15</strong>; observation <strong>Q3 2026</strong>, forecast <strong>2027</strong>: <a href="https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/526b65af7305df2dde6b9ece6812b1fdf1e49f9b/3Q26%20EarningsRelease.pdf">TSMC release</a>, <a href="https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/eba4fac72873bf546b669bd2b5d973df5c93215d/TSMC%203Q26%20Transcript.pdf">transcript</a>.</li><li>Published <strong>2026-10-14</strong>; observation <strong>Q3 2026</strong>, forecast <strong>2026</strong>: <a href="https://www.investor.asml.com/news-releases/news-release-details/asml-reports-eu11.7-billion-total-net-sales-and-eu5.0-billion-net-income-q3-2026">ASML release</a>.</li><li>Published <strong>2026-09-30</strong>; forecast <strong>fiscal Q1 2027</strong>: <a href="https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/?trk=article-ssr-frontend-pulse_little-text-block">Micron results and guidance</a>.</li></ul></article><article class="card prose"><h3>C. Data-center electricity distribution and cooling: orders are translating into shipments</h3><p><strong>What changed</strong></p></article><article class="card"><ul><li><strong>Fact:</strong> Eaton reported electrical-sector data-center orders <strong>more than doubling on a rolling-12-month basis</strong>, with associated revenues up approximately <strong>65% versus Q3 2025</strong>.</li><li><strong>Fact:</strong> Vertiv reported <strong>61% Q3 sales growth</strong> and <strong>organic orders growth exceeding 100%</strong>. These are different measurement periods and definitions, not directly comparable growth rates. (<a href="https://www.eaton.com/content/dam/eaton/company/investor-relations/quarterly-earnings/filings/2026/q3/q3-2026-analyst-presentation.pdf?utm_source=openai">eaton.com</a>)</li></ul></article><article class="card prose"><p><strong>Interpretation — structural infrastructure demand with cyclical ordering risk:</strong> Switchgear, power distribution, UPS, thermal management and related services have stronger delivery support than projects evidenced only by announced budgets. Higher shipment volumes can improve fixed-cost absorption, although factory expansion and working capital consume cash before deliveries.</p></article><article class="card prose"><p><strong>Constraints/reversal evidence:</strong> Orders could exceed near-term installation capacity. Customer-site readiness, qualification and acceptance determine conversion. Watch order growth relative to shipments and backlog aging; strong bookings alone cannot establish sustainable margins.</p></article><article class="card prose"><p><strong>Source records</strong></p></article><article class="card"><ul><li>Published <strong>null</strong>; observation <strong>Q3 2026 and trailing 12 months</strong>: <a href="https://www.eaton.com/content/dam/eaton/company/investor-relations/quarterly-earnings/filings/2026/q3/q3-2026-analyst-presentation.pdf">Eaton presentation</a>.</li><li>Published <strong>2026-10-28</strong>; observation <strong>Q3 2026</strong>: <a href="https://www.sec.gov/Archives/edgar/data/1674101/000162828026067707/q32026exhibit991vrt10282026.htm">Vertiv filed release</a>.</li></ul></article><article class="card prose"><h3>D. Generation and grids: forward capacity commitments remain strong, but order comparisons are uneven</h3><p><strong>What changed</strong></p></article><article class="card"><ul><li><strong>Fact:</strong> GE Vernova’s gas-power equipment backlog plus slot reservations increased from <strong>116 GW to 122 GW</strong>.</li><li><strong>Forecast:</strong> Management expected at least <strong>130 GW under contract</strong> and total backlog exceeding <strong>$200 billion</strong> by year-end.</li><li><strong>Contradictory fact:</strong> Electrification orders declined <strong>9% organically</strong>, reflecting a large prior-year synchronous-condenser comparison, while book-to-bill remained approximately <strong>1.4</strong>. (<a href="https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_10282026.pdf?text=full&amp;utm_source=openai">gevernova.com</a>)</li></ul></article><article class="card prose"><p><strong>Interpretation — structural electrification and capacity replacement:</strong> Turbines, grid equipment and associated service revenues benefit from multi-year infrastructure commitments. Higher-priced backlog can support future margins, but some deliveries extend beyond this report’s twelve-month horizon.</p></article><article class="card prose"><p><strong>Constraints/reversal evidence:</strong> Slot reservations are not equivalent to delivered equipment or recognized revenue. Grid connection, permitting and customer financing can defer projects. The order decline demonstrates why backlog, book-to-bill and comparison effects should be assessed together.</p></article><article class="card prose"><p><strong>Source record:</strong> Published <strong>2026-10-28</strong>; observation <strong>Q3/end-September 2026</strong>; forecast <strong>year-end 2026</strong>: <a href="https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_10282026.pdf?text=full">GE Vernova release</a>.</p></article><article class="card prose"><h3>E. Enterprise software: contracted cloud growth is observable; AI-specific revenue remains harder to isolate</h3><p><strong>What changed</strong></p></article><article class="card"><ul><li><strong>Fact:</strong> SAP’s current cloud backlog increased <strong>26% at constant currencies</strong>.</li><li><strong>Fact:</strong> ServiceNow reported <strong>$13.65 billion current remaining performance obligations</strong>, up <strong>21% at constant currency</strong>—contracted revenue expected to be recognized over twelve months.</li><li><strong>Forecast:</strong> ServiceNow raised its 2026 AI annual-contract-value target to <strong>$1.7 billion</strong>, 70% above its beginning-of-year target. ACV is not recognized revenue. (<a href="https://www.sap.com/docs/download/investors/2026/sap-2026-q3-statement.pdf?utm_source=openai">sap.com</a>)</li></ul></article><article class="card prose"><p><strong>Interpretation — structural cloud migration and workflow adoption:</strong> ERP migration, workflow automation and implementation services have contractual revenue support. Recurring subscriptions provide visibility, but neither total cloud backlog nor cRPO measures incremental AI demand alone.</p></article><article class="card prose"><p><strong>Constraints/reversal evidence:</strong> Implementation timing, renewal economics and delivery costs determine earnings and cash conversion. Customer productivity gains, AI inference costs and potential substitution of existing licenses were not independently verified.</p></article><article class="card prose"><p><strong>Source records</strong></p></article><article class="card"><ul><li>Published <strong>2026-10-21</strong>; observation <strong>Q3/end-September 2026</strong>: <a href="https://www.sap.com/docs/download/investors/2026/sap-2026-q3-statement.pdf">SAP statement</a>.</li><li>Published <strong>2026-10-28</strong>; observation <strong>Q3/end-September 2026</strong>, target <strong>2026</strong>: <a href="https://investor.servicenow.com/news/news-details/2026/ServiceNow-Reports-Third-Quarter-2026-Financial-Results/default.aspx">ServiceNow release</a>.</li></ul></article><article class="card prose"><h3>F. Industrial automation and construction: substantial infrastructure demand, not a generalized building recovery</h3><p><strong>What changed</strong></p></article><article class="card"><ul><li><strong>Fact:</strong> Siemens’ fiscal-Q4 orders rose <strong>58% to €34.8 billion</strong>, led particularly by Mobility and Smart Infrastructure.</li><li><strong>Forecast:</strong> Digital Industries expects <strong>8–12% comparable revenue growth in fiscal 2027</strong>.</li><li><strong>Fact:</strong> US private data-center construction spending increased <strong>49.1% year to date through September</strong>. Conversely, total construction spending fell <strong>2.7% year over year</strong>, and residential spending fell <strong>5.5% month over month</strong> in September. (<a href="https://press.siemens.com/global/en/pressrelease/earnings-release-and-financial-results-q4-fy-2026?utm_source=openai">press.siemens.com</a>)</li></ul></article><article class="card prose"><p><strong>Interpretation — structural infrastructure demand alongside cyclical building weakness:</strong> Electrical installation, rail systems, engineering and selected automation exposures benefit. Housing-linked materials, equipment and distribution face a different demand environment. Product and geographic mix matter more than a broad “industrial recovery” label.</p></article><article class="card prose"><p><strong>Constraints/reversal evidence:</strong> Siemens’ group order growth was not exclusively factory automation. Its automation outlook remains a forecast. Construction figures measure nominal expenditure and remain subject to revision.</p></article><article class="card prose"><p><strong>Source records</strong></p></article><article class="card"><ul><li>Published <strong>2026-11-12</strong>; observation <strong>quarter ended 2026-09-30</strong>, forecast <strong>fiscal 2027</strong>: <a href="https://press.siemens.com/global/en/pressrelease/earnings-release-and-financial-results-q4-fy-2026">Siemens release</a>.</li><li>Published <strong>2026-11-02</strong>; observation <strong>September/January–September 2026</strong>: <a href="https://www.census.gov/construction/c30/current/index.html?trk=article-ssr-frontend-pulse_little-text-block">Census release</a>, <a href="https://www.census.gov/construction/c30/pdf/priv.pdf">private-construction table</a>.</li></ul></article><article class="card prose"><h3>G. Defense: procurement demand is converting into orders, but advances and program mix complicate cash analysis</h3><p><strong>What changed</strong></p></article><article class="card"><ul><li><strong>Fact:</strong> BAE Systems had secured <strong>£33 billion of orders</strong> during 2026 to its November update.</li><li><strong>Forecast:</strong> BAE raised free-cash-flow guidance to approximately <strong>£3 billion</strong>, from over £2 billion, partly benefiting from customer advances.</li><li><strong>Fact:</strong> Rheinmetall’s reported backlog reached <strong>€78.0 billion</strong>, versus <strong>€56.7 billion</strong> a year earlier. (<a href="https://www.baesystems.com/en-us/article/market-update-nov-2026?utm_source=openai">baesystems.com</a>)</li></ul></article><article class="card prose"><p><strong>Interpretation — multi-year procurement expansion:</strong> Combat systems, electronics, ammunition and sustainment have substantial revenue visibility. Volume increases can improve factory absorption, but production expansion and program execution determine margins.</p></article><article class="card prose"><p><strong>Constraints/reversal evidence:</strong> Advances bring cash forward rather than create recurring operating profitability. BAE reported subdued Maritime growth and margins during first-in-class Type 26 work. Backlog across companies should not be aggregated without reconciling definitions and delivery schedules. (<a href="https://www.baesystems.com/investors/dam/jcr%3A59036a5e-0fdd-40e9-bccc-d419d86a83fe/Trading-statement-12-Nov-2026.c1f27ee6eebd1c31f820201c7aed8c0a.pdf?utm_source=openai">baesystems.com</a>)</p></article><article class="card prose"><p><strong>Source records</strong></p></article><article class="card"><ul><li>Published <strong>2026-11-12</strong>; observation <strong>2026 year to update</strong>, forecast <strong>2026</strong>: <a href="https://www.baesystems.com/investors/dam/jcr%3A59036a5e-0fdd-40e9-bccc-d419d86a83fe/Trading-statement-12-Nov-2026.c1f27ee6eebd1c31f820201c7aed8c0a.pdf">BAE statement</a>.</li><li>Published <strong>2026-11-05</strong>; observation <strong>nine months/end-September 2026</strong>: <a href="https://www.rheinmetall.com/en/media/news-watch/news/2026/11/2026-11-05-rheinmetall-news-quarterly-statement-q3">Rheinmetall statement</a>.</li></ul></article><article class="card prose"><h3>H. Commercial aerospace: demand exceeds near-term deliveries; aftermarket growth does not eliminate cost pressure</h3><p><strong>What changed</strong></p></article><article class="card"><ul><li><strong>Fact:</strong> Airbus delivered <strong>547 aircraft in nine months</strong>, versus 507 a year earlier, with a <strong>9,310-aircraft backlog</strong>.</li><li><strong>Forecast:</strong> Its unchanged 870-aircraft annual target implied <strong>323 fourth-quarter deliveries</strong>, calculated from the disclosed figures.</li><li><strong>Fact:</strong> Airbus’ nine-month free cash flow before customer financing was <strong>negative €1.27 billion</strong>, reflecting inventory and ramp-up requirements.</li><li><strong>Fact:</strong> GE Aerospace’s commercial services revenue grew <strong>17% in Q3</strong>, but the commercial segment’s margin contracted <strong>10 basis points</strong> because of mix and inflation. (<a href="https://www.airbus.com/en/newsroom/press-releases/2026-10-airbus-reports-nine-month-9m-2026-results?utm_source=openai">airbus.com</a>)</li></ul></article><article class="card prose"><p><strong>Interpretation — structural fleet/service demand, cyclical production execution:</strong> Engines, parts, maintenance and airframe suppliers have supported demand. Cash realization depends on completed deliveries and inventory release; an increased proportion of equipment revenue need not improve margins.</p></article><article class="card prose"><p><strong>Constraints/reversal evidence:</strong> Production scheduling, certification and supplier output remain important. A large aircraft backlog protects visibility but does not establish twelve-month shipment capacity.</p></article><article class="card prose"><p><strong>Source records</strong></p></article><article class="card"><ul><li>Published <strong>2026-10-28</strong>; observation <strong>nine months/end-September 2026</strong>, forecast <strong>2026</strong>: <a href="https://www.airbus.com/en/newsroom/press-releases/2026-10-airbus-reports-nine-month-9m-2026-results">Airbus results</a>.</li><li>Published <strong>2026-10-20</strong>; observation <strong>Q3 2026</strong>: <a href="https://www.geaerospace.com/news/press-releases/ge-aerospace-announces-third-quarter-2026-results">GE Aerospace results</a>.</li></ul></article><article class="card prose"><h3>I. Consumer industries: nominal US resilience contrasts with weak European volumes and luxury softness</h3><p><strong>What changed</strong></p></article><article class="card"><ul><li><strong>Fact:</strong> US September retail/food-service sales rose <strong>0.8% month over month</strong> and <strong>6.3% year over year</strong>, without adjusting for prices. Excluding autos and gasoline, the monthly increase was only <strong>0.2%</strong>, with a confidence interval including zero.</li><li><strong>Fact:</strong> Euro-area retail volumes fell <strong>0.7% month over month</strong>, including <strong>1.2% for non-food products</strong>.</li><li><strong>Fact:</strong> LVMH Fashion &amp; Leather Goods organic revenue declined <strong>5% in Q3</strong>, compared with a <strong>2% decline over nine months</strong>. (<a href="https://www.census.gov/retail/marts/www/marts_current.pdf?nr_email_referer=1&amp;utm_source=openai">census.gov</a>)</li></ul></article><article class="card prose"><p><strong>Interpretation — primarily cyclical and category-specific:</strong> Revenue resilience cannot be assumed to mean stronger units or margins. Discretionary brands and retailers face inventory, promotion and operating-leverage risks; exposure to US consumers, European volumes and Chinese luxury demand differs materially.</p></article><article class="card prose"><p><strong>Constraints/reversal evidence:</strong> US aggregate spending contradicts a generalized consumer-collapse thesis. Conversely, nominal US sales cannot be compared directly with European volume indices.</p></article><article class="card prose"><p><strong>Source records</strong></p></article><article class="card"><ul><li>Published <strong>2026-10-15</strong>; observation <strong>September 2026</strong>: <a href="https://www.census.gov/retail/marts/www/marts_current.pdf?nr_email_referer=1">Census retail report</a>.</li><li>Published <strong>2026-11-06</strong>; observation <strong>September 2026</strong>: <a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/4-06112026-ap">Eurostat release</a>.</li><li>Published <strong>2026-10-12</strong>; observation <strong>Q3/nine months 2026</strong>: <a href="https://www.lvmh.com/en/publications/continued-growth-in-the-third-quarter-of-2026">LVMH release</a>.</li></ul></article><article class="card prose"><h3>J. Healthcare: managed-care repricing is observable; oral obesity innovation broadens competition</h3><p><strong>What changed</strong></p></article><article class="card"><ul><li><strong>Fact:</strong> UnitedHealth’s medical-care ratio improved to <strong>88.4%</strong>, from <strong>89.9%</strong>, attributed to pricing, benefit design and cost-management measures. Revenue nevertheless declined slightly year over year.</li><li><strong>Regulatory forecast:</strong> CMS finalized an average <strong>2.48% increase in 2027 Medicare Advantage payments</strong>, versus 0.09% proposed; including estimated risk-score trend gives 4.98%, a different basis.</li><li><strong>Innovation:</strong> AP reported FDA approval of Lilly’s oral obesity treatment on <strong>April 1, 2026</strong>. Lilly’s October results subsequently raised annual guidance and reported cardiovascular-safety findings for orforglipron. The approval evidence here is <strong>secondary</strong>, not an independently inspected FDA decision. (<a href="https://www.sec.gov/Archives/edgar/data/731766/000073176626000255/earningsrelease3q26unh.htm?utm_source=openai">sec.gov</a>)</li></ul></article><article class="card prose"><p><strong>Interpretation — cyclical underwriting repair plus structural treatment expansion:</strong> Insurers can restore profitability through pricing and benefit changes without membership growth. Oral obesity treatment expands commercial competition and manufacturing opportunities, but approval alone does not establish paid demand, net pricing or profitability.</p></article><article class="card prose"><p><strong>Constraints/reversal evidence:</strong> Medical-cost trends and enrollment responses can offset reimbursement gains. Comparable prescription volumes, payer coverage and realized obesity-drug prices were not verified.</p></article><article class="card prose"><p><strong>Source records</strong></p></article><article class="card"><ul><li>Published <strong>null</strong>; observation <strong>Q3 2026</strong>: <a href="https://www.sec.gov/Archives/edgar/data/731766/000073176626000255/earningsrelease3q26unh.htm">UnitedHealth filed results</a>.</li><li>Published <strong>2026-04-06</strong>; policy period <strong>2027</strong>: <a href="https://www.cms.gov/newsroom/fact-sheets/2027-medicare-advantage-part-d-rate-announcement">CMS rate announcement</a>.</li><li>Published <strong>2026-04-01</strong>; event <strong>same date</strong>: <a href="https://apnews.com/article/ac23734a63e8354b5d9f0c93718ef2ff">AP approval report</a>.</li><li>Published <strong>2026-10-29</strong>; observation <strong>Q3 2026</strong>: <a href="https://investor.lilly.com/news-releases/news-release-details/lilly-reports-third-quarter-2026-financial-results-raises-full">Lilly results</a>.</li></ul></article><article class="card prose"><h3>K. Banking: European lending momentum deteriorated; US credit costs still require differentiation</h3><p><strong>What changed</strong></p></article><article class="card"><ul><li><strong>Fact:</strong> Euro-area banks’ net tightening of corporate credit standards increased to <strong>9%</strong>, from 7% in Q2.</li><li><strong>Fact:</strong> Corporate loan demand moved to a <strong>net 6% decline</strong>, from a 3% increase, instead of the increase banks had expected.</li><li><strong>Fact:</strong> JPMorgan reported <strong>$2.7 billion credit costs</strong>, comprising approximately <strong>$2.2 billion net charge-offs</strong> and a <strong>$539 million reserve build</strong>. This is one bank’s experience, not a system-wide deterioration measure. (<a href="https://www.ecb.europa.eu/stats/ecb_surveys/bank_lending_survey/pdf/ecb.blssurvey2026q3~c6a731e213.en.pdf?utm_source=openai">ecb.europa.eu</a>)</li></ul></article><article class="card prose"><p><strong>Interpretation — cyclical financing headwind:</strong> Weaker originations constrain earning-asset growth and associated fees. Higher lending yields may support interest income initially, but deposit costs and provisions can offset that benefit. Tighter credit also affects construction, SMEs and discretionary consumption.</p></article><article class="card prose"><p><strong>Constraints/reversal evidence:</strong> Survey net percentages measure the breadth of responses, not percentage changes in loan balances. European conditions should not be extrapolated to US banks.</p></article><article class="card prose"><p><strong>Source records</strong></p></article><article class="card"><ul><li>Published <strong>2026-10-27</strong>; observation <strong>Q3 2026</strong>, survey <strong>September 21–October 6</strong>: <a href="https://www.bde.es/f/webbe/GAP/Secciones/SalaPrensa/ComunicadosBCE/NotasInformativasBCE/26/presbce2026-143en.pdf">ECB release, central-bank-hosted copy</a>.</li><li>Published <strong>null</strong>; observation <strong>Q3 2026</strong>: <a href="https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/quarterly-earnings/2026/3rd-quarter/6c1f8114-1be4-4174-8292-f75bbb59bc21.pdf">JPMorgan release</a>.</li></ul></article></section><section class="section" id="changes-in-direction-or-momentum"><p class="section-label">3. Changes in direction or momentum</p><div class="table-card"><table><thead><tr><th>Area</th><th>Evidence-based direction</th></tr></thead><tbody><tr><td>Cloud infrastructure</td><td>AWS growth accelerated, while Alphabet’s quarterly cash conversion weakened: demand and funding intensity are rising together. (<a href="https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Third-Quarter-Results/default.aspx">ir.aboutamazon.com</a>)</td></tr><tr><td>Electrical infrastructure</td><td>Orders are growing faster than already-strong shipments on the disclosed Eaton/Vertiv measures; conversion capacity becomes increasingly important. (<a href="https://www.eaton.com/content/dam/eaton/company/investor-relations/quarterly-earnings/filings/2026/q3/q3-2026-analyst-presentation.pdf?utm_source=openai">eaton.com</a>)</td></tr><tr><td>Construction</td><td>Data centers diverged further from weak aggregate construction; this is a change in investment composition, not broad recovery. (<a href="https://www.census.gov/construction/c30/pdf/priv.pdf?utm_source=openai">census.gov</a>)</td></tr><tr><td>European credit</td><td>Corporate demand reversed from modest expansion to contraction, while standards tightened more than expected. (<a href="https://www.ecb.europa.eu/stats/ecb_surveys/bank_lending_survey/pdf/ecb.blssurvey2026q3~c6a731e213.en.pdf?utm_source=openai">ecb.europa.eu</a>)</td></tr><tr><td>Consumer demand</td><td>European retail volumes reversed August’s increase; LVMH’s latest-quarter fashion decline was worse than its nine-month average. (<a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/4-06112026-ap?utm_source=openai">ec.europa.eu</a>)</td></tr><tr><td>Managed care</td><td>Observed underwriting improved, but with slightly lower revenue—evidence of repair rather than straightforward volume growth. (<a href="https://www.sec.gov/Archives/edgar/data/731766/000073176626000255/earningsrelease3q26unh.htm?utm_source=openai">sec.gov</a>)</td></tr></tbody></table></div></section><section class="section" id="implications-for-businesses-and-equity-markets"><p class="section-label">4. Implications for businesses and equity markets</p><article class="card prose"><p><strong>Analytical conclusions:</strong></p></article><article class="card"><ol><li><strong>Separate suppliers from capital spenders.</strong> An infrastructure supplier’s order is a customer’s capital requirement; the same development can support supplier revenue while depressing buyer free cash flow. (<a href="https://www.eaton.com/content/dam/eaton/company/investor-relations/quarterly-earnings/filings/2026/q3/q3-2026-analyst-presentation.pdf?utm_source=openai">eaton.com</a>)</li><li><strong>Prioritize conversion over backlog size.</strong> Site readiness, aircraft deliveries and program execution determine whether booked demand becomes earnings and cash within twelve months. (<a href="https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_10282026.pdf?text=full&amp;utm_source=openai">gevernova.com</a>)</li><li><strong>Demand strength does not establish attractive stock returns.</strong> This evidence supports operating scenarios, not valuation conclusions. No consistent cutoff-date valuation or consensus-expectations comparison was verified; expected growth may already be capitalized in share prices.</li></ol></article></section><section class="section" id="contradictory-evidence-and-possible-reversal-signals"><p class="section-label">5. Contradictory evidence and possible reversal signals</p><article class="card"><ul><li><strong>Infrastructure strength versus broader weakness:</strong> Data-center expenditure is not representative of housing, consumer goods or European business borrowing. (<a href="https://www.census.gov/construction/c30/current/index.html?trk=article-ssr-frontend-pulse_little-text-block&amp;utm_source=openai">census.gov</a>)</li><li><strong>Revenue growth versus profitability:</strong> Aerospace services growth coexisted with commercial-segment margin pressure; cloud investment coexisted with negative quarterly free cash flow. (<a href="https://www.geaerospace.com/news/press-releases/ge-aerospace-announces-third-quarter-2026-results?utm_source=openai">geaerospace.com</a>)</li><li><strong>Orders versus sustainable cash:</strong> Defense advances improve present cash flow but may reduce future collection requirements; delivery-heavy aerospace schedules can retain cash in inventory. (<a href="https://www.baesystems.com/en-us/article/market-update-nov-2026?utm_source=openai">baesystems.com</a>)</li><li><strong>Capacity expansion versus scarcity:</strong> Planned semiconductor capacity growth could eventually relieve constraints. Its timing and yield—not expenditure announcements alone—will determine whether pricing normalizes. (<a href="https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/eba4fac72873bf546b669bd2b5d973df5c93215d/TSMC%203Q26%20Transcript.pdf?utm_source=openai">investor.tsmc.com</a>)</li></ul></article></section><section class="section" id="missing-data-and-verification-limitations"><p class="section-label">6. Missing data and verification limitations</p><article class="card"><ul><li><strong>Insurance coverage is insufficient:</strong> No verified contemporaneous P&amp;C/reinsurance renewal pricing, combined ratios, catastrophe-loss estimates or reserve-development series were obtained. Managed-care evidence is not a substitute. No conclusion is drawn about continuation or reversal of the insurance pricing cycle.</li><li><strong>Semiconductor gaps:</strong> Comparable inventories, utilization, delivery lead times and advanced-packaging capacity were not established. Unavailable evidence is not evidence that constraints are absent.</li><li><strong>2027 forecasts remain incomplete:</strong> Most company disclosures above concern 2026. They are not automatically twelve-month revenue forecasts; specific 2027 evidence is identified separately.</li><li><strong>Aerospace timeliness:</strong> Financial analysis uses September observations. An official October Airbus delivery page was identified, but its figures were not extracted and are not silently incorporated. (<a href="https://www.airbus.com/en/products-services/commercial-aircraft/orders-and-deliveries?cid=email__products_services__en-GB__ac__crm__OandDs_Press_releases__AW__--&amp;utm_source=openai">airbus.com</a>)</li><li><strong>US lending breadth:</strong> The November 2 Federal Reserve survey was identified, but its substantive results were not extracted; US bank conclusions therefore remain company-specific. (<a href="https://www.federalreserve.gov/data/documents/sloos-202610.pdf?utm_source=openai">federalreserve.gov</a>)</li><li><strong>Data-vintage risk:</strong> Census “current” pages and PDFs can be overwritten. Dates and observation periods above identify the retrieved vintage; a separate archived-vintage reconciliation was not performed.</li><li><strong>Evidence quality:</strong> Company disclosures establish reported activity and management expectations, not independent proof of customer returns, backlog collectability or future margins. All quantified forecasts remain conditional.</li></ul></article></section>
+  </main>
+  <script>
+    const links = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+    const sections = links.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      links.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === "#" + visible.target.id));
+    }, { rootMargin: "-20% 0px -60% 0px", threshold: [0.1, 0.4] });
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>

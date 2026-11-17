@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>U.S. Equity Markets — Evidence Report</title>
+  <style>
+:root {
+  --background: oklch(0.993 0.006 82);
+  --foreground: oklch(0.31 0.018 50);
+  --card: oklch(0.999 0.003 90);
+  --card-foreground: oklch(0.31 0.018 50);
+  --primary: oklch(0.40 0.055 250);
+  --primary-foreground: oklch(0.99 0.004 90);
+  --secondary: oklch(0.974 0.01 82);
+  --secondary-foreground: oklch(0.36 0.02 50);
+  --muted: oklch(0.974 0.01 82);
+  --muted-foreground: oklch(0.51 0.015 55);
+  --metadata: oklch(0.64 0.012 60);
+  --accent: oklch(0.969 0.014 78);
+  --accent-foreground: oklch(0.34 0.025 50);
+  --destructive: oklch(0.55 0.14 25);
+  --positive: oklch(0.48 0.09 155);
+  --border: oklch(0.915 0.012 78);
+  --sidebar: oklch(0.987 0.008 82);
+  --sidebar-foreground: oklch(0.31 0.018 50);
+  --sidebar-primary: oklch(0.40 0.055 250);
+  --sidebar-primary-foreground: oklch(0.99 0.004 90);
+  --radius: 0.5rem;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { font-family: var(--font-sans); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.375;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--primary); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.prose a {
+  overflow-wrap: anywhere;
+  text-decoration-color: color-mix(in oklch, var(--primary) 40%, transparent);
+}
+.prose a:hover { text-decoration-color: var(--primary); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 3rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--sidebar);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--sidebar-foreground);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background: var(--sidebar-primary);
+  color: var(--sidebar-primary-foreground);
+}
+.mark svg { width: 0.875rem; height: 0.875rem; }
+.site-nav {
+  display: flex;
+  min-width: 0;
+  gap: 0.25rem;
+  overflow-x: auto;
+}
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  height: 3rem;
+  padding: 0 0.75rem;
+  border-bottom: 2px solid transparent;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-nav a:hover { color: var(--foreground); }
+.site-nav a.active {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  font-weight: 500;
+}
+main {
+  width: min(72rem, 100%);
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.page-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--metadata);
+  font-size: 0.75rem;
+}
+h1 {
+  margin: 0.375rem 0 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+h3 { margin: 0; font-size: 0.875rem; font-weight: 500; line-height: 1.35; }
+.section { display: flex; flex-direction: column; gap: 0.75rem; }
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.lede, .note {
+  max-width: 56rem;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+.note { color: var(--muted-foreground); }
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: 0 0 0 1px var(--border);
+  font-size: 0.875rem;
+}
+.muted-card { background: var(--muted); }
+.prose p { margin: 0; }
+.prose p + p { margin-top: 0.75rem; }
+.tag { color: var(--primary); font-weight: 500; }
+.part-gap { display: block; height: 1.25rem; }
+.force h3 { margin-bottom: 1rem; }
+.theme-list { margin: 0.35rem 0 0.85rem; padding-left: 1.15rem; }
+.theme-list li + li { margin-top: 0.35rem; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.stat {
+  padding: 0.75rem 0.875rem;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+.stat-value {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.stat-label {
+  margin: 0.25rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+}
+.stat-note {
+  margin: -0.25rem 0 0;
+  color: var(--metadata);
+  font-size: 0.75rem;
+}
+.stack { display: flex; flex-direction: column; gap: 0.75rem; }
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.force, .risk {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.force-index, .rank, .risk-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background: color-mix(in oklch, var(--primary) 10%, transparent);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.risk-index {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+.theme-head, .holding-head, .holding-title, .rejected-head, .turn-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.turn-head { align-items: center; justify-content: space-between; }
+.theme-main, .holding-main { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+.theme-main h3, .holding-title h3, .turn-head h3 { font-size: 1rem; }
+.holding-title { justify-content: space-between; }
+.holding-figures {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+.figure { font-size: 1rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.figure-label { margin-right: 0.45rem; color: var(--metadata); font-size: 0.75rem; }
+.badges, .queries { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  width: fit-content;
+  padding: 0 0.5rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius) * 2.6);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+.badge-positive, .badge-executive {
+  background: color-mix(in oklch, var(--primary) 12%, transparent);
+  color: var(--primary);
+}
+.badge-positive { background: color-mix(in oklch, var(--positive) 12%, transparent); color: var(--positive); }
+.badge-destructive {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+.badge-secondary, .badge-operator { background: var(--secondary); color: var(--secondary-foreground); }
+.badge-outline, .badge-analyst {
+  border-color: var(--border);
+  background: var(--card);
+  color: var(--foreground);
+}
+.badge-ghost {
+  background: transparent;
+  color: var(--metadata);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 400;
+  text-transform: none;
+}
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--border);
+}
+.field { display: flex; flex-direction: column; gap: 0.375rem; }
+.kicker {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+ul { margin: 0; padding-left: 1.1rem; }
+li + li { margin-top: 0.25rem; }
+.theme-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.query {
+  overflow-wrap: anywhere;
+  display: inline-flex;
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+.alloc-list { display: flex; flex-direction: column; gap: 0.8rem; }
+.alloc-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+}
+.alloc-top span:last-child {
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+.track {
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--muted);
+  overflow: hidden;
+}
+.fill { height: 100%; border-radius: inherit; background: var(--primary); }
+.table-card {
+  overflow-x: auto;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+th {
+  height: 2rem;
+  padding: 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: left;
+}
+td { padding: 0.45rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.ticker {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--card);
+  color: var(--foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+a.ticker:hover { background: var(--muted); }
+.scenarios, .grid-2 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: start;
+}
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.scenario-bull h3 { color: var(--positive); }
+.scenario-bear h3 { color: var(--destructive); }
+.count {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.5rem;
+  border-radius: calc(var(--radius) * 2.6);
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.view-tabs {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.35rem;
+  padding: 0.4rem 0;
+}
+.view-tab {
+  appearance: none;
+  border: 0;
+  height: 100%;
+  border-radius: 0.35rem;
+  background: color-mix(in oklch, var(--primary) 30%, white);
+  color: var(--primary);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+.view-tab:hover { background: color-mix(in oklch, var(--primary) 42%, white); }
+.view-tab.active, .view-tab.active:hover { background: var(--primary); color: white; }
+main[hidden], nav[hidden] { display: none !important; }
+@media (max-width: 960px) {
+  .stats, .scenarios, .fields, .split { grid-template-columns: 1fr 1fr; }
+  .scenarios { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .stats, .fields, .split, .grid-2 { grid-template-columns: 1fr; }
+  .site-header { gap: 0.75rem; }
+  .holding-title { flex-direction: column; }
+}
+
+.site-header { height: auto; min-height: 3rem; align-items: flex-start; flex-wrap: wrap; }
+.brand { height: 3rem; }
+.site-nav { flex: 1; overflow-x: auto; overflow-y: hidden; }
+.site-nav a { flex: 0 0 auto; }
+.site-nav a[aria-current="page"] {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  font-weight: 500;
+}
+.section { scroll-margin-top: 5rem; }
+main { padding-bottom: 45vh; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5v4"></path>
+          <rect x="7" y="9" width="4" height="6" rx="1"></rect>
+          <path d="M9 15v4"></path>
+          <path d="M15 3v2"></path>
+          <rect x="13" y="5" width="4" height="10" rx="1"></rect>
+          <path d="M15 15v6"></path>
+        </svg>
+      </span>
+      Equity market
+    </a>
+    <nav class="site-nav" aria-label="Reports"><a href="index.html">Portfolio</a><a href="US_MACRO_PROMPT_2026-11-13-19-53-21.html">US Macro</a><a href="US_POLITICS_PROMPT_2026-11-13-20-37-03.html">US Politics</a><a href="EUROPE_MACRO_PROMPT_2026-11-13-20-04-20.html">Europe Macro</a><a href="FINANCIAL_CONDITIONS_PROMPT_2026-11-13-20-17-02.html">Financial Conditions</a><a href="EXTERNAL_DRIVERS_PROMPT_2026-11-13-20-31-36.html">External drivers</a><a href="INDUSTRY_CYCLES_PROMPT_2026-11-13-20-27-14.html">Industry Cycles</a><a href="EQUITY_MARKETS_PROMPT_2026-11-13-20-19-28.html" aria-current="page">Equity market</a><a href="EARNINGS_PROMPT_2026-11-13-20-22-48.html">Earnings</a></nav>
+  </header>
+  <main id="top">
+    <div>
+      <p class="page-kicker"><span>Information cutoff: November 13, 2026</span><span>EQUITY_MARKETS_PROMPT_2026-11-13-20-19-28.json</span></p>
+      <h1>U.S. Equity Markets — Evidence Report</h1>
+    </div>
+    
+    <section class="section" id="introduction"><p class="section-label">Introduction</p><article class="card prose"><p><strong>Information cutoff: November 13, 2026</strong></p></article><article class="card prose"><p><strong>Scope assumption:</strong> U.S. equities, with the S&amp;P 500 as the large-cap reference. November 13 closing prices were not verified; intraday observations are identified separately.</p></article></section><section class="section" id="executive-findings"><p class="section-label">1. Executive findings</p><article class="card"><ul><li><strong>Demand and earnings evidence remains supportive, but not uniformly so.</strong> Third-quarter domestic demand strengthened, while the verified November 6 earnings snapshot showed improving S&amp;P 500 earnings growth. These observations support revenues and earnings, but do not establish that subsequent quarters will sustain the same pace. (<a href="https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">bea.gov</a>)</li><li><strong>Inflation remains a constraint on valuation expansion.</strong> October headline inflation slowed month over month, but underlying consumer and producer measures remained persistent. The Federal Reserve held rates unchanged in October, with two voters preferring an increase—not a cut. (<a href="https://www.bls.gov/news.release/pdf/cpi.pdf">bls.gov</a>)</li><li><strong>Index weakness has not meant uniform business deterioration.</strong> October returns favored equal-weight equities over capitalization-weighted equities, while bank lending evidence showed greater pressure on small firms. Strong cloud growth also coexists with substantial infrastructure spending and cash-flow demands. (<a href="https://www.cboe.com/insights/posts/index-insights-october-2026/">cboe.com</a>)</li></ul></article></section><section class="section" id="dated-observations-and-source-references"><p class="section-label">2. Dated observations and source references</p><article class="card prose"><p><strong>Classification:</strong> <strong>Reported</strong> = published observation or policy decision; <strong>Blended/forecast</strong> = includes estimates; <strong>Interpretation</strong> = analytical transmission, not a prediction.</p></article><div class="table-card"><table><thead><tr><th>Evidence and dates</th><th>Finding</th><th>Equity relevance and transmission — interpretation</th></tr></thead><tbody><tr><td><strong>Domestic demand — Reported advance estimate.</strong> Published <strong>Oct. 29, 2026</strong>; observation <strong>Q3 2026</strong>. [S1]</td><td>Real GDP grew <strong>3.4% annualized</strong>, versus <strong>2.2%</strong> in Q2. Real final sales to private domestic purchasers increased <strong>4.9%</strong>, versus <strong>4.6%</strong>. (<a href="https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">bea.gov</a>)</td><td>Stronger underlying demand supports sales volumes and operating leverage. However, inventory accumulation also contributed to investment growth; headline GDP is not equivalent to sustainable corporate sales growth.</td></tr><tr><td><strong>Labor — Reported, preliminary payroll estimate.</strong> Published <strong>Nov. 6, 2026</strong>; observation <strong>October 2026</strong>. [S2]</td><td>Payrolls increased <strong>165,000</strong>, versus revised September growth of <strong>60,000</strong>. Unemployment was <strong>4.1%</strong>. August–September employment was revised upward by a combined <strong>84,000</strong>. (<a href="https://www.bls.gov/news.release/empsit.htm">bls.gov</a>)</td><td>Employment supports household purchasing power and consumer-facing revenues. Upward revisions weaken the case that previously reported hiring softness represented an uninterrupted deterioration.</td></tr><tr><td><strong>Consumer inflation — Reported.</strong> Published <strong>Nov. 10, 2026</strong>; observation <strong>October 2026</strong>. [S3]</td><td>CPI increased <strong>0.4% month over month</strong>, following <strong>0.6%</strong> in September. Core CPI increased <strong>0.3%</strong>, its third consecutive monthly increase at that rate. (<a href="https://www.bls.gov/news.release/pdf/cpi.pdf">bls.gov</a>)</td><td>Slower headline inflation offers some purchasing-power relief, but persistent core inflation limits confidence in a near-term discount-rate tailwind.</td></tr><tr><td><strong>Producer inflation — Reported.</strong> Published <strong>Nov. 13, 2026</strong>; observation <strong>October 2026</strong>. [S4]</td><td>Final-demand PPI rose <strong>0.3% monthly</strong>, versus revised September growth of <strong>1.4%</strong>, and <strong>6.5% annually</strong>. Excluding food, energy and trade services, prices rose <strong>0.5% monthly</strong> and <strong>4.9% annually</strong>. (<a href="https://www.bls.gov/news.release/pdf/ppi.pdf">bls.gov</a>)</td><td>Persistent selling-price pressures create differentiated pricing-power and margin outcomes. PPI alone does <strong>not</strong> establish an individual company’s input-cost increase or ability to pass it through.</td></tr><tr><td><strong>Monetary policy — Reported decision.</strong> Published and effective observation <strong>Oct. 28, 2026</strong>. [S5]</td><td>The Fed maintained its target range at <strong>3.75%–4.00%</strong>. Two dissenters preferred a <strong>25-basis-point increase</strong>. (<a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm">federalreserve.gov</a>)</td><td>No immediate policy-rate relief for floating-rate borrowers. Further tightening would increase financing costs and discount rates, with outcomes dependent on subsequent inflation and activity data.</td></tr><tr><td><strong>Earnings and valuation — Blended/forecast.</strong> Published <strong>Nov. 6, 2026</strong>; observation <strong>Q3 reporting through that date</strong>, plus forward valuation. [S6]</td><td>With <strong>88%</strong> of companies reporting, blended S&amp;P 500 earnings growth was <strong>31.4%</strong>, versus <strong>29.1% estimated Sept. 30</strong>; revenue growth was <strong>14.3%</strong>. Forward P/E was <strong>17.7×</strong>, below five- and ten-year averages of <strong>19.8×</strong> and <strong>19.1×</strong>. (<a href="https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626A.pdf">advantage.factset.com</a>)</td><td>Improved earnings estimates support the valuation denominator. Lower P/E is not independently proof of undervaluation: future earnings, rates and risk premiums remain uncertain.</td></tr><tr><td><strong>Breadth and volatility — Reported market observations.</strong> Published <strong>Nov. 3, 2026</strong>; observation <strong>October 2026</strong>. [S7]</td><td>The S&amp;P 500 fell <strong>0.9%</strong>, while Cboe’s S&amp;P 500 Equal Weight Index gained <strong>4.9%</strong>. VIX increased from <strong>16.34 to 19.42</strong>. (<a href="https://www.cboe.com/insights/posts/index-insights-october-2026/">cboe.com</a>)</td><td>The divergence indicates rotation away from the largest index weights rather than uniform selling. Rising implied volatility nevertheless signals more expensive protection and greater uncertainty.</td></tr><tr><td><strong>Credit availability — Reported survey.</strong> Published <strong>Nov. 2, 2026</strong>; observation approximately <strong>Q3 2026</strong>. [S8]</td><td>Domestic banks reported unchanged C&amp;I lending standards for large/middle-market firms, tighter standards for small firms, and weaker business-loan demand across firm sizes. (<a href="https://www.federalreserve.gov/data/sloos/sloos-202610.htm">federalreserve.gov</a>)</td><td>Smaller bank-dependent businesses face greater financing constraints, potentially reducing investment and earnings. Weaker demand partly reflected shifts to alternative funding—not solely reduced investment appetite.</td></tr><tr><td><strong>Cloud investment — Company-reported facts.</strong> Published <strong>Oct. 28, 2026</strong>; observation <strong>quarter ended Sept. 30, 2026</strong>. [S9]</td><td>Microsoft reported cloud revenue growth of <strong>30%</strong>, capital expenditures of <strong>$45.2 billion</strong> including finance leases, cash property/equipment spending of <strong>$39.4 billion</strong>, and free cash flow of <strong>$18.6 billion</strong>. (<a href="https://www.microsoft.com/en-us/Investor/events/fy-2027/earnings-fy-2027-q1">microsoft.com</a>)</td><td>Infrastructure demand supports suppliers’ revenues, but spending absorbs cash and creates future depreciation obligations. Cloud growth is not a measure of AI-specific investment returns.</td></tr><tr><td><strong>Cutoff-day market check — Secondary reporting: AP.</strong> Published <strong>Nov. 13, 2026</strong>; observation <strong>Nov. 13 intraday</strong>, not closing. [S10]</td><td>AP reported the S&amp;P 500 down <strong>0.7%</strong> and Nasdaq down <strong>1.2%</strong> in an update referencing <strong>12:36 p.m. Eastern</strong>. More S&amp;P 500 constituents were rising than falling. (<a href="https://apnews.com/article/stocks-markets-ai-us-oil-f8edd0eeb1494d4d2584715686c5e619">apnews.com</a>)</td><td>The snapshot reinforces concentration sensitivity, but cannot establish the day’s final return or a durable change in market direction.</td></tr></tbody></table></div><article class="card"><h3>Actual source URLs</h3><ul><li><strong>S1 — BEA:</strong> <a href="https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026</a></li><li><strong>S2 — BLS employment:</strong> <a href="https://www.bls.gov/news.release/empsit.htm">https://www.bls.gov/news.release/empsit.htm</a></li><li><strong>S3 — BLS CPI:</strong> <a href="https://www.bls.gov/news.release/pdf/cpi.pdf">https://www.bls.gov/news.release/pdf/cpi.pdf</a></li><li><strong>S4 — BLS PPI:</strong> <a href="https://www.bls.gov/news.release/pdf/ppi.pdf">https://www.bls.gov/news.release/pdf/ppi.pdf</a></li><li><strong>S5 — Federal Reserve:</strong> <a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm">https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm</a></li><li><strong>S6 — FactSet:</strong> <a href="https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626A.pdf">https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626A.pdf</a></li><li><strong>S7 — Cboe:</strong> <a href="https://www.cboe.com/insights/posts/index-insights-october-2026/">https://www.cboe.com/insights/posts/index-insights-october-2026/</a></li><li><strong>S8 — Federal Reserve SLOOS:</strong> <a href="https://www.federalreserve.gov/data/sloos/sloos-202610.htm">https://www.federalreserve.gov/data/sloos/sloos-202610.htm</a></li><li><strong>S9 — Microsoft investor relations:</strong> <a href="https://www.microsoft.com/en-us/Investor/events/fy-2027/earnings-fy-2027-q1">https://www.microsoft.com/en-us/Investor/events/fy-2027/earnings-fy-2027-q1</a></li><li><strong>S10 — Associated Press, secondary:</strong> <a href="https://apnews.com/article/stocks-markets-ai-us-oil-f8edd0eeb1494d4d2584715686c5e619">https://apnews.com/article/stocks-markets-ai-us-oil-f8edd0eeb1494d4d2584715686c5e619</a></li></ul></article></section><section class="section" id="changes-in-direction-or-momentum"><p class="section-label">3. Changes in direction or momentum</p><article class="card"><ul><li><strong>Activity improved:</strong> Q3 growth accelerated, and October payroll growth strengthened relative to September’s revised reading. These are backward-looking improvements, not Q4 forecasts. (<a href="https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">bea.gov</a>)</li><li><strong>Headline inflation cooled; underlying inflation did not clearly break lower:</strong> monthly CPI and PPI slowed, while core CPI and PPI excluding food, energy and trade services maintained their preceding monthly rates. (<a href="https://www.bls.gov/news.release/pdf/cpi.pdf">bls.gov</a>)</li><li><strong>Earnings expectations improved while leadership rotated:</strong> the verified earnings snapshot strengthened relative to September estimates, but October capitalization-weighted returns lagged equal-weight returns substantially. (<a href="https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626A.pdf">advantage.factset.com</a>)</li></ul></article></section><section class="section" id="implications-for-businesses-and-equity-markets"><p class="section-label">4. Implications for businesses and equity markets</p><article class="card prose"><p><strong>Analytical interpretation:</strong> The evidence separates three channels: stronger demand supporting revenues; persistent inflation and financing costs threatening margins; and lower multiples offering less demanding pricing only if forecast earnings materialize. These channels can offset one another, so earnings growth need not translate directly into comparable share-price gains. (<a href="https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">bea.gov</a>)</p></article><article class="card prose"><p>Capital-intensive cloud businesses and smaller bank-dependent firms face different constraints: the former must convert infrastructure spending into profitable utilization, while the latter face tighter credit access. Neither exposure is adequately represented by aggregate index earnings alone. (<a href="https://www.microsoft.com/en-us/Investor/events/fy-2027/earnings-fy-2027-q1">microsoft.com</a>)</p></article></section><section class="section" id="contradictory-evidence"><p class="section-label">5. Contradictory evidence</p><article class="card"><ul><li><strong>Strong employment versus underemployment:</strong> despite payroll growth, involuntary part-time employment increased <strong>339,000</strong>, and U-6 underutilization rose from <strong>7.6% to 7.9%</strong>. Consumer-income resilience is therefore uneven. (<a href="https://www.bls.gov/news.release/empsit.htm">bls.gov</a>)</li><li><strong>Annual margin improvement versus sequential deterioration:</strong> FactSet’s blended Q3 net margin was <strong>14.9%</strong>, above <strong>13.0%</strong> a year earlier but below <strong>17.0%</strong> in Q2. Earnings strength does not demonstrate uninterrupted margin expansion. (<a href="https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626A.pdf">advantage.factset.com</a>)</li><li><strong>Quarterly disinflation versus persistent monthly readings:</strong> Q3 core PCE inflation slowed to <strong>2.5% annualized</strong> from <strong>3.3%</strong>, while October core CPI remained persistent. These measures cover different baskets and observation windows; they should not be treated as interchangeable. (<a href="https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">bea.gov</a>)</li></ul></article></section><section class="section" id="missing-data-and-verification-limitations"><p class="section-label">6. Missing data and verification limitations</p><article class="card"><ul><li><strong>Earnings freshness:</strong> November 6 is the latest numerical aggregate successfully verified here. FactSet listed November 13 commentary, but the attempted November 13 report PDFs could not be retrieved; November 6 figures are <strong>not</strong> represented as November 13 measurements. (<a href="https://insight.factset.com/topic/earnings">insight.factset.com</a>)</li><li><strong>Market-data gaps:</strong> November 13 closing levels, current index weights, nominal/real Treasury yields and a defensible equity-risk-premium calculation were not verified. Treasury-curve retrieval failed.</li><li><strong>CPI comparison gap:</strong> the retrieved October table does not publish headline or core year-over-year rates; none has been inferred. (<a href="https://www.bls.gov/news.release/cpi.htm">bls.gov</a>)</li><li>GDP is an advance estimate, payrolls are revisable, and blended earnings still contain estimates. Live BLS URLs can subsequently roll forward, so these cited vintages should be retained for point-in-time research. (<a href="https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">bea.gov</a>)</li></ul></article><article class="card prose"><p><strong>Unavailable evidence is not evidence that a claim is false. No securities, portfolio construction or final investment strategy is proposed.</strong></p></article></section>
+  </main>
+  <script>
+    const links = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+    const sections = links.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      links.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === "#" + visible.target.id));
+    }, { rootMargin: "-20% 0px -60% 0px", threshold: [0.1, 0.4] });
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>

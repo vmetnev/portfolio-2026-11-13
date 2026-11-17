@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Evidence report: geopolitical, policy and commodity risks</title>
+  <style>
+:root {
+  --background: oklch(0.993 0.006 82);
+  --foreground: oklch(0.31 0.018 50);
+  --card: oklch(0.999 0.003 90);
+  --card-foreground: oklch(0.31 0.018 50);
+  --primary: oklch(0.40 0.055 250);
+  --primary-foreground: oklch(0.99 0.004 90);
+  --secondary: oklch(0.974 0.01 82);
+  --secondary-foreground: oklch(0.36 0.02 50);
+  --muted: oklch(0.974 0.01 82);
+  --muted-foreground: oklch(0.51 0.015 55);
+  --metadata: oklch(0.64 0.012 60);
+  --accent: oklch(0.969 0.014 78);
+  --accent-foreground: oklch(0.34 0.025 50);
+  --destructive: oklch(0.55 0.14 25);
+  --positive: oklch(0.48 0.09 155);
+  --border: oklch(0.915 0.012 78);
+  --sidebar: oklch(0.987 0.008 82);
+  --sidebar-foreground: oklch(0.31 0.018 50);
+  --sidebar-primary: oklch(0.40 0.055 250);
+  --sidebar-primary-foreground: oklch(0.99 0.004 90);
+  --radius: 0.5rem;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { font-family: var(--font-sans); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.375;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--primary); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.prose a {
+  overflow-wrap: anywhere;
+  text-decoration-color: color-mix(in oklch, var(--primary) 40%, transparent);
+}
+.prose a:hover { text-decoration-color: var(--primary); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 3rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--sidebar);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--sidebar-foreground);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background: var(--sidebar-primary);
+  color: var(--sidebar-primary-foreground);
+}
+.mark svg { width: 0.875rem; height: 0.875rem; }
+.site-nav {
+  display: flex;
+  min-width: 0;
+  gap: 0.25rem;
+  overflow-x: auto;
+}
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  height: 3rem;
+  padding: 0 0.75rem;
+  border-bottom: 2px solid transparent;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-nav a:hover { color: var(--foreground); }
+.site-nav a.active {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  font-weight: 500;
+}
+main {
+  width: min(72rem, 100%);
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.page-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--metadata);
+  font-size: 0.75rem;
+}
+h1 {
+  margin: 0.375rem 0 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+h3 { margin: 0; font-size: 0.875rem; font-weight: 500; line-height: 1.35; }
+.section { display: flex; flex-direction: column; gap: 0.75rem; }
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.lede, .note {
+  max-width: 56rem;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+.note { color: var(--muted-foreground); }
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: 0 0 0 1px var(--border);
+  font-size: 0.875rem;
+}
+.muted-card { background: var(--muted); }
+.prose p { margin: 0; }
+.prose p + p { margin-top: 0.75rem; }
+.tag { color: var(--primary); font-weight: 500; }
+.part-gap { display: block; height: 1.25rem; }
+.force h3 { margin-bottom: 1rem; }
+.theme-list { margin: 0.35rem 0 0.85rem; padding-left: 1.15rem; }
+.theme-list li + li { margin-top: 0.35rem; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.stat {
+  padding: 0.75rem 0.875rem;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+.stat-value {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.stat-label {
+  margin: 0.25rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+}
+.stat-note {
+  margin: -0.25rem 0 0;
+  color: var(--metadata);
+  font-size: 0.75rem;
+}
+.stack { display: flex; flex-direction: column; gap: 0.75rem; }
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.force, .risk {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.force-index, .rank, .risk-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background: color-mix(in oklch, var(--primary) 10%, transparent);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.risk-index {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+.theme-head, .holding-head, .holding-title, .rejected-head, .turn-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.turn-head { align-items: center; justify-content: space-between; }
+.theme-main, .holding-main { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+.theme-main h3, .holding-title h3, .turn-head h3 { font-size: 1rem; }
+.holding-title { justify-content: space-between; }
+.holding-figures {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+.figure { font-size: 1rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.figure-label { margin-right: 0.45rem; color: var(--metadata); font-size: 0.75rem; }
+.badges, .queries { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  width: fit-content;
+  padding: 0 0.5rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius) * 2.6);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+.badge-positive, .badge-executive {
+  background: color-mix(in oklch, var(--primary) 12%, transparent);
+  color: var(--primary);
+}
+.badge-positive { background: color-mix(in oklch, var(--positive) 12%, transparent); color: var(--positive); }
+.badge-destructive {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+.badge-secondary, .badge-operator { background: var(--secondary); color: var(--secondary-foreground); }
+.badge-outline, .badge-analyst {
+  border-color: var(--border);
+  background: var(--card);
+  color: var(--foreground);
+}
+.badge-ghost {
+  background: transparent;
+  color: var(--metadata);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 400;
+  text-transform: none;
+}
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--border);
+}
+.field { display: flex; flex-direction: column; gap: 0.375rem; }
+.kicker {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+ul { margin: 0; padding-left: 1.1rem; }
+li + li { margin-top: 0.25rem; }
+.theme-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.query {
+  overflow-wrap: anywhere;
+  display: inline-flex;
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+.alloc-list { display: flex; flex-direction: column; gap: 0.8rem; }
+.alloc-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+}
+.alloc-top span:last-child {
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+.track {
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--muted);
+  overflow: hidden;
+}
+.fill { height: 100%; border-radius: inherit; background: var(--primary); }
+.table-card {
+  overflow-x: auto;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+th {
+  height: 2rem;
+  padding: 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: left;
+}
+td { padding: 0.45rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.ticker {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--card);
+  color: var(--foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+a.ticker:hover { background: var(--muted); }
+.scenarios, .grid-2 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: start;
+}
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.scenario-bull h3 { color: var(--positive); }
+.scenario-bear h3 { color: var(--destructive); }
+.count {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.5rem;
+  border-radius: calc(var(--radius) * 2.6);
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.view-tabs {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.35rem;
+  padding: 0.4rem 0;
+}
+.view-tab {
+  appearance: none;
+  border: 0;
+  height: 100%;
+  border-radius: 0.35rem;
+  background: color-mix(in oklch, var(--primary) 30%, white);
+  color: var(--primary);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+.view-tab:hover { background: color-mix(in oklch, var(--primary) 42%, white); }
+.view-tab.active, .view-tab.active:hover { background: var(--primary); color: white; }
+main[hidden], nav[hidden] { display: none !important; }
+@media (max-width: 960px) {
+  .stats, .scenarios, .fields, .split { grid-template-columns: 1fr 1fr; }
+  .scenarios { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .stats, .fields, .split, .grid-2 { grid-template-columns: 1fr; }
+  .site-header { gap: 0.75rem; }
+  .holding-title { flex-direction: column; }
+}
+
+.site-header { height: auto; min-height: 3rem; align-items: flex-start; flex-wrap: wrap; }
+.brand { height: 3rem; }
+.site-nav { flex: 1; overflow-x: auto; overflow-y: hidden; }
+.site-nav a { flex: 0 0 auto; }
+.site-nav a[aria-current="page"] {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  font-weight: 500;
+}
+.section { scroll-margin-top: 5rem; }
+main { padding-bottom: 45vh; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5v4"></path>
+          <rect x="7" y="9" width="4" height="6" rx="1"></rect>
+          <path d="M9 15v4"></path>
+          <path d="M15 3v2"></path>
+          <rect x="13" y="5" width="4" height="10" rx="1"></rect>
+          <path d="M15 15v6"></path>
+        </svg>
+      </span>
+      External drivers
+    </a>
+    <nav class="site-nav" aria-label="Reports"><a href="index.html">Portfolio</a><a href="US_MACRO_PROMPT_2026-11-13-19-53-21.html">US Macro</a><a href="US_POLITICS_PROMPT_2026-11-13-20-37-03.html">US Politics</a><a href="EUROPE_MACRO_PROMPT_2026-11-13-20-04-20.html">Europe Macro</a><a href="FINANCIAL_CONDITIONS_PROMPT_2026-11-13-20-17-02.html">Financial Conditions</a><a href="EXTERNAL_DRIVERS_PROMPT_2026-11-13-20-31-36.html" aria-current="page">External drivers</a><a href="INDUSTRY_CYCLES_PROMPT_2026-11-13-20-27-14.html">Industry Cycles</a><a href="EQUITY_MARKETS_PROMPT_2026-11-13-20-19-28.html">Equity market</a><a href="EARNINGS_PROMPT_2026-11-13-20-22-48.html">Earnings</a></nav>
+  </header>
+  <main id="top">
+    <div>
+      <p class="page-kicker"><span>Information cutoff: November 13, 2026 | Horizon: through November 13, 2027</span><span>EXTERNAL_DRIVERS_PROMPT_2026-11-13-20-31-36.json</span></p>
+      <h1>Evidence report: geopolitical, policy and commodity risks</h1>
+    </div>
+    
+    <section class="section" id="introduction"><p class="section-label">Introduction</p><article class="card prose"><p><strong>Information cutoff: November 13, 2026 | Horizon: through November 13, 2027</strong></p></article><article class="card prose"><p><strong>Scope:</strong> Developments with plausible effects on US and European corporate earnings, investment or valuations. “Beneficiaries” and “disadvantaged exposures” describe business sensitivities—not security recommendations. Forward-looking transmission channels below are analytical interpretations, not earnings forecasts.</p></article></section><section class="section" id="executive-findings"><p class="section-label">1. Executive findings</p><article class="card"><ul><li><strong>Energy remains the largest cross-sector transmission channel, but oil and European gas are diverging.</strong> Gulf oil exports recovered sharply in October, supporting forecasts of inventory rebuilding; European gas entered winter with unusually low storage and continuing LNG disruption. A uniform “energy normalization” assumption is therefore inappropriate. (<a href="https://www.iea.org/reports/oil-market-report-november-2026">iea.org</a>)</li><li><strong>Trade relief is conditional rather than comprehensive.</strong> The EU–US agreement limits many tariffs, but retains important exceptions and an end-2026 compliance checkpoint. China extended suspension of specified export controls only through January 10, 2027. These arrangements reduce immediate disruption without eliminating investment uncertainty. (<a href="https://commission.europa.eu/topics/trade/eu-us-trade-deal_en">commission.europa.eu</a>)</li><li><strong>China presents different demand and supply risks.</strong> Property and fixed-investment weakness constrain demand for foreign industrial suppliers, while rapid growth in advanced manufacturing and a large trade surplus intensify competition abroad. Aggregate GDP growth alone obscures these differences. (<a href="https://www.stats.gov.cn/english/PressRelease/202610/t20261019_1965619.html">stats.gov.cn</a>)</li><li><strong>Policy is reallocating investment incentives.</strong> US tax expensing supports qualifying domestic investment; renewable-credit deadlines encourage project acceleration; European steel protection and carbon-border obligations change relative production economics. Implementation, eligibility and construction capacity determine how much becomes earnings rather than merely announced expenditure. (<a href="https://content.govdelivery.com/accounts/USIRS/bulletins/4045aa2?utm_source=openai">content.govdelivery.com</a>)</li></ul></article></section><section class="section" id="dated-observations-and-source-references"><p class="section-label">2. Dated observations and source references</p><article class="card prose"><h3>1. US tariffs remain economically material despite changes in legal authority</h3><p><strong>Reported facts/status.</strong> CRS’s October 8 assessment records the February 20, 2026 invalidation of IEEPA tariffs, followed by replacement actions under Sections 301 and 232. Its consolidated rate table covers <strong>September 30—not November 13</strong>. Separately, the Commission reports that the EU–US framework entered into force July 1, with a 15% ceiling for most EU exports, exceptions, and an end-2026 checkpoint concerning steel/aluminium derivative tariffs. (<a href="https://www.everycrsreport.com/reports/R49481.html">everycrsreport.com</a>)</p></article><article class="card prose"><p><strong>Equity transmission—interpretation.</strong> Import duties raise landed costs: importers either absorb them in margins, increase prices and risk volumes, or relocate sourcing and incur capital expenditure. Protected domestic producers can benefit, while European exporters and US import-intensive manufacturers face disadvantages. Country, product, origin and contractual pass-through matter more than a headline average tariff.</p></article><article class="card prose"><p><strong>Uncertainty.</strong> The agreement is not blanket tariff removal; suspension mechanisms and sector exceptions remain material. A complete November 13 product-level US tariff schedule was not independently reconstructed.</p></article><article class="card prose"><p><strong>Sources</strong></p></article><article class="card"><ul><li>CRS, <strong>published October 8, 2026; observation September 30, 2026</strong>; congressional research hosted on a third-party mirror: <a href="https://www.everycrsreport.com/reports/R49481.html">https://www.everycrsreport.com/reports/R49481.html</a></li><li>European Commission, <strong>publication date: null; policy period July 2026 onward</strong>: <a href="https://commission.europa.eu/topics/trade/eu-us-trade-deal_en">https://commission.europa.eu/topics/trade/eu-us-trade-deal_en</a></li></ul></article><article class="card prose"><h3>2. China’s critical-materials relief has a near-term expiry date</h3><p><strong>Reported fact/status: implemented temporary suspension.</strong> MOFCOM/GACC Announcement 58, published November 9, continues suspension of six specified 2025 export-control announcements from <strong>November 11, 2026 through January 10, 2027</strong>. It does not establish permanent liberalization or repeal every Chinese export-control requirement. (<a href="https://www.mofcom.gov.cn/zwgk/zcfb/art/2026/art_91466027f465467985942a639a9485f4.html">mofcom.gov.cn</a>)</p></article><article class="card prose"><p><strong>Equity transmission—interpretation.</strong> More predictable access reduces production-interruption risk for magnet-dependent automotive, aerospace, industrial and electronics businesses. Conversely, the short extension sustains incentives for inventory buffers, alternative sourcing and non-Chinese processing capacity—raising working capital and capital expenditure.</p></article><article class="card prose"><p><strong>Beneficiaries/disadvantages and uncertainty.</strong> Downstream users benefit from continuity; alternative-material projects retain strategic relevance but face weaker scarcity economics when Chinese supply improves. The notice alone does not establish actual licence turnaround times or delivered volumes.</p></article><article class="card prose"><p><strong>Source:</strong> MOFCOM/GACC, <strong>published November 9, 2026; effective period November 11, 2026–January 10, 2027</strong>: <a href="https://www.mofcom.gov.cn/zwgk/zcfb/art/2026/art_91466027f465467985942a639a9485f4.html">https://www.mofcom.gov.cn/zwgk/zcfb/art/2026/art_91466027f465467985942a639a9485f4.html</a></p></article><article class="card prose"><h3>3. Advanced-chip access to China is conditional—not a simple blanket prohibition</h3><p><strong>Reported facts/status.</strong> BIS’s January 13 rule moved specified chips, including H200 and MI325X-class products, to case-by-case licence review subject to security and supply conditions. On November 13, AP reported public disagreement within the administration over additional restrictions involving a distributor. <strong>That disagreement is not itself an enacted rule.</strong> (<a href="https://media.bis.gov/sites/default/files/documents/DoC%20Revises%20License%20Review%20Policy%20for%20Semiconductors%20Exports.pdf?utm_source=openai">media.bis.gov</a>)</p></article><article class="card prose"><p><strong>Equity transmission—interpretation.</strong> Licence availability affects addressable semiconductor revenue, distributor sales, compliance costs and product design. Tighter controls can accelerate Chinese substitution; permitted shipments can improve supplier revenue but remain exposed to approval timing and customer eligibility.</p></article><article class="card prose"><p><strong>Uncertainty.</strong> Announced review policy does not prove shipment approval. Current licence volumes, end-customer restrictions and revenue recognition require company-level verification.</p></article><article class="card prose"><p><strong>Sources</strong></p></article><article class="card"><ul><li>BIS, <strong>published January 13, 2026; policy observation January 2026</strong>: <a href="https://www.bis.gov/press-release/department-commerce-revises-license-review-policy-semiconductors-exported-china">https://www.bis.gov/press-release/department-commerce-revises-license-review-policy-semiconductors-exported-china</a></li><li>AP—<strong>secondary</strong>, <strong>published/observation November 13, 2026</strong>: <a href="https://apnews.com/article/17582a5098a5fb4c8fe866a084a6e52b">https://apnews.com/article/17582a5098a5fb4c8fe866a084a6e52b</a></li></ul></article><article class="card prose"><h3>4. Gulf oil supply is recovering, but product and transport disruptions persist</h3><p><strong>Reported observations.</strong> The IEA reports October global oil supply increased by 2.3 million barrels/day; Gulf exports nevertheless remained 26% below pre-war levels. Crude prices had fallen sharply from early-October highs, while European diesel remained substantially above pre-war prices. <strong>Forecast:</strong> EIA projects inventory rebuilding and Brent below $90/barrel in Q2 2027, conditional on improving export routes and production recovery. (<a href="https://www.iea.org/reports/oil-market-report-november-2026">iea.org</a>)</p></article><article class="card prose"><p><strong>Equity transmission—interpretation.</strong> Lower crude can relieve transport, packaging and consumer spending pressure, but airlines and logistics companies buy refined fuels, not crude. Refinery outages, freight and insurance can delay relief. Producers face lower realizations under normalization; refiners’ outcomes depend on product cracks and feedstock access.</p></article><article class="card prose"><p><strong>Uncertainty.</strong> Physical-route recovery—not an assumed diplomatic settlement—underpins the forecast. Tanker attacks, infrastructure damage and depleted inventories preserve volatility.</p></article><article class="card prose"><p><strong>Sources</strong></p></article><article class="card"><ul><li>IEA, <strong>published November 13, 2026; observations October–early November; forecasts 2026–27</strong>: <a href="https://www.iea.org/reports/oil-market-report-november-2026">https://www.iea.org/reports/oil-market-report-november-2026</a></li><li>EIA, <strong>published November 10; forecast completed November 5, 2026; observations October–November and forecasts through 2027</strong>: <a href="https://www.eia.gov/outlooks/steo/report/global_oil.php">https://www.eia.gov/outlooks/steo/report/global_oil.php</a></li></ul></article><article class="card prose"><h3>5. European gas faces winter and summer-refill exposure; Russian phase-out adds procurement pressure</h3><p><strong>Reported observations.</strong> On November 3, the IEA reported EU storage entering winter at its lowest level since 2013. <strong>Forecast:</strong> global LNG supply falls approximately 3% in 2026; low inventories can sustain competition for cargoes into summer 2027. <strong>Enacted policy:</strong> the Council’s phase-out timetable prohibits remaining long-term Russian LNG imports from January 1, 2027, followed by pipeline restrictions later in 2027. (<a href="https://www.iea.org/news/low-storage-buffers-in-europe-could-prolong-global-gas-market-tightness-well-into-2027">iea.org</a>)</p></article><article class="card prose"><p><strong>Equity transmission—interpretation.</strong> European chemicals, fertilizer, glass, ceramics and other energy-intensive activities face margin and utilization pressure. Non-Russian LNG supply and associated infrastructure gain demand opportunities; fixed-fee contracts may limit direct commodity-price upside. Storage replenishment extends exposure beyond winter.</p></article><article class="card prose"><p><strong>Uncertainty.</strong> Weather, North American LNG growth, industrial demand destruction and facility outages can materially change the balance. Gas tightness need not track crude prices.</p></article><article class="card prose"><p><strong>Sources</strong></p></article><article class="card"><ul><li>IEA, <strong>published November 3, 2026; observations March–October and winter 2026–27; forecasts into 2027</strong>: <a href="https://www.iea.org/news/low-storage-buffers-in-europe-could-prolong-global-gas-market-tightness-well-into-2027">https://www.iea.org/news/low-storage-buffers-in-europe-could-prolong-global-gas-market-tightness-well-into-2027</a></li><li>Council, <strong>publication date: null; enacted timetable covering 2026–27</strong>: <a href="https://www.consilium.europa.eu/en/policies/ending-russian-energy-imports/">https://www.consilium.europa.eu/en/policies/ending-russian-energy-imports/</a></li></ul></article><article class="card prose"><h3>6. China’s property weakness coexists with expanding competitive manufacturing supply</h3><p><strong>Reported observations.</strong> NBS reports January–September fixed investment down 7.2%, including property development down 20.6%. Over the same period, high-tech manufacturing output increased 14.3% and lithium-ion battery production 39.5%. Q3 GDP growth improved to 4.5% year-on-year from 4.3% in Q2. AP reported a $1.04 trillion January–October merchandise trade surplus. (<a href="https://www.stats.gov.cn/english/PressRelease/202610/t20261019_1965619.html">stats.gov.cn</a>)</p></article><article class="card prose"><p><strong>Equity transmission—interpretation.</strong> Weak construction investment disadvantages foreign construction-equipment, building-material and bulk-commodity suppliers. Expanding Chinese manufacturing can pressure global prices and Western capacity utilization, while reducing input costs for purchasers of batteries and manufactured components.</p></article><article class="card prose"><p><strong>Uncertainty.</strong> Output growth does not establish profitability, utilization or dumping. Improving GDP contradicts a generalized collapse narrative; neither GDP nor export growth proves recovery in domestic investment demand.</p></article><article class="card prose"><p><strong>Sources</strong></p></article><article class="card"><ul><li>NBS, <strong>published October 19, 2026; observations Q3 and January–September 2026</strong>: <a href="https://www.stats.gov.cn/english/PressRelease/202610/t20261019_1965619.html">https://www.stats.gov.cn/english/PressRelease/202610/t20261019_1965619.html</a></li><li>AP—<strong>secondary</strong>, <strong>published November 10, 2026; observation January–October 2026</strong>: <a href="https://apnews.com/article/0fc56d7bd8bbff86ce6672bb67691f22">https://apnews.com/article/0fc56d7bd8bbff86ce6672bb67691f22</a></li></ul></article><article class="card prose"><h3>7. Industrial metals do not share the same demand outlook as property-linked bulk materials</h3><p><strong>Forecast, not realized annual outcome.</strong> The World Bank’s October outlook projects metals prices rising 25% in 2026, with aluminium, copper and tin reaching records, followed by a 3% decline in 2027. It attributes strength to electrification, data-centre investment and supply disruption. (<a href="https://www.worldbank.org/en/news/press-release/2026/10/28/commodity-markets-outlook-october-2026">worldbank.org</a>)</p></article><article class="card prose"><p><strong>Equity transmission—interpretation.</strong> Higher realizations support producers with available output, but mine or smelter disruptions can offset price benefits. Cable, electrical-equipment, vehicle and infrastructure manufacturers face higher input costs and working-capital requirements. Fixed-price order books are more vulnerable than indexed contracts.</p></article><article class="card prose"><p><strong>Uncertainty.</strong> A forecast decline is not a return to pre-shock costs. Chinese property weakness and electrical-infrastructure demand pull different commodity chains in different directions.</p></article><article class="card prose"><p><strong>Source:</strong> World Bank, <strong>published October 28, 2026; outlook covering 2026–27</strong>: <a href="https://www.worldbank.org/en/news/press-release/2026/10/28/commodity-markets-outlook-october-2026">https://www.worldbank.org/en/news/press-release/2026/10/28/commodity-markets-outlook-october-2026</a></p></article><article class="card prose"><h3>8. EU steel protection shifts earnings between upstream and downstream businesses</h3><p><strong>Reported fact/status: implemented.</strong> The new EU steel regime applies from July 1, 2026. Implementing legislation allocates approximately <strong>18.3 million tonnes</strong> of tariff quotas and establishes a <strong>50% out-of-quota duty</strong>. (<a href="https://policy.trade.ec.europa.eu/enforcement-and-protection/protecting-eu-steelmaking_en?prefLang=pt&amp;utm_source=openai">policy.trade.ec.europa.eu</a>)</p></article><article class="card prose"><p><strong>Equity transmission—interpretation.</strong> Restricting import competition can support European steel pricing and utilization. Machinery, automotive, construction and metal-fabrication businesses may face higher procurement costs unless alternative supply or contractual pass-through offsets them.</p></article><article class="card prose"><p><strong>Uncertainty.</strong> Protection does not guarantee profitable utilization: energy costs, weak demand, quota allocation and trade diversion remain important.</p></article><article class="card prose"><p><strong>Source:</strong> EU implementing regulation, <strong>published June 30, 2026; regime applying July 2026 onward</strong>: <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R1457">https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R1457</a></p></article><article class="card prose"><h3>9. CBAM moves from reporting toward a material cash and sourcing obligation</h3><p><strong>Reported facts/status: implemented framework.</strong> The Commission specifies that CBAM certificates will be purchased from February 2027. Its published Q3 2026 certificate reference price was €82.32/tonne CO₂, versus €75.28 for Q2. This is <strong>not a uniform charge per tonne of imported product</strong>. (<a href="https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en?utm_source=openai">taxation-customs.ec.europa.eu</a>)</p></article><article class="card prose"><p><strong>Equity transmission—interpretation.</strong> Embedded emissions, applicable adjustments and carbon prices already paid determine exposure. Covered importers face compliance, verification and financing costs; lower-carbon suppliers may improve relative competitiveness. Domestic producers do not necessarily retain the entire benefit if customers resist higher prices.</p></article><article class="card prose"><p><strong>Uncertainty.</strong> Supplier emissions evidence, authorization and contractual allocation of liability determine company-level costs.</p></article><article class="card prose"><p><strong>Source:</strong> European Commission, <strong>page publication date: null; latest cited price published October 5, 2026, covering Q3 2026; purchases from February 2027</strong>: <a href="https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en">https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en</a></p></article><article class="card prose"><h3>10. US expensing lowers qualifying investment’s after-tax cost</h3><p><strong>Reported facts/status: enacted, with implementation guidance.</strong> IRS guidance confirms permanent 100% bonus depreciation for eligible property acquired after January 19, 2025. Section 174A permits deduction of qualifying domestic research expenditure rather than mandatory capitalization. (<a href="https://content.govdelivery.com/accounts/USIRS/bulletins/4045aa2?utm_source=openai">content.govdelivery.com</a>)</p></article><article class="card prose"><p><strong>Equity transmission—interpretation.</strong> Earlier deductions improve cash flow and investment net present value for eligible manufacturers and domestic R&amp;D-intensive businesses. Equipment suppliers may benefit if investment responds. <strong>Tax-payment timing benefits should not automatically be treated as equal increases in GAAP earnings.</strong></p></article><article class="card prose"><p><strong>Uncertainty.</strong> Taxable income, eligibility, financing costs and end-demand govern take-up; deductions alone do not demonstrate incremental capacity.</p></article><article class="card prose"><p><strong>Sources</strong></p></article><article class="card"><ul><li>IRS, <strong>published January 14, 2026; qualifying acquisitions after January 19, 2025</strong>: <a href="https://content.govdelivery.com/accounts/USIRS/bulletins/4045aa2">https://content.govdelivery.com/accounts/USIRS/bulletins/4045aa2</a></li><li>US Code §174A, <strong>publication date: null; text incorporates laws through November 3, 2026</strong>: <a href="https://uscode.house.gov/us/usc/t26/s174A/">https://uscode.house.gov/us/usc/t26/s174A/</a></li></ul></article><article class="card prose"><h3>11. Renewable-credit deadlines can accelerate near-term activity without ensuring durable growth</h3><p><strong>Reported fact/status: enacted.</strong> IRS guidance describes termination of relevant wind and solar credits for facilities placed in service after December 31, 2027, subject to construction-commencement provisions. The service deadline falls just beyond this report’s horizon but affects procurement and construction within it. (<a href="https://www.irs.gov/irb/2025-36_IRB?ref=insight.zerocircle.eco&amp;utm_source=openai">irs.gov</a>)</p></article><article class="card prose"><p><strong>Equity transmission—interpretation.</strong> Developers may accelerate equipment purchases and construction, supporting near-term supplier revenue while increasing scheduling and working-capital pressure. Projects missing eligibility conditions face weaker returns, potential cancellations or impairment.</p></article><article class="card prose"><p><strong>Uncertainty.</strong> Grandfathering, permitting, interconnection, supply availability and physical construction progress determine eligibility. An accelerated order book can represent demand brought forward rather than sustained growth.</p></article><article class="card prose"><p><strong>Source:</strong> IRS Bulletin 2025-36, <strong>published September 2, 2025; policy deadlines through December 2027</strong>: <a href="https://www.irs.gov/pub/irs-irbs/irb25-36.pdf">https://www.irs.gov/pub/irs-irbs/irb25-36.pdf</a></p></article><article class="card prose"><h3>12. German fiscal plans support industrial demand, but appropriations are not execution</h3><p><strong>Reported facts/status.</strong> The government published its 2027 budget draft on July 6. Reuters reported on November 13 that the budget committee finalized a package containing approximately €561 billion expenditure and €62 billion investment. <strong>Committee agreement is not final enactment or expenditure already delivered.</strong> (<a href="https://www.bundesfinanzministerium.de/Content/EN/Pressemitteilungen/2026/2026-07-06-government-draft-2027-federal-budget.html?utm_source=openai">bundesfinanzministerium.de</a>)</p></article><article class="card prose"><p><strong>Equity transmission—interpretation.</strong> Infrastructure and defence procurement can expand demand for construction, engineering, electrical equipment and defence capacity. Earnings depend on contract awards, delivery schedules and cash conversion. Materials, skilled labour and production constraints can absorb revenue benefits through higher costs.</p></article><article class="card prose"><p><strong>Uncertainty.</strong> Final votes, procurement lead times and implementation capacity remain relevant; borrowing can also affect financing costs and valuation discount rates.</p></article><article class="card prose"><p><strong>Sources</strong></p></article><article class="card"><ul><li>German Finance Ministry, <strong>published July 6, 2026; proposed fiscal year 2027</strong>: <a href="https://www.bundesfinanzministerium.de/Content/EN/Pressemitteilungen/2026/2026-07-06-government-draft-2027-federal-budget.html">https://www.bundesfinanzministerium.de/Content/EN/Pressemitteilungen/2026/2026-07-06-government-draft-2027-federal-budget.html</a></li><li>Reuters via StreetInsider—<strong>secondary</strong>, <strong>published/observation November 13, 2026</strong>: <a href="https://www.streetinsider.com/Reuters/German%2Bbudget%2Bcommittee%2Bagrees%2Bon%2B2027%2Bbudget/27338342.html">https://www.streetinsider.com/Reuters/German%2Bbudget%2Bcommittee%2Bagrees%2Bon%2B2027%2Bbudget/27338342.html</a></li></ul></article><article class="card prose"><h3>13. Technology regulation combines enacted delays with new proposals and unresolved competition cases</h3><p><strong>Reported facts/status.</strong></p></article><article class="card"><ul><li><strong>Enacted:</strong> the AI Omnibus entered into force July 27, 2026, moving specified high-risk AI requirements to December 2, 2027 and August 2, 2028—outside this horizon. (<a href="https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force?utm_source=openai">digital-strategy.ec.europa.eu</a>)</li><li><strong>Proposal only:</strong> the Commission adopted its Digital Fairness Act proposal November 11; it is not an implemented requirement. (<a href="https://commission.europa.eu/law/law-topic/consumer-protection-law/digital-fairness-act_en?utm_source=openai">commission.europa.eu</a>)</li><li><strong>Competition—provisional evidence:</strong> a secondary DMA tracker records AWS/Azure investigations and a June 25 preliminary designation view. A final designation by the cutoff was not verified; new cloud gatekeeper obligations must therefore not be assumed implemented. (<a href="https://eudigitalpolicy.eu//instruments/dma/?utm_source=openai">eudigitalpolicy.eu</a>)</li></ul></article><article class="card prose"><p><strong>Equity transmission—interpretation.</strong> Delayed AI obligations defer some compliance expenditure. Consumer-protection proposals could change online conversion, retention and marketing economics if enacted. Cloud competition intervention could reduce customer lock-in and incumbent pricing power, benefiting customers and competing suppliers; outcomes depend on final remedies.</p></article><article class="card prose"><p><strong>Sources</strong></p></article><article class="card"><ul><li>Commission AI notice, <strong>published July 27, 2026; implementation dates 2027–28</strong>: <a href="https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force">https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force</a></li><li>Commission DFA, <strong>published November 11, 2026; proposal dated November 11</strong>: <a href="https://commission.europa.eu/law/law-topic/consumer-protection-law/digital-fairness-act_en">https://commission.europa.eu/law/law-topic/consumer-protection-law/digital-fairness-act_en</a></li><li>EU Digital Policy—<strong>secondary</strong>, <strong>publication date: null; referenced observations November 2025–June 2026</strong>: <a href="https://eudigitalpolicy.eu//instruments/dma/">https://eudigitalpolicy.eu//instruments/dma/</a></li></ul></article><article class="card prose"><h3>14. Healthcare pricing pressure is material, but policy channels must not be conflated</h3><p><strong>Reported facts/status.</strong> CMS’s November 5 final rule codifies negotiation-program policies for <strong>2029 and beyond</strong>; it should not be interpreted as a newly imposed 2027 price cut. Separately, the administration announced MFN manufacturer agreements and nationwide state participation in a selected-drug Medicaid model. Those announcements are not evidence of a universal price cap across all medicines and payers. (<a href="https://www.cms.gov/newsroom/fact-sheets/medicare-drug-price-negotiation-program-medicare-prescription-drug-benefit-program-final-rule-cms?utm_source=openai">cms.gov</a>)</p></article><article class="card prose"><p><strong>Equity transmission—interpretation.</strong> Lower net realized prices can reduce manufacturer revenue and alter research returns. Payers and patients may benefit, with potential volume offsets. Commercial insurance, Medicaid and Medicare exposures require separate modelling; list-price reductions cannot simply be applied to company sales.</p></article><article class="card prose"><p><strong>Uncertainty.</strong> Confidential rebates, product coverage, implementation dates and company-specific agreements prevent reliable aggregate earnings quantification.</p></article><article class="card prose"><p><strong>Sources</strong></p></article><article class="card"><ul><li>CMS, <strong>published November 5, 2026; rule covering price applicability years 2029 onward</strong>: <a href="https://www.cms.gov/newsroom/press-releases/cms-final-rule-strengthens-supports-lasting-drug-savings">https://www.cms.gov/newsroom/press-releases/cms-final-rule-strengthens-supports-lasting-drug-savings</a></li><li>White House, <strong>publication date: null; announcement September 2026</strong>: <a href="https://www.whitehouse.gov/releases/2026/09/president-trump-extends-most-favored-nation-pricing-to-every-medicaid-program-in-america/">https://www.whitehouse.gov/releases/2026/09/president-trump-extends-most-favored-nation-pricing-to-every-medicaid-program-in-america/</a></li><li>AP—<strong>secondary</strong>, <strong>published/observation September 18, 2026</strong>: <a href="https://apnews.com/article/35c9cdce7c780d0d06af12f1233a7f32">https://apnews.com/article/35c9cdce7c780d0d06af12f1233a7f32</a></li></ul></article></section><section class="section" id="changes-in-direction-or-momentum"><p class="section-label">3. Changes in direction or momentum</p><div class="table-card"><table><thead><tr><th>Development</th><th>Evidence-based change</th><th>Interpretation</th></tr></thead><tbody><tr><td>Oil</td><td>Gulf export recovery and forecasts of stock rebuilding replace earlier extreme supply scarcity.</td><td>Cost relief is becoming more plausible, but is conditional and uneven across fuels. (<a href="https://www.iea.org/reports/oil-market-report-november-2026">iea.org</a>)</td></tr><tr><td>European gas</td><td>Low winter inventories create a subsequent summer-refill requirement.</td><td>Exposure extends beyond a single cold-weather season. (<a href="https://www.iea.org/news/low-storage-buffers-in-europe-could-prolong-global-gas-market-tightness-well-into-2027">iea.org</a>)</td></tr><tr><td>China</td><td>Q3 GDP improved while property investment remained deeply negative and advanced manufacturing expanded.</td><td>Demand recovery and competitive supply pressure must be analysed separately. (<a href="https://www.stats.gov.cn/english/PressRelease/202610/t20261019_1965619.html">stats.gov.cn</a>)</td></tr><tr><td>Trade</td><td>Extensions and tariff ceilings reduce immediate disruption but preserve dated negotiating checkpoints.</td><td>Lower short-term uncertainty is not durable policy certainty. (<a href="https://www.mofcom.gov.cn/zwgk/zcfb/art/2026/art_91466027f465467985942a639a9485f4.html">mofcom.gov.cn</a>)</td></tr></tbody></table></div></section><section class="section" id="implications-for-businesses-and-equity-markets"><p class="section-label">4. Implications for businesses and equity markets</p><article class="card prose"><p><strong>Analytical synthesis of the evidence above:</strong></p></article><article class="card"><ul><li><strong>Margins:</strong> distinguish exposure to crude, diesel, gas, electricity and metals; hedging and contractual pass-through determine timing.</li><li><strong>Revenues:</strong> separate protection-driven pricing gains from genuine end-demand growth, particularly in steel and industrial equipment.</li><li><strong>Capital expenditure:</strong> distinguish projects supported by recurring economics from spending accelerated by tax deadlines, tariffs or supply-security requirements.</li><li><strong>Valuations:</strong> announced investment is less valuable than funded contracts with deliverable capacity; regulatory uncertainty can raise required returns before reported earnings change.</li></ul></article></section><section class="section" id="contradictory-evidence"><p class="section-label">5. Contradictory evidence</p><article class="card"><ul><li><strong>Oil normalization versus gas scarcity:</strong> improving crude availability does not establish European energy normalization. (<a href="https://www.iea.org/reports/oil-market-report-november-2026">iea.org</a>)</li><li><strong>Weak Chinese construction versus strong manufacturing:</strong> neither “China recovery” nor “China collapse” adequately describes the sector evidence. (<a href="https://www.stats.gov.cn/english/PressRelease/202610/t20261019_1965619.html">stats.gov.cn</a>)</li><li><strong>Trade protection versus downstream competitiveness:</strong> steel restrictions can support producers while increasing costs for their industrial customers—an analytical distributional effect, not an unqualified regional benefit.</li><li><strong>Regulatory relief versus continuing intervention:</strong> AI deadlines moved outward, while digital consumer-protection proposals and competition investigations continued. (<a href="https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force">digital-strategy.ec.europa.eu</a>)</li></ul></article></section><section class="section" id="missing-data-and-verification-limitations"><p class="section-label">6. Missing data and verification limitations</p><article class="card"><ul><li><strong>Tariffs:</strong> no complete November 13 HS-code schedule, company-specific exclusions or customs-cost reconciliation was reconstructed. The CRS rate snapshot is explicitly older.</li><li><strong>Export controls:</strong> actual licence approvals, delivered critical-material volumes and customer-level chip eligibility remain unverified.</li><li><strong>Conflict exposure:</strong> company-specific shipping insurance, route costs, inventories and hedges were unavailable. No ceasefire, escalation or settlement probability is assumed.</li><li><strong>Competition:</strong> final cloud DMA designation/remedies were not verified; the cited tracker is secondary evidence, not a substitute for a decision.</li><li><strong>Healthcare:</strong> confidential net pricing and product-level 2027 exposure were not independently reconciled. Broader healthcare payment and insurance changes were not comprehensively verified.</li><li><strong>Earnings attribution:</strong> no consensus estimates or quantified company earnings impacts are supplied. Missing evidence indicates a verification gap—not that an exposure is absent.</li></ul></article></section>
+  </main>
+  <script>
+    const links = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+    const sections = links.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      links.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === "#" + visible.target.id));
+    }, { rootMargin: "-20% 0px -60% 0px", threshold: [0.1, 0.4] });
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>

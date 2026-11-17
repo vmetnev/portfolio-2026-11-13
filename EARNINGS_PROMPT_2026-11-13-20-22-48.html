@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Corporate earnings outlook: US and European equities</title>
+  <style>
+:root {
+  --background: oklch(0.993 0.006 82);
+  --foreground: oklch(0.31 0.018 50);
+  --card: oklch(0.999 0.003 90);
+  --card-foreground: oklch(0.31 0.018 50);
+  --primary: oklch(0.40 0.055 250);
+  --primary-foreground: oklch(0.99 0.004 90);
+  --secondary: oklch(0.974 0.01 82);
+  --secondary-foreground: oklch(0.36 0.02 50);
+  --muted: oklch(0.974 0.01 82);
+  --muted-foreground: oklch(0.51 0.015 55);
+  --metadata: oklch(0.64 0.012 60);
+  --accent: oklch(0.969 0.014 78);
+  --accent-foreground: oklch(0.34 0.025 50);
+  --destructive: oklch(0.55 0.14 25);
+  --positive: oklch(0.48 0.09 155);
+  --border: oklch(0.915 0.012 78);
+  --sidebar: oklch(0.987 0.008 82);
+  --sidebar-foreground: oklch(0.31 0.018 50);
+  --sidebar-primary: oklch(0.40 0.055 250);
+  --sidebar-primary-foreground: oklch(0.99 0.004 90);
+  --radius: 0.5rem;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { font-family: var(--font-sans); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.375;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--primary); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.prose a {
+  overflow-wrap: anywhere;
+  text-decoration-color: color-mix(in oklch, var(--primary) 40%, transparent);
+}
+.prose a:hover { text-decoration-color: var(--primary); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 3rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--sidebar);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--sidebar-foreground);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background: var(--sidebar-primary);
+  color: var(--sidebar-primary-foreground);
+}
+.mark svg { width: 0.875rem; height: 0.875rem; }
+.site-nav {
+  display: flex;
+  min-width: 0;
+  gap: 0.25rem;
+  overflow-x: auto;
+}
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  height: 3rem;
+  padding: 0 0.75rem;
+  border-bottom: 2px solid transparent;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-nav a:hover { color: var(--foreground); }
+.site-nav a.active {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  font-weight: 500;
+}
+main {
+  width: min(72rem, 100%);
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.page-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--metadata);
+  font-size: 0.75rem;
+}
+h1 {
+  margin: 0.375rem 0 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+h3 { margin: 0; font-size: 0.875rem; font-weight: 500; line-height: 1.35; }
+.section { display: flex; flex-direction: column; gap: 0.75rem; }
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.lede, .note {
+  max-width: 56rem;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+.note { color: var(--muted-foreground); }
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: 0 0 0 1px var(--border);
+  font-size: 0.875rem;
+}
+.muted-card { background: var(--muted); }
+.prose p { margin: 0; }
+.prose p + p { margin-top: 0.75rem; }
+.tag { color: var(--primary); font-weight: 500; }
+.part-gap { display: block; height: 1.25rem; }
+.force h3 { margin-bottom: 1rem; }
+.theme-list { margin: 0.35rem 0 0.85rem; padding-left: 1.15rem; }
+.theme-list li + li { margin-top: 0.35rem; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.stat {
+  padding: 0.75rem 0.875rem;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+.stat-value {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.stat-label {
+  margin: 0.25rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+}
+.stat-note {
+  margin: -0.25rem 0 0;
+  color: var(--metadata);
+  font-size: 0.75rem;
+}
+.stack { display: flex; flex-direction: column; gap: 0.75rem; }
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.force, .risk {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.force-index, .rank, .risk-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background: color-mix(in oklch, var(--primary) 10%, transparent);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.risk-index {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+.theme-head, .holding-head, .holding-title, .rejected-head, .turn-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.turn-head { align-items: center; justify-content: space-between; }
+.theme-main, .holding-main { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+.theme-main h3, .holding-title h3, .turn-head h3 { font-size: 1rem; }
+.holding-title { justify-content: space-between; }
+.holding-figures {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+.figure { font-size: 1rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.figure-label { margin-right: 0.45rem; color: var(--metadata); font-size: 0.75rem; }
+.badges, .queries { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  width: fit-content;
+  padding: 0 0.5rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius) * 2.6);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+.badge-positive, .badge-executive {
+  background: color-mix(in oklch, var(--primary) 12%, transparent);
+  color: var(--primary);
+}
+.badge-positive { background: color-mix(in oklch, var(--positive) 12%, transparent); color: var(--positive); }
+.badge-destructive {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+.badge-secondary, .badge-operator { background: var(--secondary); color: var(--secondary-foreground); }
+.badge-outline, .badge-analyst {
+  border-color: var(--border);
+  background: var(--card);
+  color: var(--foreground);
+}
+.badge-ghost {
+  background: transparent;
+  color: var(--metadata);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 400;
+  text-transform: none;
+}
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--border);
+}
+.field { display: flex; flex-direction: column; gap: 0.375rem; }
+.kicker {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+ul { margin: 0; padding-left: 1.1rem; }
+li + li { margin-top: 0.25rem; }
+.theme-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.query {
+  overflow-wrap: anywhere;
+  display: inline-flex;
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+.alloc-list { display: flex; flex-direction: column; gap: 0.8rem; }
+.alloc-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+}
+.alloc-top span:last-child {
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+.track {
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--muted);
+  overflow: hidden;
+}
+.fill { height: 100%; border-radius: inherit; background: var(--primary); }
+.table-card {
+  overflow-x: auto;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+th {
+  height: 2rem;
+  padding: 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: left;
+}
+td { padding: 0.45rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.ticker {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--card);
+  color: var(--foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+a.ticker:hover { background: var(--muted); }
+.scenarios, .grid-2 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: start;
+}
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.scenario-bull h3 { color: var(--positive); }
+.scenario-bear h3 { color: var(--destructive); }
+.count {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.5rem;
+  border-radius: calc(var(--radius) * 2.6);
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.view-tabs {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.35rem;
+  padding: 0.4rem 0;
+}
+.view-tab {
+  appearance: none;
+  border: 0;
+  height: 100%;
+  border-radius: 0.35rem;
+  background: color-mix(in oklch, var(--primary) 30%, white);
+  color: var(--primary);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+.view-tab:hover { background: color-mix(in oklch, var(--primary) 42%, white); }
+.view-tab.active, .view-tab.active:hover { background: var(--primary); color: white; }
+main[hidden], nav[hidden] { display: none !important; }
+@media (max-width: 960px) {
+  .stats, .scenarios, .fields, .split { grid-template-columns: 1fr 1fr; }
+  .scenarios { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .stats, .fields, .split, .grid-2 { grid-template-columns: 1fr; }
+  .site-header { gap: 0.75rem; }
+  .holding-title { flex-direction: column; }
+}
+
+.site-header { height: auto; min-height: 3rem; align-items: flex-start; flex-wrap: wrap; }
+.brand { height: 3rem; }
+.site-nav { flex: 1; overflow-x: auto; overflow-y: hidden; }
+.site-nav a { flex: 0 0 auto; }
+.site-nav a[aria-current="page"] {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  font-weight: 500;
+}
+.section { scroll-margin-top: 5rem; }
+main { padding-bottom: 45vh; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5v4"></path>
+          <rect x="7" y="9" width="4" height="6" rx="1"></rect>
+          <path d="M9 15v4"></path>
+          <path d="M15 3v2"></path>
+          <rect x="13" y="5" width="4" height="10" rx="1"></rect>
+          <path d="M15 15v6"></path>
+        </svg>
+      </span>
+      Earnings
+    </a>
+    <nav class="site-nav" aria-label="Reports"><a href="index.html">Portfolio</a><a href="US_MACRO_PROMPT_2026-11-13-19-53-21.html">US Macro</a><a href="US_POLITICS_PROMPT_2026-11-13-20-37-03.html">US Politics</a><a href="EUROPE_MACRO_PROMPT_2026-11-13-20-04-20.html">Europe Macro</a><a href="FINANCIAL_CONDITIONS_PROMPT_2026-11-13-20-17-02.html">Financial Conditions</a><a href="EXTERNAL_DRIVERS_PROMPT_2026-11-13-20-31-36.html">External drivers</a><a href="INDUSTRY_CYCLES_PROMPT_2026-11-13-20-27-14.html">Industry Cycles</a><a href="EQUITY_MARKETS_PROMPT_2026-11-13-20-19-28.html">Equity market</a><a href="EARNINGS_PROMPT_2026-11-13-20-22-48.html" aria-current="page">Earnings</a></nav>
+  </header>
+  <main id="top">
+    <div>
+      <p class="page-kicker"><span>Information cutoff: November 13, 2026</span><span>EARNINGS_PROMPT_2026-11-13-20-22-48.json</span></p>
+      <h1>Corporate earnings outlook: US and European equities</h1>
+    </div>
+    
+    <section class="section" id="introduction"><p class="section-label">Introduction</p><article class="card prose"><p><strong>Information cutoff: November 13, 2026</strong></p></article><article class="card prose"><p><strong>Scope:</strong> S&amp;P 500 and STOXX Europe 600 aggregates, supplemented by company disclosures. Company examples illustrate business mechanisms—not market-wide trends. “Blended” figures combine reported results with estimates for companies yet to report.</p></article></section><section class="section" id="executive-findings"><p class="section-label">1. Executive findings</p><article class="card"><ul><li><strong>Aggregate profit growth remains strong in both regions, but composition matters.</strong> The latest verified US snapshot shows substantial growth even excluding energy. Europe’s headline growth is considerably more dependent on energy; its non-energy earnings outlook is improving, but much less dramatically. (<a href="https://lipperalpha.refinitiv.com/wp-content/uploads/2026/11/TRPR_82221_877.pdf">lipperalpha.refinitiv.com</a>)</li><li><strong>US momentum is strongest in energy and technology; communication services and materials have suffered adverse estimate-to-outturn movements.</strong> Positive year-over-year growth should not be confused with improving expectations. (<a href="https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626A.pdf">advantage.factset.com</a>)</li><li><strong>Margins and earnings quality are uneven.</strong> AI infrastructure supports supplier revenues but absorbs customers’ cash; commodity inflation prompts price increases; automotive competition and currency movements pressure profitability. Reported earnings growth can also reflect changes in investment gains, restructuring charges and other adjustments rather than stronger operations. (<a href="https://www.microsoft.com/en-us/investor/events/fy-2027/earnings-fy-2027-q1">microsoft.com</a>)</li></ul></article></section><section class="section" id="dated-aggregate-observations-and-consensus"><p class="section-label">2. Dated aggregate observations and consensus</p><h3>Latest verified reporting-season evidence</h3><div class="table-card"><table><thead><tr><th>Universe and evidence date</th><th>Finding and classification</th><th>Equity-investor relevance</th></tr></thead><tbody><tr><td><strong>US — LSEG, November 12, 2026; Q3 2026</strong></td><td><strong>Blended:</strong> earnings growth <strong>33.8%</strong>, revenue growth <strong>14.6%</strong>. Excluding energy: <strong>28.4%</strong> and <strong>12.8%</strong>, respectively. Of 450 reporting companies, <strong>83.6%</strong> beat earnings estimates and <strong>73.1%</strong> beat revenue estimates.</td><td>Growth is not solely an energy phenomenon. Earnings growing faster than sales supports aggregate profitability, although these figures alone do not establish recurring margin expansion. <strong>[S1]</strong> (<a href="https://lipperalpha.refinitiv.com/wp-content/uploads/2026/11/TRPR_82221_877.pdf">lipperalpha.refinitiv.com</a>)</td></tr><tr><td><strong>Europe — LSEG data dated November 12, reported by Reuters November 13; Q3 2026</strong></td><td><strong>Blended:</strong> earnings growth <strong>25%</strong>, revenue growth <strong>12%</strong>, incorporating results from 265 companies. Excluding energy: earnings <strong>10%</strong>, revenue <strong>7%</strong>. Energy earnings growth approximately <strong>151%</strong>.</td><td>Headline European growth materially overstates the improvement outside energy. Earnings sensitivity to commodity prices remains important. <strong>Secondary evidence: Reuters reporting LSEG data. [S2]</strong> (<a href="https://uk.marketscreener.com/news/european-blue-chips-remain-on-track-for-fastest-earnings-growth-in-four-years-ce785ed9da8ffe25">uk.marketscreener.com</a>)</td></tr></tbody></table></div><article class="card prose"><h3>Publicly verifiable forward consensus</h3><p>The following is <strong>FactSet analyst consensus dated November 6, 2026</strong>, not management guidance and not a November 13 update:</p></article><div class="table-card"><table><thead><tr><th>Forecast period</th><th class="num">S&amp;P 500 earnings growth, YoY</th><th class="num">Revenue growth, YoY</th></tr></thead><tbody><tr><td><strong>Q4 2026</strong></td><td class="num">28.4%</td><td class="num">13.6%</td></tr><tr><td><strong>Calendar 2026</strong></td><td class="num">33.3%</td><td class="num">13.2%</td></tr><tr><td><strong>Calendar 2027</strong></td><td class="num">16.1%</td><td class="num">9.8%</td></tr></tbody></table></div><article class="card prose"><p>FactSet’s calendar-2026 earnings-growth estimate increased from <strong>32.2% on September 30</strong>. The forecast implies continued expansion in 2027, but slower growth—not an earnings contraction. <strong>[S3]</strong> (<a href="https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626.pdf">advantage.factset.com</a>)</p></article><article class="card prose"><p><strong>Guidance breadth:</strong> LSEG counted <strong>40 positive versus 31 negative EPS preannouncements for Q4 2026</strong> as of November 12. This is a guidance-surprise indicator, not evidence that 40 companies raised previously issued guidance. <strong>[S1]</strong> (<a href="https://lipperalpha.refinitiv.com/wp-content/uploads/2026/11/TRPR_82221_877.pdf">lipperalpha.refinitiv.com</a>)</p></article></section><section class="section" id="changes-in-direction-and-sector-momentum"><p class="section-label">3. Changes in direction and sector momentum</p><div class="table-card"><table><thead><tr><th>Sector/region</th><th>Evidence of direction</th><th>Economic mechanism and qualification</th></tr></thead><tbody><tr><td><strong>US energy — improving</strong></td><td>FactSet’s Q3 2026 blended growth rose from <strong>113.5% at September 30 to 149.4% at November 6</strong>.</td><td>Strong refining economics and realised energy prices translate into higher earnings and cash generation; Shell provides corroborating operating evidence, but commodity gains are cyclical. (<a href="https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626A.pdf">advantage.factset.com</a>)</td></tr><tr><td><strong>US technology — improving</strong></td><td>Q3 2026 growth moved from <strong>63.8% to 69.2%</strong> over the same FactSet comparison.</td><td>Cloud and AI infrastructure demand supports revenue and operating leverage. However, hardware/cloud mix and infrastructure investment can pressure gross margins and cash conversion. (<a href="https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626A.pdf">advantage.factset.com</a>)</td></tr><tr><td><strong>US communication services — deteriorating expectations, still positive growth</strong></td><td>Q3 2026 growth fell from <strong>51.5% to 14.1%</strong>.</td><td>Investment marks and litigation charges contributed to misses; this is not equivalent to a sector-wide collapse in underlying demand. (<a href="https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626A.pdf">advantage.factset.com</a>)</td></tr><tr><td><strong>US financials — improving, more moderately</strong></td><td>Q3 2026 growth increased from <strong>2.8% to 6.4%</strong>. Insurers and Goldman Sachs contributed.</td><td>Improvement across these businesses does not establish banking-wide net-interest-margin expansion. (<a href="https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626A.pdf">advantage.factset.com</a>)</td></tr><tr><td><strong>US materials — adverse revisions</strong></td><td>LSEG reports Q3 aggregate earnings <strong>7.7% below its August 1 comparison</strong>, versus energy <strong>36.1% above</strong> and communication services <strong>17.4% below</strong>.</td><td>Materials’ expectations deteriorated despite positive year-over-year earnings growth. These movements include reported outcomes, not solely revisions to unreported results. <strong>[S1]</strong> (<a href="https://lipperalpha.refinitiv.com/wp-content/uploads/2026/11/TRPR_82221_877.pdf">lipperalpha.refinitiv.com</a>)</td></tr><tr><td><strong>Europe — improving profits, not accelerating sales</strong></td><td>Between the October 22 and November 12 LSEG snapshots, Q3 earnings growth increased <strong>21.9% → 25%</strong>, and ex-energy growth <strong>8.4% → 10%</strong>; revenue growth eased <strong>13.3% → 12%</strong>.</td><td>Profit improvement is broader than energy alone, but the sales downgrade contradicts a uniformly accelerating-demand interpretation. <strong>[S2, S4]</strong> (<a href="https://live.euronext.com/en/financial-news/european-corporate-earnings-set-get-boost-energy-windfall">live.euronext.com</a>)</td></tr></tbody></table></div><article class="card prose"><p><strong>Margin dispersion:</strong> FactSet’s November 6 Q3 snapshot showed net margins above five-year averages in technology (<strong>32.5% versus 25.9%</strong>) and energy (<strong>14.9% versus 10.1%</strong>), but below average in communication services (<strong>10.7% versus 13.7%</strong>). These are net—not operating—margins. <strong>[S3]</strong> (<a href="https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626.pdf">advantage.factset.com</a>)</p></article></section><section class="section" id="business-implications-reported-results-versus-management-guidance"><p class="section-label">4. Business implications: reported results versus management guidance</p><article class="card prose"><h3>Microsoft: strong operations, but capital intensity and accounting comparisons matter</h3><p><strong>Published October 28; fiscal Q1 2027 ended September 30, 2026.</strong></p></article><article class="card"><ul><li><strong>Reported:</strong> revenue increased <strong>19% to $92.3 billion</strong>, operating income <strong>21%</strong>, and GAAP EPS <strong>32%</strong>. EPS growth excluding investment effects was <strong>18%</strong>; prior-year investment losses materially affected the comparison.</li><li><strong>Margins/cash:</strong> operating margin was approximately <strong>50%</strong>, but cloud gross margin declined to <strong>66%</strong>, reflecting mix toward Azure. Operating cash flow reached <strong>$58 billion</strong>, up <strong>29%</strong>; cash property-and-equipment spending of <strong>$39.4 billion</strong> left free cash flow of <strong>$18.6 billion</strong>.</li><li><strong>Management guidance, fiscal Q2 2027:</strong> operating margin expected to decline slightly YoY; FX expected to have no meaningful growth impact.</li><li><strong>Transmission:</strong> demand supports earnings, but infrastructure spending limits immediately distributable cash and creates a larger future depreciation base. <strong>[S5–S6]</strong> (<a href="https://www.microsoft.com/en-us/investor/earnings/fy-2027-q1/press-release-webcast?utm_source=openai">microsoft.com</a>)</li></ul></article><article class="card prose"><h3>Cisco: guidance raised despite gross-margin compression</h3><p><strong>Published November 12; fiscal Q1 2027 ended October 24, 2026.</strong></p></article><article class="card"><ul><li><strong>Reported:</strong> revenue <strong>$18.5 billion, +24%</strong>; non-GAAP EPS <strong>+40%</strong>. Non-GAAP gross margin fell to <strong>65.6% from 68.1%</strong>, while operating margin reached a record <strong>37.8%</strong>. Operating cash flow increased <strong>36% to $4.4 billion</strong>.</li><li><strong>Management guidance, fiscal 2027:</strong> raised revenue outlook to <strong>$74.8–75.8 billion</strong> and non-GAAP EPS to <strong>$5.47–5.53</strong>. Expected hyperscaler AI-infrastructure revenue increased to <strong>$9 billion</strong>. The previous numerical guidance range was not independently verified here.</li><li><strong>Transmission:</strong> strong networking sales and expense leverage can lift earnings despite lower gross margins; revenue growth should not be read as pricing-power evidence alone. <strong>[S7]</strong> (<a href="https://s21.q4cdn.com/812015656/files/doc_earnings/2027/q1/earnings-result/Q1FY27-Press-Release.pdf">s21.q4cdn.com</a>)</li></ul></article><article class="card prose"><h3>Shell: strong cash generation, with material timing and non-operating effects</h3><p><strong>Published October 29; Q3 2026.</strong></p></article><article class="card"><ul><li><strong>Reported:</strong> adjusted earnings <strong>$10.814 billion</strong>, versus <strong>$5.432 billion</strong> a year earlier; operating cash flow <strong>$21.043 billion</strong>, versus <strong>$12.207 billion</strong>; company-defined free cash flow <strong>$16.322 billion</strong>.</li><li>Higher refining margins and realised LNG prices supported sequential earnings. Reported profit also included <strong>$0.8 billion of net identified gains</strong>, while operating cash flow benefited from <strong>$3.4 billion of derivative-related inflows</strong>.</li><li><strong>Transmission:</strong> stronger cash generation supports deleveraging and distributions, but derivative settlements, working-capital timing and commodity conditions limit extrapolation of one quarter’s conversion rate. <strong>[S8]</strong> (<a href="https://shell.gcs-web.com/news-releases/news-release-details/shell-plc-3rd-quarter-2026-and-nine-months-unaudited-results">shell.gcs-web.com</a>)</li></ul></article><article class="card prose"><h3>Mercedes-Benz: reported recovery masks weaker underlying profitability</h3><p><strong>Published October 28; Q3 2026.</strong></p></article><article class="card"><ul><li><strong>Reported:</strong> revenue declined <strong>4.5%</strong>; EBIT increased <strong>136.4%</strong>, largely because adjustments were lower. <strong>Adjusted EBIT fell 15%</strong>.</li><li>Cars’ adjusted return on sales declined to <strong>2.5% from 4.8%</strong>. Currency headwinds and intensifying Chinese competition weighed on results.</li><li>Industrial free cash flow fell <strong>87.4% to €172 million</strong>, reflecting a temporary new-vehicle inventory build.</li><li><strong>Transmission:</strong> competition and currency pressure reduce operating profit; inventories absorb cash before sales convert into receipts. Better statutory EBIT therefore does not establish an underlying recovery. <strong>[S9]</strong> (<a href="https://media.mercedes-benz.com/en/article/300f16c7-24b3-4f6c-a00b-a037d8049c4f?utm_source=openai">media.mercedes-benz.com</a>)</li></ul></article><article class="card prose"><h3>Unilever: volume growth offsets part of commodity pressure</h3><p><strong>Publication date: null; observation Q3 2026.</strong></p></article><article class="card"><ul><li><strong>Reported:</strong> underlying sales growth <strong>5.2%</strong>, comprising volume <strong>2.9%</strong> and price <strong>2.3%</strong>; pricing responded to higher commodity costs. Developed-market retail Foods remained soft.</li><li><strong>Management guidance, calendar 2026:</strong> upgraded outlook to underlying sales growth <strong>4–6%</strong>, at least <strong>3% volume growth</strong>, and modest underlying operating-margin improvement from <strong>20.0% in 2025</strong>.</li><li><strong>Transmission:</strong> volume supports fixed-cost absorption, while pricing protects margins against inputs. This company evidence does not demonstrate staples-wide demand strength. <strong>[S10]</strong> (<a href="https://www.unilever.com/investors/results-events/results-events-webcasts/overview-q3-2026/?utm_source=openai">unilever.com</a>)</li></ul></article><article class="card prose"><h3>Novo Nordisk: an upgrade can still imply approximately flat annual earnings</h3><p><strong>Publication date: null; guidance comparison dated November 4 versus August 4, 2026.</strong></p></article><article class="card"><ul><li><strong>Management guidance, calendar 2026:</strong> adjusted sales and operating-profit growth raised to <strong>−2% to +2% at constant exchange rates</strong>, from <strong>−6% to 0%</strong>, reflecting stronger GLP-1 sales expectations.</li><li><strong>Transmission:</strong> the upgrade improves expected revenue and earnings, but does not imply strong full-year growth or establish healthcare-sector-wide improvement. <strong>[S11]</strong> (<a href="https://www.novonordisk.com/content/dam/nncorp/global/en/investors/pdfs/financial-results/2026/Q3-2026-full-presentation.pdf?utm_source=openai">novonordisk.com</a>)</li></ul></article></section><section class="section" id="contradictory-evidence-and-currency-effects"><p class="section-label">5. Contradictory evidence and currency effects</p><article class="card"><ul><li><strong>Broad beats, limited aggregate upside:</strong> FactSet’s November 6 US snapshot showed <strong>84%</strong> beating EPS estimates, but aggregate earnings only <strong>2.7% above expectations</strong>. Beat frequency overstated the size of the positive surprise. <strong>[S3]</strong> (<a href="https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626A.pdf">advantage.factset.com</a>)</li><li><strong>Currency is company-specific:</strong> Microsoft cloud growth was <strong>30% reported versus 31% constant currency</strong>, indicating a modest translation drag. Mercedes reported currency headwinds without a quantified bridge in the evidence reviewed. Novo’s revised <strong>2026</strong> outlook expected Danish-krone growth in line with constant-currency growth, replacing earlier FX drags. These disclosures do not establish one uniform multinational FX effect. (<a href="https://www.microsoft.com/en-us/investor/earnings/fy-2027-q1/press-release-webcast?utm_source=openai">microsoft.com</a>)</li><li><strong>Valuation interpretation:</strong> stronger recurring earnings support the earnings denominator of valuation multiples; investment gains, reduced restructuring charges or temporarily favourable cash settlements deserve different treatment. Microsoft, Mercedes and Shell demonstrate why earnings-to-cash reconciliation matters alongside headline EPS. This is an analytical interpretation, not a valuation forecast. (<a href="https://www.microsoft.com/en-us/investor/earnings/fy-2027-q1/press-release-webcast?utm_source=openai">microsoft.com</a>)</li></ul></article></section><section class="section" id="missing-data-and-verification-limitations"><p class="section-label">6. Missing data and verification limitations</p><article class="card"><ul><li>The latest verified <strong>US aggregate was November 12</strong>; the forward-consensus and margin tables are explicitly <strong>November 6</strong>, not November 13.</li><li>European figures use <strong>Reuters’ reproduction of LSEG data</strong>. Detailed latest European sector tables, calendar-2026/2027 consensus and revision breadth were not independently verified.</li><li>No comparable market-wide cash-flow, accrual-quality or one-off-adjusted earnings series was verified. Company cash-flow examples cannot establish aggregate earnings quality.</li><li>Broad labour, tariff, financing-cost and hedging bridges were not verified. Absence of that evidence is <strong>not evidence those pressures are absent</strong>.</li><li>Provider differences and changing reporting samples prevent treating differences between LSEG and FactSet snapshots as clean revisions.</li></ul></article><article class="card prose"><h3>Source register — actual URLs</h3><p>Dates and observation periods are recorded above; <strong>null</strong> denotes an unverified publication date.</p></article><div class="table-card"><table><thead><tr><th>ID</th><th>Source URL</th></tr></thead><tbody><tr><td><strong>S1</strong></td><td><a href="https://lipperalpha.refinitiv.com/wp-content/uploads/2026/11/TRPR_82221_877.pdf">https://lipperalpha.refinitiv.com/wp-content/uploads/2026/11/TRPR_82221_877.pdf</a></td></tr><tr><td><strong>S2</strong></td><td><a href="https://uk.marketscreener.com/news/european-blue-chips-remain-on-track-for-fastest-earnings-growth-in-four-years-ce785ed9da8ffe25">https://uk.marketscreener.com/news/european-blue-chips-remain-on-track-for-fastest-earnings-growth-in-four-years-ce785ed9da8ffe25</a></td></tr><tr><td><strong>S3</strong></td><td><a href="https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626.pdf">https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_110626.pdf</a></td></tr><tr><td><strong>S4</strong></td><td><a href="https://live.euronext.com/en/financial-news/european-corporate-earnings-set-get-boost-energy-windfall">https://live.euronext.com/en/financial-news/european-corporate-earnings-set-get-boost-energy-windfall</a></td></tr><tr><td><strong>S5</strong></td><td><a href="https://www.microsoft.com/en-us/investor/earnings/fy-2027-q1/press-release-webcast">https://www.microsoft.com/en-us/investor/earnings/fy-2027-q1/press-release-webcast</a></td></tr><tr><td><strong>S6</strong></td><td><a href="https://www.microsoft.com/en-us/investor/events/fy-2027/earnings-fy-2027-q1">https://www.microsoft.com/en-us/investor/events/fy-2027/earnings-fy-2027-q1</a></td></tr><tr><td><strong>S7</strong></td><td><a href="https://s21.q4cdn.com/812015656/files/doc_earnings/2027/q1/earnings-result/Q1FY27-Press-Release.pdf">https://s21.q4cdn.com/812015656/files/doc_earnings/2027/q1/earnings-result/Q1FY27-Press-Release.pdf</a></td></tr><tr><td><strong>S8</strong></td><td><a href="https://shell.gcs-web.com/news-releases/news-release-details/shell-plc-3rd-quarter-2026-and-nine-months-unaudited-results">https://shell.gcs-web.com/news-releases/news-release-details/shell-plc-3rd-quarter-2026-and-nine-months-unaudited-results</a></td></tr><tr><td><strong>S8, cash bridge</strong></td><td><a href="https://www.shell.com/investors/investor-presentations/_jcr_content/root/main/section_1529014047_c_540020954/tabs/tab_1774293805/text_copy_copy_copy__900772623/links/item1.stream/1793238865458/4bc70d25b73a07e71802c547bf6df9afbb724171/q3-2026-qra-document.pdf">https://www.shell.com/investors/investor-presentations/_jcr_content/root/main/section_1529014047_c_540020954/tabs/tab_1774293805/text_copy_copy_copy__900772623/links/item1.stream/1793238865458/4bc70d25b73a07e71802c547bf6df9afbb724171/q3-2026-qra-document.pdf</a></td></tr><tr><td><strong>S9</strong></td><td><a href="https://media.mercedes-benz.com/en/article/300f16c7-24b3-4f6c-a00b-a037d8049c4f">https://media.mercedes-benz.com/en/article/300f16c7-24b3-4f6c-a00b-a037d8049c4f</a></td></tr><tr><td><strong>S10</strong></td><td><a href="https://www.unilever.com/investors/results-events/results-events-webcasts/overview-q3-2026/">https://www.unilever.com/investors/results-events/results-events-webcasts/overview-q3-2026/</a></td></tr><tr><td><strong>S11</strong></td><td><a href="https://www.novonordisk.com/content/dam/nncorp/global/en/investors/pdfs/financial-results/2026/Q3-2026-full-presentation.pdf">https://www.novonordisk.com/content/dam/nncorp/global/en/investors/pdfs/financial-results/2026/Q3-2026-full-presentation.pdf</a></td></tr></tbody></table></div></section>
+  </main>
+  <script>
+    const links = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+    const sections = links.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      links.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === "#" + visible.target.id));
+    }, { rootMargin: "-20% 0px -60% 0px", threshold: [0.1, 0.4] });
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>

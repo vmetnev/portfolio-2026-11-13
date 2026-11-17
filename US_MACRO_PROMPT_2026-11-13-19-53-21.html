@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>US economic environment: evidence report</title>
+  <style>
+:root {
+  --background: oklch(0.993 0.006 82);
+  --foreground: oklch(0.31 0.018 50);
+  --card: oklch(0.999 0.003 90);
+  --card-foreground: oklch(0.31 0.018 50);
+  --primary: oklch(0.40 0.055 250);
+  --primary-foreground: oklch(0.99 0.004 90);
+  --secondary: oklch(0.974 0.01 82);
+  --secondary-foreground: oklch(0.36 0.02 50);
+  --muted: oklch(0.974 0.01 82);
+  --muted-foreground: oklch(0.51 0.015 55);
+  --metadata: oklch(0.64 0.012 60);
+  --accent: oklch(0.969 0.014 78);
+  --accent-foreground: oklch(0.34 0.025 50);
+  --destructive: oklch(0.55 0.14 25);
+  --positive: oklch(0.48 0.09 155);
+  --border: oklch(0.915 0.012 78);
+  --sidebar: oklch(0.987 0.008 82);
+  --sidebar-foreground: oklch(0.31 0.018 50);
+  --sidebar-primary: oklch(0.40 0.055 250);
+  --sidebar-primary-foreground: oklch(0.99 0.004 90);
+  --radius: 0.5rem;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { font-family: var(--font-sans); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.375;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--primary); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.prose a {
+  overflow-wrap: anywhere;
+  text-decoration-color: color-mix(in oklch, var(--primary) 40%, transparent);
+}
+.prose a:hover { text-decoration-color: var(--primary); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 3rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--sidebar);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--sidebar-foreground);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background: var(--sidebar-primary);
+  color: var(--sidebar-primary-foreground);
+}
+.mark svg { width: 0.875rem; height: 0.875rem; }
+.site-nav {
+  display: flex;
+  min-width: 0;
+  gap: 0.25rem;
+  overflow-x: auto;
+}
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  height: 3rem;
+  padding: 0 0.75rem;
+  border-bottom: 2px solid transparent;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-nav a:hover { color: var(--foreground); }
+.site-nav a.active {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  font-weight: 500;
+}
+main {
+  width: min(72rem, 100%);
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.page-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--metadata);
+  font-size: 0.75rem;
+}
+h1 {
+  margin: 0.375rem 0 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+h3 { margin: 0; font-size: 0.875rem; font-weight: 500; line-height: 1.35; }
+.section { display: flex; flex-direction: column; gap: 0.75rem; }
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.lede, .note {
+  max-width: 56rem;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+.note { color: var(--muted-foreground); }
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: 0 0 0 1px var(--border);
+  font-size: 0.875rem;
+}
+.muted-card { background: var(--muted); }
+.prose p { margin: 0; }
+.prose p + p { margin-top: 0.75rem; }
+.tag { color: var(--primary); font-weight: 500; }
+.part-gap { display: block; height: 1.25rem; }
+.force h3 { margin-bottom: 1rem; }
+.theme-list { margin: 0.35rem 0 0.85rem; padding-left: 1.15rem; }
+.theme-list li + li { margin-top: 0.35rem; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.stat {
+  padding: 0.75rem 0.875rem;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+.stat-value {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.stat-label {
+  margin: 0.25rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+}
+.stat-note {
+  margin: -0.25rem 0 0;
+  color: var(--metadata);
+  font-size: 0.75rem;
+}
+.stack { display: flex; flex-direction: column; gap: 0.75rem; }
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.force, .risk {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.force-index, .rank, .risk-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background: color-mix(in oklch, var(--primary) 10%, transparent);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.risk-index {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+.theme-head, .holding-head, .holding-title, .rejected-head, .turn-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.turn-head { align-items: center; justify-content: space-between; }
+.theme-main, .holding-main { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+.theme-main h3, .holding-title h3, .turn-head h3 { font-size: 1rem; }
+.holding-title { justify-content: space-between; }
+.holding-figures {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+.figure { font-size: 1rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.figure-label { margin-right: 0.45rem; color: var(--metadata); font-size: 0.75rem; }
+.badges, .queries { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  width: fit-content;
+  padding: 0 0.5rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius) * 2.6);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+.badge-positive, .badge-executive {
+  background: color-mix(in oklch, var(--primary) 12%, transparent);
+  color: var(--primary);
+}
+.badge-positive { background: color-mix(in oklch, var(--positive) 12%, transparent); color: var(--positive); }
+.badge-destructive {
+  background: color-mix(in oklch, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+.badge-secondary, .badge-operator { background: var(--secondary); color: var(--secondary-foreground); }
+.badge-outline, .badge-analyst {
+  border-color: var(--border);
+  background: var(--card);
+  color: var(--foreground);
+}
+.badge-ghost {
+  background: transparent;
+  color: var(--metadata);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 400;
+  text-transform: none;
+}
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--border);
+}
+.field { display: flex; flex-direction: column; gap: 0.375rem; }
+.kicker {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+ul { margin: 0; padding-left: 1.1rem; }
+li + li { margin-top: 0.25rem; }
+.theme-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.query {
+  overflow-wrap: anywhere;
+  display: inline-flex;
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+.alloc-list { display: flex; flex-direction: column; gap: 0.8rem; }
+.alloc-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+}
+.alloc-top span:last-child {
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+.track {
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--muted);
+  overflow: hidden;
+}
+.fill { height: 100%; border-radius: inherit; background: var(--primary); }
+.table-card {
+  overflow-x: auto;
+  border-radius: calc(var(--radius) * 1.4);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+th {
+  height: 2rem;
+  padding: 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: left;
+}
+td { padding: 0.45rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.ticker {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--card);
+  color: var(--foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+a.ticker:hover { background: var(--muted); }
+.scenarios, .grid-2 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: start;
+}
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.scenario-bull h3 { color: var(--positive); }
+.scenario-bear h3 { color: var(--destructive); }
+.count {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.5rem;
+  border-radius: calc(var(--radius) * 2.6);
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.view-tabs {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.35rem;
+  padding: 0.4rem 0;
+}
+.view-tab {
+  appearance: none;
+  border: 0;
+  height: 100%;
+  border-radius: 0.35rem;
+  background: color-mix(in oklch, var(--primary) 30%, white);
+  color: var(--primary);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+.view-tab:hover { background: color-mix(in oklch, var(--primary) 42%, white); }
+.view-tab.active, .view-tab.active:hover { background: var(--primary); color: white; }
+main[hidden], nav[hidden] { display: none !important; }
+@media (max-width: 960px) {
+  .stats, .scenarios, .fields, .split { grid-template-columns: 1fr 1fr; }
+  .scenarios { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .stats, .fields, .split, .grid-2 { grid-template-columns: 1fr; }
+  .site-header { gap: 0.75rem; }
+  .holding-title { flex-direction: column; }
+}
+
+.site-header { height: auto; min-height: 3rem; align-items: flex-start; flex-wrap: wrap; }
+.brand { height: 3rem; }
+.site-nav { flex: 1; overflow-x: auto; overflow-y: hidden; }
+.site-nav a { flex: 0 0 auto; }
+.site-nav a[aria-current="page"] {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  font-weight: 500;
+}
+.section { scroll-margin-top: 5rem; }
+main { padding-bottom: 45vh; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5v4"></path>
+          <rect x="7" y="9" width="4" height="6" rx="1"></rect>
+          <path d="M9 15v4"></path>
+          <path d="M15 3v2"></path>
+          <rect x="13" y="5" width="4" height="10" rx="1"></rect>
+          <path d="M15 15v6"></path>
+        </svg>
+      </span>
+      US Macro
+    </a>
+    <nav class="site-nav" aria-label="Reports"><a href="index.html">Portfolio</a><a href="US_MACRO_PROMPT_2026-11-13-19-53-21.html" aria-current="page">US Macro</a><a href="US_POLITICS_PROMPT_2026-11-13-20-37-03.html">US Politics</a><a href="EUROPE_MACRO_PROMPT_2026-11-13-20-04-20.html">Europe Macro</a><a href="FINANCIAL_CONDITIONS_PROMPT_2026-11-13-20-17-02.html">Financial Conditions</a><a href="EXTERNAL_DRIVERS_PROMPT_2026-11-13-20-31-36.html">External drivers</a><a href="INDUSTRY_CYCLES_PROMPT_2026-11-13-20-27-14.html">Industry Cycles</a><a href="EQUITY_MARKETS_PROMPT_2026-11-13-20-19-28.html">Equity market</a><a href="EARNINGS_PROMPT_2026-11-13-20-22-48.html">Earnings</a></nav>
+  </header>
+  <main id="top">
+    <div>
+      <p class="page-kicker"><span>Information cutoff: November 13, 2026 | Outlook horizon: through November 13, 2027</span><span>US_MACRO_PROMPT_2026-11-13-19-53-21.json</span></p>
+      <h1>US economic environment: evidence report</h1>
+    </div>
+    <article class="card muted-card prose"><p>I’ll prioritize official data and policy releases available by November 13, 2026, separate reported results from forecasts, and flag any evidence I can’t verify by that cutoff.</p></article>
+    <section class="section" id="introduction"><p class="section-label">Introduction</p><article class="card prose"><p><strong>Information cutoff: November 13, 2026 | Outlook horizon: through November 13, 2027</strong></p></article></section><section class="section" id="executive-findings"><p class="section-label">1. Executive findings</p><article class="card prose"><p><strong>The evidence favors continued expansion, but with a more difficult inflation–policy trade-off—not a broad-based economic slowdown.</strong> Third-quarter domestic demand strengthened, particularly business investment. However, September household purchasing power weakened, and October inflation remained persistent. These conditions support revenues unevenly while limiting the case for easier Federal Reserve policy. This is an <strong>analytical interpretation</strong>, not a recession-probability estimate. (<a href="https://bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">bea.gov</a>)</p></article><article class="card prose"><p>The five most important changes in momentum are:</p></article><article class="card"><ol><li><strong>Domestic demand accelerated:</strong> stronger investment accompanied resilient quarterly consumption.</li><li><strong>Consumer momentum weakened at the quarter’s exit:</strong> nominal spending growth increasingly reflected prices rather than additional consumption.</li><li><strong>Employment improved after earlier weakness:</strong> October hiring and upward revisions challenge a simple “continuing labor-market cooling” narrative.</li><li><strong>Inflation relief remained incomplete:</strong> the energy-price surge moderated in October, but core inflation persisted.</li><li><strong>The policy outlook shifted away from easing:</strong> official rate projections moved higher, while fiscal policy continued supporting selected demand categories but introduced a 2027 healthcare-policy headwind. (<a href="https://home.treasury.gov/news/press-releases/sb0676/">home.treasury.gov</a>)</li></ol></article></section><section class="section" id="dated-observations-and-source-references"><p class="section-label">2. Dated observations and source references</p><article class="card prose"><p><em>Quarterly growth rates below are real, quarter-over-quarter annualized rates unless stated otherwise. Monthly changes are seasonally adjusted where reported.</em></p></article><article class="card prose"><h3>A. GDP and principal components — <strong>reported estimates</strong></h3><p><strong>Observation:</strong> Q3 2026. <strong>Published:</strong> October 29, 2026; Treasury component summary November 2, 2026.</p></article><article class="card prose"><p>Real GDP accelerated to <strong>3.4%</strong>, from <strong>2.2% in Q2</strong>. Real final sales to private domestic purchasers—a measure excluding inventories, government and net exports—rose <strong>4.9%</strong>, versus <strong>4.6%</strong>. (<a href="https://bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">bea.gov</a>)</p></article><div class="table-card"><table><thead><tr><th>Component</th><th class="num">Q3 growth</th><th class="num">Contribution to GDP growth</th></tr></thead><tbody><tr><td>Consumer spending</td><td class="num">3.8%</td><td class="num">+2.5 percentage points</td></tr><tr><td>Business fixed investment</td><td class="num">12.7%</td><td class="num">+1.8 pp</td></tr><tr><td>Residential investment</td><td class="num">−3.3%</td><td class="num">−0.1 pp</td></tr><tr><td>Private inventories</td><td class="num">—</td><td class="num">+1.6 pp</td></tr><tr><td>Government purchases</td><td class="num">—</td><td class="num">+0.9 pp</td></tr><tr><td>Net exports</td><td class="num">—</td><td class="num">−3.3 pp</td></tr></tbody></table></div><article class="card prose"><p>Business equipment investment rose <strong>20.9%</strong>, intellectual property <strong>8.4%</strong>, and structures <strong>5.4%</strong>. (<a href="https://home.treasury.gov/news/press-releases/sb0676/">home.treasury.gov</a>)</p></article><article class="card prose"><p><strong>Equity relevance/transmission:</strong> stronger final demand supports sales and operating leverage; equipment spending directly benefits capital-goods suppliers. However, inventory accumulation is less durable than final sales, while imported equipment means strong US investment does not translate one-for-one into domestic production. The government-spending increase also partly reflected Strategic Petroleum Reserve accounting—not equivalent new fiscal stimulus. (<a href="https://bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">bea.gov</a>)</p></article><article class="card prose"><p><strong>Actual URLs:</strong> <a href="https://bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">https://bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026</a> <a href="https://home.treasury.gov/news/press-releases/sb0676/">https://home.treasury.gov/news/press-releases/sb0676/</a></p></article><article class="card prose"><h3>B. Consumer spending and income — <strong>reported estimates</strong></h3><p><strong>Observation:</strong> September 2026. <strong>Published:</strong> October 29, 2026.</p></article><article class="card prose"><p>Nominal disposable income rose <strong>0.2%</strong>, but <strong>real disposable income fell 0.3%</strong>. Nominal consumption increased <strong>0.5%</strong>, while real consumption was approximately unchanged, following <strong>0.5% real growth in August</strong>. The personal saving rate was <strong>3.8%</strong>. (<a href="https://bea.gov/news/2026/personal-income-and-outlays-september-2026">bea.gov</a>)</p></article><article class="card prose"><p><strong>Equity relevance/transmission:</strong> this is a weaker volume signal than the nominal spending figure suggests. Continued divergence between spending and real income would constrain discretionary purchases or require reduced saving and additional borrowing. Pricing-led revenue growth should therefore not automatically be interpreted as stronger unit demand.</p></article><article class="card prose"><p><strong>Uncertainty:</strong> September is one month; it does not negate strong quarterly consumption. Aggregate income also conceals differences across households. (<a href="https://bea.gov/news/2026/personal-income-and-outlays-september-2026">bea.gov</a>)</p></article><article class="card prose"><p><strong>Actual URL:</strong> <a href="https://bea.gov/news/2026/personal-income-and-outlays-september-2026">https://bea.gov/news/2026/personal-income-and-outlays-september-2026</a></p></article><article class="card prose"><h3>C. Household financial resilience — <strong>reported credit-panel data</strong></h3><p><strong>Observation:</strong> Q3 2026. <strong>Published:</strong> November 10, 2026.</p></article><article class="card prose"><p>Household debt increased <strong>1.8% to $19.1 trillion</strong>; credit-card balances reached approximately <strong>$1.29 trillion</strong>. Debt in some stage of delinquency increased to <strong>5.0%</strong>, from <strong>4.7%</strong>. Nevertheless, transitions into serious delinquency improved slightly for credit cards and student loans; mortgage deterioration remained low historically. (<a href="https://www.newyorkfed.org/newsevents/news/research/2026/20261110">newyorkfed.org</a>)</p></article><article class="card prose"><p><strong>Equity relevance/transmission:</strong> household strain matters for discretionary retail volumes, consumer-finance charge-offs and collection costs. But these data do <strong>not</strong> establish a generalized household credit crisis: delinquency stocks worsened while several new-delinquency flows improved.</p></article><article class="card prose"><p><strong>Uncertainty:</strong> nominal debt records alone are not measures of affordability; income, assets, loan terms and borrower distribution also matter. (<a href="https://www.newyorkfed.org/newsevents/news/research/2026/20261110">newyorkfed.org</a>)</p></article><article class="card prose"><p><strong>Actual URL:</strong> <a href="https://www.newyorkfed.org/newsevents/news/research/2026/20261110">https://www.newyorkfed.org/newsevents/news/research/2026/20261110</a></p></article><article class="card prose"><h3>D. Investment, manufacturing and services — <strong>reported output and survey evidence</strong></h3><p><strong>Observations:</strong> September industrial production; October purchasing-manager surveys. <strong>Publication dates:</strong> October 16, 2026 for industrial production; <strong>null</strong> for the undated ISM webpages retrieved.</p></article><article class="card"><ul><li><strong>Hard data:</strong> September industrial production rose <strong>0.7%</strong>, but manufacturing increased only <strong>0.3%</strong>; utilities rose <strong>3.5%</strong>. The aggregate gain therefore overstated factory-specific acceleration. (<a href="https://www.federalreserve.gov/releases/g17/20261016/g17.pdf?utm_source=openai">federalreserve.gov</a>)</li><li><strong>Manufacturing survey:</strong> October ISM PMI increased to <strong>55.5</strong>, from <strong>54.5</strong>; production reached <strong>59.0</strong>. Prices paid eased to <strong>75.2</strong>, but remained elevated. (<a href="https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/pmi/october/">ismworld.org</a>)</li><li><strong>Services survey:</strong> October PMI eased to <strong>54.5</strong>, from <strong>54.9</strong>. New orders slowed to <strong>55.9</strong>, from <strong>59.8</strong>, while employment improved to <strong>51.4</strong>. Prices paid remained high at <strong>73.0</strong>. (<a href="https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/services/october/">ismworld.org</a>)</li></ul></article><article class="card prose"><p><strong>Equity relevance/transmission:</strong> demand supports equipment, automation and infrastructure suppliers, but persistent input-cost pressure can erode margins where contracts lack repricing mechanisms. Services remain expansionary, although order momentum weakened.</p></article><article class="card prose"><p><strong>Uncertainty:</strong> PMIs are diffusion surveys, not measured output-growth rates; slower deliveries can reflect supply constraints as well as strong demand.</p></article><article class="card prose"><p><strong>Actual URLs:</strong> <a href="https://www.federalreserve.gov/releases/g17/20261016/g17.pdf">https://www.federalreserve.gov/releases/g17/20261016/g17.pdf</a> <a href="https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/pmi/october/">https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/pmi/october/</a> <a href="https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/services/october/">https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/services/october/</a></p></article><article class="card prose"><h3>E. Employment, unemployment and wages — <strong>reported estimates</strong></h3><p><strong>Observation:</strong> October 2026, including revisions to August–September. <strong>Published:</strong> November 6, 2026.</p></article><article class="card prose"><p>Payrolls rose <strong>165,000</strong>. August and September were revised upward by a combined <strong>84,000</strong>, leaving September’s gain at <strong>60,000</strong>. Unemployment was <strong>4.1%</strong>, participation <strong>61.9%</strong>, and average hourly earnings increased <strong>3.1% year-over-year</strong>, although October’s monthly wage increase was <strong>0.4%</strong>. (<a href="https://www.bls.gov/news.release/empsit.nr0.htm?utm_source=openai">bls.gov</a>)</p></article><article class="card prose"><p>Cooling remains visible beneath the headline: <strong>27.6% of unemployed workers were long-term unemployed</strong>, and involuntary part-time employment increased <strong>339,000</strong>. (<a href="https://www.bls.gov/news.release/empsit.htm">bls.gov</a>)</p></article><article class="card prose"><p><strong>Equity relevance/transmission:</strong> job creation supports aggregate purchasing power; slower annual wage growth can relieve labor-intensive businesses’ costs. Conversely, difficult job finding and underemployment can weaken demand among marginal consumers.</p></article><article class="card prose"><p><strong>Uncertainty:</strong> October is not proof of a sustained hiring acceleration. Federal Reserve Governor Bowman characterized conditions as <strong>low hiring and low firing</strong>, rather than a tight labor market. (<a href="https://www.federalreserve.gov/newsevents/speech/files/bowman20261110a.pdf">federalreserve.gov</a>)</p></article><article class="card prose"><p><strong>Actual URLs:</strong> <a href="https://www.bls.gov/news.release/archives/empsit_11062026.htm">https://www.bls.gov/news.release/archives/empsit_11062026.htm</a> <a href="https://www.federalreserve.gov/newsevents/speech/files/bowman20261110a.pdf">https://www.federalreserve.gov/newsevents/speech/files/bowman20261110a.pdf</a></p></article><article class="card prose"><h3>F. Headline and core inflation — <strong>reported data versus an official estimate</strong></h3><p><strong>Observations:</strong> October CPI; September PCE prices. <strong>Published:</strong> November 10 and October 29, 2026, respectively.</p></article><article class="card"><ul><li>October headline CPI rose <strong>0.4% month-over-month</strong>, after <strong>0.6%</strong> in September.</li><li>Core CPI increased <strong>0.3%</strong>, its third consecutive increase of that size.</li><li>Shelter rose <strong>0.3%</strong>, food <strong>0.5%</strong>, energy <strong>0.7%</strong>, and electricity <strong>0.9%</strong>. Used vehicles fell <strong>1.2%</strong>, providing an offset. (<a href="https://www.bls.gov/news.release/cpi.htm">bls.gov</a>)</li><li>September headline PCE inflation was <strong>3.6% year-over-year</strong> and core PCE <strong>3.1%</strong>. (<a href="https://bea.gov/news/2026/personal-income-and-outlays-september-2026">bea.gov</a>)</li></ul></article><article class="card prose"><p><strong>Important measurement gap:</strong> October headline and core CPI year-over-year changes were unavailable because October 2025 observations were missing following the appropriations lapse. No annual rate should be manufactured from that gap. (<a href="https://www.bls.gov/news.release/cpi.htm">bls.gov</a>)</p></article><article class="card prose"><p><strong>Forecast, not realized data:</strong> on November 10, Bowman estimated October core PCE inflation at approximately <strong>3.3% year-over-year</strong>. (<a href="https://www.federalreserve.gov/newsevents/speech/files/bowman20261110a.pdf">federalreserve.gov</a>)</p></article><article class="card prose"><p><strong>Equity relevance/transmission:</strong> food, shelter and energy absorb household budgets; persistent core inflation also raises the hurdle for monetary easing. Revenue pricing benefits must be weighed against input inflation and volume elasticity.</p></article><article class="card prose"><p><strong>Actual URLs:</strong> <a href="https://www.bls.gov/news.release/cpi.htm">https://www.bls.gov/news.release/cpi.htm</a> <a href="https://bea.gov/news/2026/personal-income-and-outlays-september-2026">https://bea.gov/news/2026/personal-income-and-outlays-september-2026</a> <a href="https://www.federalreserve.gov/newsevents/speech/files/bowman20261110a.pdf">https://www.federalreserve.gov/newsevents/speech/files/bowman20261110a.pdf</a></p></article><article class="card prose"><h3>G. Federal Reserve policy — <strong>decision and official assessments</strong></h3><p><strong>Observation/decision date:</strong> October 28, 2026. <strong>Published:</strong> October 28, 2026.</p></article><article class="card prose"><p>The FOMC held its target range at <strong>3.75%–4.00%</strong>, voting <strong>10–2</strong>; both dissenters preferred a <strong>25-basis-point increase</strong>. The statement described activity as expanding strongly, investment as robust and inflation as elevated. (<a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm">federalreserve.gov</a>)</p></article><article class="card prose"><p><strong>Equity relevance/transmission:</strong> financing-sensitive demand and valuations cannot safely assume imminent easing. The policy risk is not simply weak growth; it is also resilient demand and persistent inflation requiring further restraint.</p></article><article class="card prose"><p><strong>Uncertainty:</strong> Bowman attributed inflation pressures partly to tariffs, energy and AI-related demand. These are an official’s analytical assessments, not separately identified causal estimates established by the statistical releases. (<a href="https://www.federalreserve.gov/newsevents/speech/files/bowman20261110a.pdf">federalreserve.gov</a>)</p></article><article class="card prose"><p><strong>Actual URL:</strong> <a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm">https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm</a></p></article><h3>H. Fiscal policy — <strong>realized spending, enacted provisions and implementation risk</strong></h3><div class="table-card"><table><thead><tr><th>Evidence and dates</th><th>Demand/earnings transmission and uncertainty</th></tr></thead><tbody><tr><td><strong>FY2026 realized:</strong> deficit <strong>$2.0 trillion</strong>, or <strong>6.2% of GDP</strong>, versus 5.8% in FY2025. Outlays rose 6%; revenues 3%. Published <strong>November 9, 2026</strong>.</td><td>Mandatory programs and defense contributed to spending growth. However, a larger headline deficit is not equivalent to a larger structural demand stimulus, particularly when interest payments contribute. (<a href="https://www.cbo.gov/publication/61986">cbo.gov</a>)</td></tr><tr><td><strong>October 2026:</strong> deficit <strong>$404 billion</strong>, according to CRFB’s November 12 summary of Treasury data—<strong>secondary evidence</strong>.</td><td>Some November payments occurred in October. Do not annualize this monthly figure or interpret it wholly as new stimulus. Primary Treasury verification was not completed. (<a href="https://www.crfb.org/press-releases/treasury-confirms-404-billion-deficit-first-month-fiscal-year-2027?utm_source=openai">crfb.org</a>)</td></tr><tr><td><strong>Enacted investment tax provision:</strong> permanent <strong>100% first-year depreciation</strong> for eligible property acquired after January 19, 2025. IRS webpage publication date: <strong>null</strong>.</td><td>Supports investment economics and near-term cash flow. Expensing is not the same as an equivalent permanent increase in accounting earnings. (<a href="https://www.irs.gov/newsroom/treasury-irs-issue-guidance-on-the-additional-first-year-depreciation-deduction-amended-as-part-of-the-one-big-beautiful-bill?trk=public_post_comment-text&amp;utm_source=openai">irs.gov</a>)</td></tr><tr><td><strong>Medicaid implementation:</strong> community-engagement eligibility requirements begin <strong>January 1, 2027</strong>, subject to applicable exemptions/implementation provisions. Rule published <strong>June 3, 2026</strong>.</td><td>Potential coverage disruption creates downside risk to household finances, managed-care enrollment and hospital collections. The realized magnitude remains uncertain. (<a href="https://www.govinfo.gov/content/pkg/FR-2026-06-03/html/2026-11094.htm?utm_source=openai">govinfo.gov</a>)</td></tr><tr><td><strong>FY2027 funding:</strong> official Senate listing identifies continuing funding through <strong>December 11, 2026</strong>. Listing publication date: <strong>null</strong>.</td><td>Temporary funding reduces immediate disruption but leaves appropriations uncertainty for government-dependent businesses. (<a href="https://www.senate.gov/legislative/active_leg_page.htm?utm_source=openai">senate.gov</a>)</td></tr></tbody></table></div><article class="card prose"><p><strong>Actual URLs:</strong> <a href="https://www.cbo.gov/publication/61986">https://www.cbo.gov/publication/61986</a> <a href="https://www.crfb.org/press-releases/treasury-confirms-404-billion-deficit-first-month-fiscal-year-2027">https://www.crfb.org/press-releases/treasury-confirms-404-billion-deficit-first-month-fiscal-year-2027</a> <a href="https://www.irs.gov/newsroom/treasury-irs-issue-guidance-on-the-additional-first-year-depreciation-deduction-amended-as-part-of-the-one-big-beautiful-bill">https://www.irs.gov/newsroom/treasury-irs-issue-guidance-on-the-additional-first-year-depreciation-deduction-amended-as-part-of-the-one-big-beautiful-bill</a> <a href="https://www.govinfo.gov/content/pkg/FR-2026-06-03/html/2026-11094.htm">https://www.govinfo.gov/content/pkg/FR-2026-06-03/html/2026-11094.htm</a> <a href="https://www.senate.gov/legislative/active_leg_page.htm">https://www.senate.gov/legislative/active_leg_page.htm</a></p></article></section><section class="section" id="direction-momentum-and-the-next-12-months"><p class="section-label">3. Direction, momentum and the next 12 months</p><article class="card prose"><h3>Official forecast benchmark—not realized data or market pricing</h3><p>The latest verified FOMC projections were published <strong>September 16, 2026</strong>:</p></article><div class="table-card"><table><thead><tr><th>Median projection</th><th class="num">2026</th><th class="num">2027</th></tr></thead><tbody><tr><td>Real GDP growth</td><td class="num">2.3%</td><td class="num">2.4%</td></tr><tr><td>Unemployment</td><td class="num">4.1%</td><td class="num">4.1%</td></tr><tr><td>Headline PCE inflation</td><td class="num">3.7%</td><td class="num">2.3%</td></tr><tr><td>Core PCE inflation</td><td class="num">3.4%</td><td class="num">2.5%</td></tr><tr><td>Year-end federal funds midpoint</td><td class="num">4.1%</td><td class="num">4.1%</td></tr></tbody></table></div><article class="card prose"><p>GDP and inflation forecasts are <strong>Q4/Q4</strong>; unemployment is the Q4 average. These are conditional participant projections—not commitments, annual-average growth estimates, or an exact November-to-November forecast. The 2027 policy-rate median increased from <strong>3.6% in June to 4.1% in September</strong>. (<a href="https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm">federalreserve.gov</a>)</p></article><article class="card prose"><p><strong>Analytical assessment:</strong> the central tension for the coming year is whether investment-led expansion can continue while household real incomes recover and inflation declines. Continued expansion is better supported than an immediate broad contraction, but the benign disinflation embedded in official forecasts is not yet confirmed by the latest monthly evidence. (<a href="https://home.treasury.gov/news/press-releases/sb0676/">home.treasury.gov</a>)</p></article><article class="card prose"><p><strong>Market expectations:</strong> a cutoff-date futures-implied policy path and independently verified consensus forecast vintage were not obtained. The FOMC projections above must not be presented as market pricing.</p></article><article class="card prose"><p><strong>Actual forecast URL:</strong> <a href="https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm">https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm</a></p></article></section><section class="section" id="implications-for-businesses-and-equity-markets"><p class="section-label">4. Implications for businesses and equity markets</p><article class="card prose"><p><em>The following are analytical transmission channels, not security recommendations.</em></p></article><div class="table-card"><table><thead><tr><th>Business model</th><th>Principal sensitivity over the next year</th></tr></thead><tbody><tr><td><strong>Equipment, computing infrastructure, electrical equipment and industrial automation</strong></td><td>Investment demand supports orders and utilization. Risks are customer concentration, supply constraints and capacity additions that outlast demand. Strong industrial-equipment spending suggests the expansion is not confined entirely to computing. (<a href="https://home.treasury.gov/news/press-releases/sb0676/">home.treasury.gov</a>)</td></tr><tr><td><strong>Discretionary retail, restaurants and consumer services</strong></td><td>Employment supports spending, but weak real-income growth and essential-cost inflation constrain volumes. Pricing power without customer attrition becomes critical to margins. (<a href="https://bea.gov/news/2026/personal-income-and-outlays-september-2026">bea.gov</a>)</td></tr><tr><td><strong>Homebuilders, housing transactions and financed durable goods</strong></td><td>Residential investment weakness and the less-accommodative policy outlook pressure affordability and transaction volumes; incentives can preserve sales at the expense of margins. (<a href="https://home.treasury.gov/news/press-releases/sb0676/">home.treasury.gov</a>)</td></tr><tr><td><strong>Labor-intensive services</strong></td><td>Slower annual wage growth offers cost relief, but persistent nonlabor inflation and weaker service-order momentum can offset it. (<a href="https://www.federalreserve.gov/newsevents/speech/files/bowman20261110a.pdf">federalreserve.gov</a>)</td></tr><tr><td><strong>Consumer lenders and healthcare providers</strong></td><td>Lenders face uneven credit performance rather than uniformly accelerating defaults. Healthcare demand remains supportive, but 2027 Medicaid implementation introduces enrollment, payer-mix and collection risks. (<a href="https://www.newyorkfed.org/newsevents/news/research/2026/20261110">newyorkfed.org</a>)</td></tr><tr><td><strong>High-valuation businesses dependent on distant earnings</strong></td><td>A higher official policy path raises valuation sensitivity even if near-term revenues remain sound. Strong macro growth alone therefore does not guarantee multiple expansion. (<a href="https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm">federalreserve.gov</a>)</td></tr></tbody></table></div></section><section class="section" id="contradictory-evidence"><p class="section-label">5. Contradictory evidence</p><article class="card"><ul><li><strong>Strong quarterly consumption versus weak September purchasing power:</strong> the quarter was resilient, but its exit momentum was weaker. Neither observation should replace the other. (<a href="https://home.treasury.gov/news/press-releases/sb0676/">home.treasury.gov</a>)</li><li><strong>Better hiring versus persistent labor-market friction:</strong> October payrolls and revisions improved, while long-term unemployment and involuntary part-time work remained concerns. (<a href="https://www.bls.gov/news.release/empsit.nr0.htm?utm_source=openai">bls.gov</a>)</li><li><strong>Quarterly inflation moderation versus persistent monthly pressure:</strong> Q3 core PCE inflation slowed to <strong>2.5% annualized</strong>, from 3.3%, but September PCE and October CPI showed less reassuring recent momentum. These measure different intervals. (<a href="https://bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026">bea.gov</a>)</li><li><strong>Worsening delinquency stocks versus improving flows:</strong> higher aggregate delinquency does not establish accelerating defaults across all loan categories. (<a href="https://www.newyorkfed.org/newsevents/news/research/2026/20261110">newyorkfed.org</a>)</li></ul></article></section><section class="section" id="missing-data-and-verification-limitations"><p class="section-label">6. Missing data and verification limitations</p><article class="card"><ul><li><strong>GDP revision risk:</strong> Q3 is an advance estimate. Bowman also warned that first-half GDP growth could be overstated by approximately <strong>0.3 percentage point</strong> because revised retail data had not yet been incorporated. (<a href="https://www.federalreserve.gov/newsevents/speech/files/bowman20261110a.pdf">federalreserve.gov</a>)</li><li><strong>Unavailable by cutoff:</strong> realized October PCE income/inflation and revised Q3 GDP were scheduled for <strong>November 25, 2026</strong>. October CPI annual comparisons were unavailable as explained above. (<a href="https://bea.gov/news/2026/personal-income-and-outlays-september-2026">bea.gov</a>)</li><li><strong>Unquantified policy exposure:</strong> this research did not establish a comprehensive net 2027 fiscal impulse, current effective tariff schedule, or state-by-state Medicaid implementation effect. Those are evidence gaps—not findings that the effects are absent.</li><li><strong>Source limitations:</strong> October deficit evidence is explicitly secondary; undated official/survey webpages have publication dates recorded as <strong>null</strong>. No post-cutoff releases or unverified market probabilities are used.</li></ul></article></section>
+  </main>
+  <script>
+    const links = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+    const sections = links.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      links.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === "#" + visible.target.id));
+    }, { rootMargin: "-20% 0px -60% 0px", threshold: [0.1, 0.4] });
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>
